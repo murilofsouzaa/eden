@@ -1,13 +1,24 @@
 package com.moutfit;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MoutfitApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MoutfitApplication.class, args);
-	}
+    public static void main(String[] args) {
 
+        Dotenv dotenv = Dotenv.configure()
+                .directory("./backend") // aponta diretamente para a pasta backend
+                .load();
+        System.setProperty("APP_NAME", dotenv.get("APP_NAME"));
+        System.setProperty("DB_URL", dotenv.get("DB_URL"));
+        System.setProperty("DB_USERNAME", dotenv.get("DB_USERNAME"));
+        System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
+        System.setProperty("SC_USERNAME", dotenv.get("SC_USERNAME"));
+        System.setProperty("SC_PASSWORD", dotenv.get("SC_PASSWORD"));
+
+        SpringApplication.run(MoutfitApplication.class, args);
+    }
 }

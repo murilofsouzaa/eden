@@ -1,5 +1,4 @@
-backend/src/main/resources/application.properties
-.env
+/backend/.env
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
