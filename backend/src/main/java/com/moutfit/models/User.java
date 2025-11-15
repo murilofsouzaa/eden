@@ -9,15 +9,35 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
+
+    @Column(name="email", nullable = false, length = 50)
     private String email;
+
+    @Column(name="passoword", nullable = false)
     private String password;
+
+    @Column(name="role", nullable = false)
     private String role;
+
+    @Column(name="phone", nullable = false)
     private String phone;
+
+    @Column(name="address", nullable = false)
     private String address;
+
+    @Column(name="city", nullable = false)
     private String city;
+
+    @Column(name="state", nullable = false)
     private String state;
+
+    @Column(name="zip", nullable = false)
     private String zip;
+
+    @Column(name="country", nullable = false)
     private String country;
 
     public User(){

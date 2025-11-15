@@ -18,25 +18,54 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public ProductResponseDTO updateProduct(ProductUpdate productUpdateDTO) {
-        Product product = productRepository.findById(productUpdateDTO.id())
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+    public Product getProductById(Integer id){
+        return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
 
-        product.setName(productUpdateDTO.name());
-        product.setPrice(productUpdateDTO.price());
-        product.setDescription(productUpdateDTO.description());
+    }
 
-        Product updated = productRepository.save(product);
+    public ProductResponseDTO add(ProductRequestDTO productRequestDTO) {
+        Product product = new Product();
+        product.setName(productRequestDTO.name());
+        product.setDescription(productRequestDTO.description());
+        product.setPrice(productRequestDTO.price());
+        product.setCategory(productRequestDTO.category());
+        product.setImage(productRequestDTO.image());
+
+        productRepository.save(product);
 
         return new ProductResponseDTO(
-                updated.getId(), updated.getName(), updated.getDescription() ,updated.getPrice());
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getCategory(),
+                product.getImage(),
+                product.getQuantity()
+        );
     }
+
+
 
     public void remove(Integer id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
         productRepository.delete(product);
+    }
+
+    public ProductResponseDTO findByName(String name){
+        Product product = productRepository.findProductByName(name)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        return new ProductResponseDTO(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getCategory(),
+                product.getImage(),
+                product.getQuantity()
+        );
     }
 
     public List<ProductResponseDTO> findAll() {
@@ -46,31 +75,10 @@ public class ProductService {
                                 product.getId(),
                                 product.getName(),
                                 product.getDescription(),
-                                product.getPrice()
+                                product.getPrice(),
+                                product.getCategory(),
+                                product.getImage(),
+                                product.getQuantity()
                         )).toList();
-    }
-
-    public ProductResponseDTO findByName(String name){
-        Product product = productRepository.findProductByName(name)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
-
-        return new ProductResponseDTO(
-                product.getId() ,product.getName(), product.getDescription(), product.getPrice());
-    }
-
-    public ProductResponseDTO add(ProductRequestDTO productRequestDTO) {
-        Product product = new Product();
-        product.setName(productRequestDTO.name());
-        product.setPrice(productRequestDTO.price());
-        product.setDescription(productRequestDTO.description());
-
-        Product saved = productRepository.save(product);
-
-        return new ProductResponseDTO(
-                saved.getId(),
-                saved.getName(),
-                saved.getDescription(),
-                saved.getPrice()
-        );
     }
 }

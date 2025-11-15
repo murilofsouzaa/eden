@@ -12,12 +12,25 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name="name", nullable = false, length = 50)
     private String name;
+
+    @Column(name="price", nullable = false, scale = 2)
     private BigDecimal price;
+
+    @Column(name="description", nullable = true, length = 1000)
     private String description;
+
+    @Column(name="quantity", nullable = false)
     private int quantity;
+
+    @Column(name = "imageURL", nullable = true, length = 1000)
     private String image;
+
+    @Column(name="category", nullable = false, length = 50)
     private String category;
+
+    @Column(name="status", nullable = false, length = 15)
     private boolean status;
 
     public Product() {}
