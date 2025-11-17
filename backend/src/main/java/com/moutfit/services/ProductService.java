@@ -18,10 +18,22 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product getProductById(Integer id){
-        return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+    public ProductResponseDTO getProductById(Integer id){
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
 
+        return new ProductResponseDTO(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getCategory(),
+                product.getImageURL(),
+                product.getQuantity(),
+                product.getStatus()
+        );
     }
+
 
     public ProductResponseDTO add(ProductRequestDTO productRequestDTO) {
         Product product = new Product();
@@ -29,7 +41,7 @@ public class ProductService {
         product.setDescription(productRequestDTO.description());
         product.setPrice(productRequestDTO.price());
         product.setCategory(productRequestDTO.category());
-        product.setImage(productRequestDTO.image());
+        product.setImageURL(productRequestDTO.image());
 
         productRepository.save(product);
 
@@ -39,11 +51,54 @@ public class ProductService {
                 product.getDescription(),
                 product.getPrice(),
                 product.getCategory(),
-                product.getImage(),
-                product.getQuantity()
+                product.getImageURL(),
+                product.getQuantity(),
+                product.getStatus()
         );
     }
 
+    public ProductResponseDTO updateById(Integer id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        product.setName(product.getName());
+
+
+        productRepository.save(product);
+
+        return new ProductResponseDTO(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getCategory(),
+                product.getImageURL(),
+                product.getQuantity(),
+                product.getStatus()
+        );
+    }
+
+    public ProductResponseDTO update(ProductRequestDTO productRequestDTO) {
+        Product product = new Product();
+        product.setName(productRequestDTO.name());
+        product.setDescription(productRequestDTO.description());
+        product.setPrice(productRequestDTO.price());
+        product.setCategory(productRequestDTO.category());
+        product.setImageURL(productRequestDTO.image());
+
+        productRepository.save(product);
+
+        return new ProductResponseDTO(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getCategory(),
+                product.getImageURL(),
+                product.getQuantity(),
+                product.getStatus()
+        );
+    }
 
 
     public void remove(Integer id) {
@@ -63,8 +118,9 @@ public class ProductService {
                 product.getDescription(),
                 product.getPrice(),
                 product.getCategory(),
-                product.getImage(),
-                product.getQuantity()
+                product.getImageURL(),
+                product.getQuantity(),
+                product.getStatus()
         );
     }
 
@@ -77,8 +133,9 @@ public class ProductService {
                                 product.getDescription(),
                                 product.getPrice(),
                                 product.getCategory(),
-                                product.getImage(),
-                                product.getQuantity()
+                                product.getImageURL(),
+                                product.getQuantity(),
+                                product.getStatus()
                         )).toList();
     }
 }

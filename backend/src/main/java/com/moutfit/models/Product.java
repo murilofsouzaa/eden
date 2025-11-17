@@ -24,8 +24,8 @@ public class Product {
     @Column(name="quantity", nullable = false)
     private int quantity;
 
-    @Column(name = "imageURL", nullable = true, length = 1000)
-    private String image;
+    @Column(name = "image", nullable = true, length = 1000)
+    private String imageURL;
 
     @Column(name="category", nullable = false, length = 50)
     private String category;
@@ -42,7 +42,7 @@ public class Product {
         this.price = price;
         this.description = description;
         this.quantity = quantity;
-        this.image = image;
+        this.imageURL = image;
         this.category = category;
         this.status = status;
     }
@@ -86,12 +86,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageURL(String image) {
+        this.imageURL = image;
     }
 
     public String getCategory() {
@@ -102,7 +102,7 @@ public class Product {
         this.category = category;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
