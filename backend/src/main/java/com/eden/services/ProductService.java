@@ -3,7 +3,7 @@ package com.eden.services;
 import com.eden.dto.product.ProductRequestDTO;
 import com.eden.dto.product.ProductResponseDTO;
 import com.eden.dto.product.ProductUpdateDTO;
-import com.eden.models.Product;
+import com.eden.models.ProductModel;
 import com.eden.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,126 +19,126 @@ public class ProductService {
     }
 
     public ProductResponseDTO getProductById(Integer id){
-        Product product = productRepository.findById(id)
+        ProductModel productModel = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
         return new ProductResponseDTO(
-                product.getId(),
-                product.getName(),
-                product.getDescription(),
-                product.getPrice(),
-                product.getCategory(),
-                product.getImageURL(),
-                product.getQuantity(),
-                product.getStatus()
+                productModel.getId(),
+                productModel.getName(),
+                productModel.getDescription(),
+                productModel.getPrice(),
+                productModel.getCategory(),
+                productModel.getImageURL(),
+                productModel.getQuantity(),
+                productModel.getStatus()
         );
     }
 
     public ProductResponseDTO getByName(String name){
-        Product product = productRepository.findProductByName(name)
+        ProductModel productModel = productRepository.findProductByName(name)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
         return new ProductResponseDTO(
-                product.getId(),
-                product.getName(),
-                product.getDescription(),
-                product.getPrice(),
-                product.getCategory(),
-                product.getImageURL(),
-                product.getQuantity(),
-                product.getStatus()
+                productModel.getId(),
+                productModel.getName(),
+                productModel.getDescription(),
+                productModel.getPrice(),
+                productModel.getCategory(),
+                productModel.getImageURL(),
+                productModel.getQuantity(),
+                productModel.getStatus()
         );
     }
 
     public List<ProductResponseDTO> getAll() {
         return productRepository.findAll()
-                .stream().map(product ->
+                .stream().map(productModel ->
                         new ProductResponseDTO(
-                                product.getId(),
-                                product.getName(),
-                                product.getDescription(),
-                                product.getPrice(),
-                                product.getCategory(),
-                                product.getImageURL(),
-                                product.getQuantity(),
-                                product.getStatus()
+                                productModel.getId(),
+                                productModel.getName(),
+                                productModel.getDescription(),
+                                productModel.getPrice(),
+                                productModel.getCategory(),
+                                productModel.getImageURL(),
+                                productModel.getQuantity(),
+                                productModel.getStatus()
                         )).toList();
     }
 
     public ProductResponseDTO add(ProductUpdateDTO productRequestDTO) {
-        Product product = new Product();
-        product.setName(productRequestDTO.name());
-        product.setDescription(productRequestDTO.description());
-        product.setPrice(productRequestDTO.price());
-        product.setCategory(productRequestDTO.category());
-        product.setImageURL(productRequestDTO.image());
+        ProductModel productModel = new ProductModel();
+        productModel.setName(productRequestDTO.name());
+        productModel.setDescription(productRequestDTO.description());
+        productModel.setPrice(productRequestDTO.price());
+        productModel.setCategory(productRequestDTO.category());
+        productModel.setImageURL(productRequestDTO.image());
 
-        productRepository.save(product);
+        productRepository.save(productModel);
 
         return new ProductResponseDTO(
-                product.getId(),
-                product.getName(),
-                product.getDescription(),
-                product.getPrice(),
-                product.getCategory(),
-                product.getImageURL(),
-                product.getQuantity(),
-                product.getStatus()
+                productModel.getId(),
+                productModel.getName(),
+                productModel.getDescription(),
+                productModel.getPrice(),
+                productModel.getCategory(),
+                productModel.getImageURL(),
+                productModel.getQuantity(),
+                productModel.getStatus()
         );
     }
 
     public ProductResponseDTO update(ProductRequestDTO productRequestDTO) {
-        Product product = new Product();
-        product.setName(productRequestDTO.name());
-        product.setDescription(productRequestDTO.description());
-        product.setPrice(productRequestDTO.price());
-        product.setCategory(productRequestDTO.category());
-        product.setImageURL(productRequestDTO.image());
+        ProductModel productModel = new ProductModel();
+        productModel.setName(productRequestDTO.name());
+        productModel.setDescription(productRequestDTO.description());
+        productModel.setPrice(productRequestDTO.price());
+        productModel.setCategory(productRequestDTO.category());
+        productModel.setImageURL(productRequestDTO.image());
 
-        productRepository.save(product);
+        productRepository.save(productModel);
 
         return new ProductResponseDTO(
-                product.getId(),
-                product.getName(),
-                product.getDescription(),
-                product.getPrice(),
-                product.getCategory(),
-                product.getImageURL(),
-                product.getQuantity(),
-                product.getStatus()
+                productModel.getId(),
+                productModel.getName(),
+                productModel.getDescription(),
+                productModel.getPrice(),
+                productModel.getCategory(),
+                productModel.getImageURL(),
+                productModel.getQuantity(),
+                productModel.getStatus()
         );
     }
 
     public ProductResponseDTO updateById(Integer id, ProductUpdateDTO productUpdateDTO) {
-        Product product = productRepository.findById(id)
+        ProductModel productModel = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        product.setName(productUpdateDTO.name());
-        product.setDescription(productUpdateDTO.description());
-        product.setPrice(productUpdateDTO.price());
-        product.setCategory(productUpdateDTO.category());
-        product.setImageURL(productUpdateDTO.image());
+        productModel.setName(productUpdateDTO.name());
+        productModel.setDescription(productUpdateDTO.description());
+        productModel.setPrice(productUpdateDTO.price());
+        productModel.setCategory(productUpdateDTO.category());
+        productModel.setImageURL(productUpdateDTO.image());
 
-        productRepository.save(product);
+        productRepository.save(productModel);
 
         return new ProductResponseDTO(
-                product.getId(),
-                product.getName(),
-                product.getDescription(),
-                product.getPrice(),
-                product.getCategory(),
-                product.getImageURL(),
-                product.getQuantity(),
-                product.getStatus()
+                productModel.getId(),
+                productModel.getName(),
+                productModel.getDescription(),
+                productModel.getPrice(),
+                productModel.getCategory(),
+                productModel.getImageURL(),
+                productModel.getQuantity(),
+                productModel.getStatus()
         );
     }
 
 
     public void delete(Integer id) {
-        Product product = productRepository.findById(id)
+        ProductModel productModel = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        productRepository.delete(product);
+        productRepository.delete(productModel);
     }
 
 

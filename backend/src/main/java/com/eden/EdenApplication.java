@@ -16,8 +16,6 @@ public class EdenApplication {
         System.setProperty("DB_URL", dotenv.get("DB_URL"));
         System.setProperty("DB_USERNAME", dotenv.get("DB_USERNAME"));
         System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
-        System.setProperty("SC_USERNAME", dotenv.get("SC_USERNAME"));
-        System.setProperty("SC_PASSWORD", dotenv.get("SC_PASSWORD"));
 
         SpringApplication.run(EdenApplication.class, args);
     }

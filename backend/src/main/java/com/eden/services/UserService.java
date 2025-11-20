@@ -4,7 +4,7 @@ import com.eden.dto.user.UserChangePasswordDTO;
 import com.eden.dto.user.UserRequestDTO;
 import com.eden.dto.user.UserResponseDTO;
 import com.eden.dto.user.UserUpdateDTO;
-import com.eden.models.User;
+import com.eden.models.UserModel;
 import com.eden.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class UserService {
     }
 
     public UserResponseDTO getUser(Integer id) {
-        User user = userRepository.findById(id)
+        UserModel user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found!"));
 
         return new UserResponseDTO(
@@ -43,7 +43,7 @@ public class UserService {
     }
 
     public UserResponseDTO create(UserRequestDTO dto) {
-        User user = new User();
+        UserModel user = new UserModel();
 
         user.setName(dto.name());
         user.setEmail(dto.email());
@@ -65,10 +65,9 @@ public class UserService {
         );
     }
 
-
     public UserResponseDTO update(Integer id, UserUpdateDTO userUpdateDTO) {
 
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
+        UserModel user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found!"));
 
         user.setName(userUpdateDTO.name());
         user.setEmail(userUpdateDTO.email());
@@ -79,7 +78,7 @@ public class UserService {
     }
 
     public void updatePassword(Integer id, UserChangePasswordDTO userChangePasswordDTO){
-        User user = userRepository.findById(id)
+        UserModel user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found!"));
 
         if (userChangePasswordDTO != null &&
