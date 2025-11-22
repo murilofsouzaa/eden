@@ -16,12 +16,11 @@ public class DataSeeder {
     @Bean
     public CommandLineRunner initDatabase(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            // Verifica se já existe algum usuário, se não tiver, cria o Admin
             if (userRepository.count() == 0) {
                 UserModel admin = new UserModel();
                 admin.setName("admin");
                 admin.setEmail("admin@eden.com");
-                admin.setPassword(passwordEncoder.encode("123")); // Criptografa a senha aqui!
+                admin.setPassword(passwordEncoder.encode("123"));
                 admin.setRole("ROLE_ADMIN");
                 admin.setPhone("1199999999");
                 admin.setAddress("Rua Teste");
