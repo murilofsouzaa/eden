@@ -1,9 +1,15 @@
+.env
+.env.*
+*.log
+npm-debug.log*
+
 /backend/.env
-HELP.md
+
 target/
-.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -32,3 +38,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+HELP.md

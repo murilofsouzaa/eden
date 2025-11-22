@@ -13,7 +13,6 @@ import com.eden.services.UserService;
 
 import java.util.List;
 
-@EnableMethodSecurity
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -30,7 +29,7 @@ public class UserController {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
@@ -48,7 +47,7 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Integer id) {
         userService.delete(id);
