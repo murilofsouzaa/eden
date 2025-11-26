@@ -8,7 +8,7 @@ The Eden project is an online shop focused on gym clothing. The goal is to give 
 
 >It works like a good workout plan: steady, clear, and built to help you move forward.
 
-# Technologies
+## Technologies
 
 **Backend:** Java 24, Spring Boot 3.5.7
 
@@ -20,12 +20,20 @@ The Eden project is an online shop focused on gym clothing. The goal is to give 
 
 **Infra**: Docker
 
-# Running Backend (Spring Boot)
+## Getting started
+
+### Clone the repository
+
+```
+git clone https://github.com/murilofsouzaa/Eden.git
+```
+
+### Running Backend (Spring Boot)
 ```
 cd src/backend
 ./mvnw spring-boot:run
 ```
-# Running Frontend (React)
+### Running Frontend (React)
 ```
 cd src/frontend
 npm install
