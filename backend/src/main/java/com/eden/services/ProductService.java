@@ -82,7 +82,7 @@ public class ProductService implements IProductDiscountCalculator {
         );
     }
 
-    public ProductResponseDTO update(ProductRequestDTO productRequestDTO) {
+    public ProductUpdateDTO update(ProductRequestDTO productRequestDTO) {
         ProductModel productModel = new ProductModel();
         productModel.setName(productRequestDTO.name());
         productModel.setDescription(productRequestDTO.description());
@@ -92,8 +92,7 @@ public class ProductService implements IProductDiscountCalculator {
 
         productRepository.save(productModel);
 
-        return new ProductResponseDTO(
-                productModel.getId(),
+        return new ProductUpdateDTO(
                 productModel.getName(),
                 productModel.getDescription(),
                 productModel.getPrice(),
@@ -104,7 +103,7 @@ public class ProductService implements IProductDiscountCalculator {
         );
     }
 
-    public ProductResponseDTO updateById(Integer id, ProductUpdateDTO productUpdateDTO) {
+    public ProductUpdateDTO updateById(Integer id, ProductUpdateDTO productUpdateDTO) {
         ProductModel productModel = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
@@ -116,8 +115,7 @@ public class ProductService implements IProductDiscountCalculator {
 
         productRepository.save(productModel);
 
-        return new ProductResponseDTO(
-                productModel.getId(),
+        return new ProductUpdateDTO(
                 productModel.getName(),
                 productModel.getDescription(),
                 productModel.getPrice(),
