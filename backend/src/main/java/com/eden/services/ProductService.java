@@ -7,10 +7,11 @@ import com.eden.models.ProductModel;
 import com.eden.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-public class ProductService {
+public class ProductService implements IProductDiscountCalculator {
 
     private final ProductRepository productRepository;
 
@@ -142,4 +143,10 @@ public class ProductService {
     }
 
 
+    @Override
+    public BigDecimal calculateProductDiscount(ProductModel product, double discountRate) {
+        BigDecimal price = product.getPrice();
+        BigDecimal discount = product.getPrice().multiply(BigDecimal.valueOf(discountRate));
+        return price.subtract(discount);
+    }
 }
