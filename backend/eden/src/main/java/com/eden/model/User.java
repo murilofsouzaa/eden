@@ -25,13 +25,29 @@ public class User {
     public User(){
     }
 
-    public User(String email, int id, String name, int age, String gender, String password) {
-        this.email = email;
+    public User(int id, String email, String name, int age, String gender, String password) {
         this.id = id;
+        this.email = email;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.password = password;
+    }
+
+    public void validateUser(){
+        if(email.isBlank() || email == null){
+            throw new IllegalArgumentException("Email cannot be empty or null");
+        }
+        if(name.isBlank() || name == null){
+            throw new IllegalArgumentException("Name cannot be empty or null");
+        }
+        if(gender.isBlank() || gender == null){
+            throw new IllegalArgumentException("Gender cannot be empty or null");
+        }
+        if(password.isBlank() || password == null){
+            throw new IllegalArgumentException("Password cannot be empty or null");
+        }
+
     }
 
     public int getId() {
