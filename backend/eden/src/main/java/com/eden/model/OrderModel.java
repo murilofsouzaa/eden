@@ -5,7 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="order")
@@ -20,6 +23,9 @@ public class OrderModel {
     @Column
     private boolean status;
 
+    List<OrderItemModel> items = new ArrayList<>();
+
+
     public OrderModel(){
 
     }
@@ -29,6 +35,12 @@ public class OrderModel {
         this.userId = userId;
         this.createdAt = createdAt;
         this.status = status;
+    }
+
+    public BigDecimal total(){
+        return items.stream()
+                .map(OrderItemModel::subtotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public int getId() {

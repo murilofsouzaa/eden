@@ -1,9 +1,6 @@
 package com.eden.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -13,25 +10,33 @@ public class OrderItemModel {
     @Id
     @Column
     private int id;
-    @Column(name="order_id")
-    private int orderId;
-    @Column(name="user_id")
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private OrderModel order;
     @Column
     private int quantity;
-    @Column
-    private BigDecimal unit_price;
+    @Column(name = "unit_price")
+    private BigDecimal unitPrice;
 
     public OrderItemModel(){
-
     }
 
-    public OrderItemModel(int id, int orderId, int userId, int quantity, BigDecimal unit_price) {
+    public OrderItemModel(int id, OrderModel order, int quantity, BigDecimal unitPrice) {
         this.id = id;
-        this.orderId = orderId;
-        this.userId = userId;
+        this.order = order;
         this.quantity = quantity;
-        this.unit_price = unit_price;
+        this.unitPrice = unitPrice;
+    }
+
+    public BigDecimal subtotal(){
+        validateUnitPrice();
+        return unitPrice.multiply(BigDecimal.valueOf(quantity));
+    }
+
+    public void validateUnitPrice(){
+        if (unitPrice == null || unitPrice.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("The price must be greater than zero");
+        }
     }
 
     public int getId() {
@@ -42,20 +47,12 @@ public class OrderItemModel {
         this.id = id;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public OrderModel getOrderId() {
+        return order;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setOrderId( OrderModel orderId) {
+        this.order = order;
     }
 
     public int getQuantity() {
@@ -67,10 +64,10 @@ public class OrderItemModel {
     }
 
     public BigDecimal getUnit_price() {
-        return unit_price;
+        return unitPrice;
     }
 
     public void setUnit_price(BigDecimal unit_price) {
-        this.unit_price = unit_price;
+        this.unitPrice = unit_price;
     }
 }
