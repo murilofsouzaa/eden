@@ -18,17 +18,28 @@ public class ShoppingCartItemModel {
     @Column
     private int quantity;
     @Column(nullable = false)
-    private BigDecimal unit_price;
+    private BigDecimal unitPrice;
 
     public ShoppingCartItemModel(){
 
     }
 
-    public ShoppingCartItemModel(int cartId, int productId, int quantity, BigDecimal unit_price) {
+    public ShoppingCartItemModel(int cartId, int productId, int quantity, BigDecimal unitPrice) {
         this.cartId = cartId;
         this.productId = productId;
         this.quantity = quantity;
-        this.unit_price = unit_price;
+        this.unitPrice = unitPrice;
+    }
+
+    public BigDecimal subtotal(){
+        validateUnitPrice();
+        return unitPrice.multiply(BigDecimal.valueOf(quantity));
+    }
+
+    public void validateUnitPrice(){
+        if (unitPrice == null || unitPrice.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("The price must be greater than zero");
+        }
     }
 
     public int getCartId() {
@@ -56,10 +67,10 @@ public class ShoppingCartItemModel {
     }
 
     public BigDecimal getUnit_price() {
-        return unit_price;
+        return unitPrice;
     }
 
-    public void setUnit_price(BigDecimal unit_price) {
-        this.unit_price = unit_price;
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }
