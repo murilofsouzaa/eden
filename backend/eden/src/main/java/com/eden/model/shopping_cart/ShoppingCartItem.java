@@ -1,4 +1,4 @@
-package com.eden.model;
+package com.eden.model.shopping_cart;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,9 +12,9 @@ import java.math.BigDecimal;
 public class ShoppingCartItem {
     @Id
     @Column(name = "cart_id", nullable = false)
-    private int cartId;
+    private Long cartId;
     @Column (name = "product_id", nullable = false)
-    private int productId;
+    private Long productId;
     @Column
     private int quantity;
     @Column(nullable = false)
@@ -24,7 +24,7 @@ public class ShoppingCartItem {
 
     }
 
-    public ShoppingCartItem(int cartId, int productId, int quantity, BigDecimal unitPrice) {
+    public ShoppingCartItem(Long cartId, Long productId, int quantity, BigDecimal unitPrice) {
         this.cartId = cartId;
         this.productId = productId;
         this.quantity = quantity;
@@ -42,19 +42,19 @@ public class ShoppingCartItem {
         }
     }
 
-    public int getCartId() {
+    public Long getCartId() {
         return cartId;
     }
 
-    public void setCartId(int cartId) {
+    public void setCartId(Long cartId) {
         this.cartId = cartId;
     }
 
-    public int getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

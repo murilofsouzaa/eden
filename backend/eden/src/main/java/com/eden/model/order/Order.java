@@ -1,4 +1,4 @@
-package com.eden.model;
+package com.eden.model.order;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,9 +15,9 @@ import java.util.List;
 public class Order {
     @Id
     @Column
-    private int id;
+    private Long id;
     @Column(name = "user_id", nullable = false)
-    private int userId;
+    private Long userId;
     @Column(nullable = false)
     private LocalDateTime createdAt;
     @Column(nullable = false)
@@ -25,12 +25,11 @@ public class Order {
 
     List<OrderItem> items = new ArrayList<>();
 
-
     public Order(){
 
     }
 
-    public Order(int id, int userId, LocalDateTime createdAt, boolean status) {
+    public Order(Long id, Long userId, LocalDateTime createdAt, boolean status) {
         this.id = id;
         this.userId = userId;
         this.createdAt = createdAt;
@@ -43,19 +42,19 @@ public class Order {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getUser_id() {
+    public Long getUser_id() {
         return userId;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Long user_id) {
         this.userId = user_id;
     }
 

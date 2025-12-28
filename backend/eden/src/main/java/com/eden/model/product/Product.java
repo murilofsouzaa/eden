@@ -1,4 +1,4 @@
-package com.eden.model;
+package com.eden.model.product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Product {
     @Id
     @Column
-    private int id;
+    private Long id;
     @Column(nullable = false)
     private String title;
     @Column
@@ -31,7 +31,7 @@ public class Product {
 
     public Product(){};
 
-    public Product(int id, String title, String description, BigDecimal price,
+    public Product(Long id, String title, String description, BigDecimal price,
                    String imgURL, int stock, String category, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
@@ -43,11 +43,11 @@ public class Product {
         this.createdAt = createdAt;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

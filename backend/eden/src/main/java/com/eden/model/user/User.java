@@ -1,22 +1,24 @@
-package com.eden.model;
+package com.eden.model.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name="user")
 public class User {
     @Id
     @Column
-    private int id;
+    private Long id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private int age;
+    private LocalDate birthDay;
     @Column
-    private String gender;
+    private Gender gender;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
@@ -25,11 +27,11 @@ public class User {
     public User(){
     }
 
-    public User(int id, String email, String name, int age, String gender, String password) {
+    public User(Long id, String email, String name, LocalDate birthDay, Gender gender, String password) {
         this.id = id;
         this.email = email;
         this.name = name;
-        this.age = age;
+        this.birthDay = birthDay;
         this.gender = gender;
         this.password = password;
     }
@@ -41,8 +43,8 @@ public class User {
         if(name.isBlank() || name == null){
             throw new IllegalArgumentException("Name cannot be empty or null");
         }
-        if(gender.isBlank() || gender == null){
-            throw new IllegalArgumentException("Gender cannot be empty or null");
+        if(gender == null){
+            throw new IllegalArgumentException("Gender cannot be null");
         }
         if(password.isBlank() || password == null){
             throw new IllegalArgumentException("Password cannot be empty or null");
@@ -50,11 +52,11 @@ public class User {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -66,19 +68,19 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDate getBirthDay() {
+        return birthDay;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthDay(LocalDate birthDay) {
+        this.birthDay = birthDay;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

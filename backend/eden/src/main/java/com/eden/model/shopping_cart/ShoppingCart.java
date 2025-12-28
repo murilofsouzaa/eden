@@ -1,4 +1,4 @@
-package com.eden.model;
+package com.eden.model.shopping_cart;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 public class ShoppingCart {
     @Id
     @Column
-    private int id;
+    private Long id;
     @Column(name = "user_id", nullable = false)
-    private int userId;
+    private Long userId;
     @Column
     private boolean status;
     @Column(nullable = false)
@@ -24,27 +24,27 @@ public class ShoppingCart {
 
     }
 
-    public ShoppingCart(int id, int userId, boolean status, LocalDateTime createdAt) {
+    public ShoppingCart(Long id, Long userId, boolean status, LocalDateTime createdAt) {
         this.id = id;
         this.userId = userId;
         this.status = status;
         this.createdAt = createdAt;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getUser_id() {
+    public Long getUser_id() {
         return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.userId = userId;
+    public void setUser_id(Long user_id) {
+        this.userId = user_id;
     }
 
     public boolean isStatus() {

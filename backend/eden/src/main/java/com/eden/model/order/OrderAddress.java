@@ -1,16 +1,18 @@
-package com.eden.model;
+package com.eden.model.order;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name="address")
-public class Address {
+@Table(name="order_address")
+public class OrderAddress {
     @Id
     @Column
-    private int id;
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private Long id;
+    @Column(name="user_id", nullable = false)
+    private Long userId;
     @Column(nullable = false)
     private String street;
     @Column(nullable = false)
@@ -26,13 +28,13 @@ public class Address {
     @Column(nullable = false)
     private String zipCode;
 
-    public Address(){
+    public OrderAddress(){
     }
 
-    public Address(int id, User user, String street, int number,
-                   String neighborhood, String city, String state, String country, String zipCode) {
+    public OrderAddress(Long id, Long userId, String street, int number,
+                        String neighborhood, String city, String state, String country, String zipCode) {
         this.id = id;
-        this.user = user;
+        this.userId = userId;
         this.street = street;
         this.number = number;
         this.neighborhood = neighborhood;
@@ -42,36 +44,20 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    public void validateAddress(){
-        if(user == null) {
-            throw new IllegalArgumentException("User cannot be null");
-        }
-        if(street.isBlank() || street == null ){
-            throw new IllegalArgumentException("Street cannot be null or blank");
-        }
-        if(neighborhood.isBlank() || neighborhood == null ){
-            throw new IllegalArgumentException("Neighborhood cannot be null or blank");
-        }
-        if(city.isBlank() || city == null ){
-            throw new IllegalArgumentException("City cannot be null or blank");
-        }
-        if(state.isBlank() || state == null){
-            throw new IllegalArgumentException("State cannot be null or blank");
-        }
-        if(country.isBlank() || country == null){
-            throw new IllegalArgumentException("Country cannot be null or blank");
-        }
-        if(zipCode.isBlank() || zipCode == null){
-            throw new IllegalArgumentException("Zip code cannot be null or blank");
-        }
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getStreet() {

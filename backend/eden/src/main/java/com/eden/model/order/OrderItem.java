@@ -1,4 +1,4 @@
-package com.eden.model;
+package com.eden.model.order;
 
 import jakarta.persistence.*;
 
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public class OrderItem {
     @Id
     @Column (nullable = false)
-    private int id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
@@ -21,7 +21,7 @@ public class OrderItem {
     public OrderItem(){
     }
 
-    public OrderItem(int id, Order order, int quantity, BigDecimal unitPrice) {
+    public OrderItem(Long id, Order order, int quantity, BigDecimal unitPrice) {
         this.id = id;
         this.order = order;
         this.quantity = quantity;
@@ -39,11 +39,11 @@ public class OrderItem {
         }
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
