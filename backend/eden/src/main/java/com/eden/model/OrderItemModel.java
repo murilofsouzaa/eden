@@ -8,14 +8,14 @@ import java.math.BigDecimal;
 @Table(name="order_item")
 public class OrderItemModel {
     @Id
-    @Column
+    @Column (nullable = false)
     private int id;
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", nullable = false)
     private OrderModel order;
-    @Column
+    @Column(nullable = false)
     private int quantity;
-    @Column(name = "unit_price")
+    @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
 
     public OrderItemModel(){

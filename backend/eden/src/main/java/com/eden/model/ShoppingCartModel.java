@@ -13,11 +13,11 @@ public class ShoppingCartModel {
     @Id
     @Column
     private int id;
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private int userId;
     @Column
     private boolean status;
-    @Column
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     public ShoppingCartModel(){

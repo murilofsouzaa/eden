@@ -15,19 +15,19 @@ public class ProductModel {
     @Id
     @Column
     private int id;
-    @Column
+    @Column(nullable = false)
     private String title;
     @Column
     private String description;
-    @Column
+    @Column(nullable = false)
     private BigDecimal price;
     @Column(name = "img_URL")
     private String imgURL;
-    @Column
+    @Column(nullable = false)
     private int stock;
     @Column
     private String category;
-    @Column
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     public ProductModel(){};

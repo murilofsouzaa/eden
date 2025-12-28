@@ -16,11 +16,11 @@ public class OrderModel {
     @Id
     @Column
     private int id;
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private int userId;
-    @Column
+    @Column(nullable = false)
     private LocalDateTime createdAt;
-    @Column
+    @Column(nullable = false)
     private boolean status;
 
     List<OrderItemModel> items = new ArrayList<>();

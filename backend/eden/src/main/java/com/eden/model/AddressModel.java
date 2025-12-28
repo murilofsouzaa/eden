@@ -11,21 +11,21 @@ public class AddressModel {
     @Id
     @Column
     private int id;
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     private int userId;
-    @Column
+    @Column(nullable = false)
     private String street;
-    @Column
+    @Column(nullable = false)
     private int number;
-    @Column
+    @Column(nullable = false)
     private String neighborhood;
-    @Column
+    @Column(nullable = false)
     private String city;
-    @Column
+    @Column(nullable = false)
     private String state;
-    @Column
+    @Column(nullable = false)
     private String country;
-    @Column
+    @Column(nullable = false)
     private String zipCode;
 
     public AddressModel(){

@@ -11,15 +11,15 @@ public class UserModel {
     @Id
     @Column
     private int id;
-    @Column
+    @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private int age;
     @Column
     private String gender;
-    @Column
+    @Column(nullable = false)
     private String email;
-    @Column
+    @Column(nullable = false)
     private String password;
 
     public UserModel(){

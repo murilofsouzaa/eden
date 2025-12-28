@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 @Table(name = "shopping_cart_item")
 public class ShoppingCartItemModel {
     @Id
-    @Column(name = "cart_id")
+    @Column(name = "cart_id", nullable = false)
     private int cartId;
-    @Column (name = "product_id")
+    @Column (name = "product_id", nullable = false)
     private int productId;
     @Column
     private int quantity;
-    @Column
+    @Column(nullable = false)
     private BigDecimal unit_price;
 
     public ShoppingCartItemModel(){
