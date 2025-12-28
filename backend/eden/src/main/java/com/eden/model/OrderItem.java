@@ -6,22 +6,22 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name="order_item")
-public class OrderItemModel {
+public class OrderItem {
     @Id
     @Column (nullable = false)
     private int id;
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
-    private OrderModel order;
+    private Order order;
     @Column(nullable = false)
     private int quantity;
     @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
 
-    public OrderItemModel(){
+    public OrderItem(){
     }
 
-    public OrderItemModel(int id, OrderModel order, int quantity, BigDecimal unitPrice) {
+    public OrderItem(int id, Order order, int quantity, BigDecimal unitPrice) {
         this.id = id;
         this.order = order;
         this.quantity = quantity;
@@ -47,11 +47,11 @@ public class OrderItemModel {
         this.id = id;
     }
 
-    public OrderModel getOrderId() {
+    public Order getOrderId() {
         return order;
     }
 
-    public void setOrderId( OrderModel orderId) {
+    public void setOrderId( Order orderId) {
         this.order = order;
     }
 

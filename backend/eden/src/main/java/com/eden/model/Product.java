@@ -7,11 +7,10 @@ import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name="product")
-public class ProductModel {
+public class Product {
     @Id
     @Column
     private int id;
@@ -30,10 +29,10 @@ public class ProductModel {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    public ProductModel(){};
+    public Product(){};
 
-    public ProductModel(int id, String title, String description, BigDecimal price,
-                        String imgURL, int stock, String category, LocalDateTime createdAt) {
+    public Product(int id, String title, String description, BigDecimal price,
+                   String imgURL, int stock, String category, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.description = description;

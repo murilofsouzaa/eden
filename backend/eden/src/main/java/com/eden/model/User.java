@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="user")
-public class UserModel {
+public class User {
     @Id
     @Column
     private int id;
@@ -22,10 +22,10 @@ public class UserModel {
     @Column(nullable = false)
     private String password;
 
-    public UserModel(){
+    public User(){
     }
 
-    public UserModel(String email, int id, String name, int age, String gender, String password) {
+    public User(String email, int id, String name, int age, String gender, String password) {
         this.email = email;
         this.id = id;
         this.name = name;

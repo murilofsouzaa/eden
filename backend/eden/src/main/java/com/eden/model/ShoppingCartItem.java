@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "shopping_cart_item")
-public class ShoppingCartItemModel {
+public class ShoppingCartItem {
     @Id
     @Column(name = "cart_id", nullable = false)
     private int cartId;
@@ -20,11 +20,11 @@ public class ShoppingCartItemModel {
     @Column(nullable = false)
     private BigDecimal unitPrice;
 
-    public ShoppingCartItemModel(){
+    public ShoppingCartItem(){
 
     }
 
-    public ShoppingCartItemModel(int cartId, int productId, int quantity, BigDecimal unitPrice) {
+    public ShoppingCartItem(int cartId, int productId, int quantity, BigDecimal unitPrice) {
         this.cartId = cartId;
         this.productId = productId;
         this.quantity = quantity;

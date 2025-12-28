@@ -6,12 +6,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="address")
-public class AddressModel {
+@Table(name="order_address")
+public class OrderAddress {
     @Id
     @Column
     private int id;
-    @Column(name = "user_id", nullable = false)
+    @Column(name="user_id", nullable = false)
     private int userId;
     @Column(nullable = false)
     private String street;
@@ -28,11 +28,11 @@ public class AddressModel {
     @Column(nullable = false)
     private String zipCode;
 
-    public AddressModel(){
+    public OrderAddress(){
     }
 
-    public AddressModel(int id, int userId, String street, int number,
-                             String neighborhood, String city, String state, String country, String zipCode) {
+    public OrderAddress(int id, int userId, String street, int number,
+                        String neighborhood, String city, String state, String country, String zipCode) {
         this.id = id;
         this.userId = userId;
         this.street = street;

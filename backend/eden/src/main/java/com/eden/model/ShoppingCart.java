@@ -5,42 +5,30 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name="order")
-public class OrderModel {
+@Table(name="shopping_cart")
+public class ShoppingCart {
     @Id
     @Column
     private int id;
     @Column(name = "user_id", nullable = false)
     private int userId;
+    @Column
+    private boolean status;
     @Column(nullable = false)
     private LocalDateTime createdAt;
-    @Column(nullable = false)
-    private boolean status;
 
-    List<OrderItemModel> items = new ArrayList<>();
-
-
-    public OrderModel(){
+    public ShoppingCart(){
 
     }
 
-    public OrderModel(int id, int userId, LocalDateTime createdAt, boolean status) {
+    public ShoppingCart(int id, int userId, boolean status, LocalDateTime createdAt) {
         this.id = id;
         this.userId = userId;
-        this.createdAt = createdAt;
         this.status = status;
-    }
-
-    public BigDecimal total(){
-        return items.stream()
-                .map(OrderItemModel::subtotal)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        this.createdAt = createdAt;
     }
 
     public int getId() {
@@ -56,15 +44,7 @@ public class OrderModel {
     }
 
     public void setUser_id(int user_id) {
-        this.userId = user_id;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+        this.userId = userId;
     }
 
     public boolean isStatus() {
@@ -73,5 +53,13 @@ public class OrderModel {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
