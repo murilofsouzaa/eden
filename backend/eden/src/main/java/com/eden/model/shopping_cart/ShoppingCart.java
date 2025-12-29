@@ -23,6 +23,7 @@ public class ShoppingCart {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @OneToMany
     List<ShoppingCartItem> items = new ArrayList<>();
 
     public ShoppingCart(){

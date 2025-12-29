@@ -25,15 +25,16 @@ public class Order {
     @Column(nullable = false)
     private boolean status;
 
+    @OneToMany
     List<OrderItem> items = new ArrayList<>();
 
     public Order(){
 
     }
 
-    public Order(Long id, Long userId, LocalDateTime createdAt, boolean status) {
+    public Order(Long id, User user, LocalDateTime createdAt, boolean status) {
         this.id = id;
-        this.userId = userId;
+        this.user = user;
         this.createdAt = createdAt;
         this.status = status;
     }
@@ -52,12 +53,12 @@ public class Order {
         this.id = id;
     }
 
-    public Long getUser_id() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(Long user_id) {
-        this.userId = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public LocalDateTime getCreatedAt() {
