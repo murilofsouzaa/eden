@@ -23,11 +23,14 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole role;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
 
     public User(){
     }
 
-    public User(Long id, String email, String name, LocalDate birthDay, Gender gender, String password, UserRole role) {
+    public User(Long id, String email, String name, LocalDate birthDay, Gender gender, String password, UserRole role,
+                UserStatus status) {
         this.id = id;
         this.email = email;
         this.name = name;
@@ -35,6 +38,7 @@ public class User {
         this.gender = gender;
         this.password = password;
         this.role = role;
+        this.status = status;
     }
 
     public void validateUser(){
@@ -107,5 +111,13 @@ public class User {
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
     }
 }
