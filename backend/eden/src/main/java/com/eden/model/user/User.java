@@ -21,17 +21,20 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     public User(){
     }
 
-    public User(Long id, String email, String name, LocalDate birthDay, Gender gender, String password) {
+    public User(Long id, String email, String name, LocalDate birthDay, Gender gender, String password, UserRole role) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.birthDay = birthDay;
         this.gender = gender;
         this.password = password;
+        this.role = role;
     }
 
     public void validateUser(){
@@ -96,5 +99,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }
