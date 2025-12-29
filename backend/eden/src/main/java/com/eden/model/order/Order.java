@@ -1,9 +1,6 @@
 package com.eden.model.order;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,7 +11,8 @@ import java.util.List;
 @Table(name="order")
 public class Order {
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false)
     private Long id;
     @Column(name = "user_id", nullable = false)
     private Long userId;

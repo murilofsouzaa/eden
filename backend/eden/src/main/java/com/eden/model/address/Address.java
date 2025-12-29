@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 @Table(name="address")
 public class Address {
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

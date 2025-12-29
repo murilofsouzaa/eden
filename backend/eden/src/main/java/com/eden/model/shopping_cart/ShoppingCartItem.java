@@ -1,9 +1,6 @@
 package com.eden.model.shopping_cart;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -11,7 +8,8 @@ import java.math.BigDecimal;
 @Table(name = "shopping_cart_item")
 public class ShoppingCartItem {
     @Id
-    @Column(name = "cart_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cart_id", nullable = false, updatable = false)
     private Long cartId;
     @Column (name = "product_id", nullable = false)
     private Long productId;

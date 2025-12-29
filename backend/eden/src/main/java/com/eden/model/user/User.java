@@ -1,9 +1,6 @@
 package com.eden.model.user;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -11,13 +8,14 @@ import java.time.LocalDate;
 @Table(name="user")
 public class User {
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false)
     private Long id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private LocalDate birthDay;
-    @Column
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     @Column(nullable = false)
     private String email;
