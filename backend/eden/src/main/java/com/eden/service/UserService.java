@@ -1,11 +1,14 @@
 package com.eden.service;
 
 import com.eden.dto.user.CreateUserRequest;
+import com.eden.dto.user.UpdateUserRequest;
 import com.eden.dto.user.UserResponse;
 import com.eden.model.user.User;
 import com.eden.model.user.UserRole;
 import com.eden.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -16,7 +19,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserResponse createUser (CreateUserRequest userRequest){
+    public UserResponse createUser(CreateUserRequest userRequest){
 
         User newUser = new User();
 
@@ -37,6 +40,28 @@ public class UserService {
         );
     }
 
+    public String updateUser(Long id, UpdateUserRequest updateUserRequest){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found!"));
+
+        if (updateUserRequest.name() != null) {
+            user.setName(updateUserRequest.name());
+        }
+        if(updateUserRequest.email() != null){
+            user.setEmail(updateUserRequest.email());
+        }
+        if(updateUserRequest.gender() != null){
+            user.setGender(updateUserRequest.gender());
+        }
+        if(updateUserRequest.birthDay() != null){
+            user.setBirthDay(updateUserRequest.birthDay());
+        }
+
+        userRepository.save(user);
+
+        return "Updated successfully!";
+    }
+
     public String deleteUser(Long id){
         User user = userRepository.findUserById(id);
         if(user == null){
@@ -48,4 +73,10 @@ public class UserService {
         }
             return "You don't have permission to delete the user";
     }
+
+    public List<User> listAllUsers(){
+        return userRepository.findAll();
+    }
+
+
 }
