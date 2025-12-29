@@ -3,6 +3,8 @@ package com.eden.model.shopping_cart;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="shopping_cart")
@@ -17,6 +19,8 @@ public class ShoppingCart {
     private boolean status;
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    List<ShoppingCartItem> items = new ArrayList<>();
 
     public ShoppingCart(){
 

@@ -1,5 +1,6 @@
 package com.eden.model.shopping_cart;
 
+import com.eden.model.product.Product;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -9,10 +10,16 @@ import java.math.BigDecimal;
 public class ShoppingCartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_id", nullable = false, updatable = false)
-    private Long cartId;
-    @Column (name = "product_id", nullable = false)
-    private Long productId;
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private ShoppingCart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     @Column
     private int quantity;
     @Column(nullable = false)
@@ -22,9 +29,9 @@ public class ShoppingCartItem {
 
     }
 
-    public ShoppingCartItem(Long cartId, Long productId, int quantity, BigDecimal unitPrice) {
-        this.cartId = cartId;
-        this.productId = productId;
+    public ShoppingCartItem(ShoppingCart cart, Product product, int quantity, BigDecimal unitPrice) {
+        this.cart = cart;
+        this.product = product;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
@@ -40,20 +47,32 @@ public class ShoppingCartItem {
         }
     }
 
-    public Long getCartId() {
-        return cartId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCartId(Long cartId) {
-        this.cartId = cartId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getProductId() {
-        return productId;
+    public ShoppingCart getCart() {
+        return cart;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setCart(ShoppingCart cart) {
+        this.cart = cart;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
 
     public int getQuantity() {
