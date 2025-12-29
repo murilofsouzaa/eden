@@ -3,6 +3,7 @@ package com.eden.service;
 import com.eden.dto.user.CreateUserRequest;
 import com.eden.dto.user.UserResponse;
 import com.eden.model.user.User;
+import com.eden.model.user.UserRole;
 import com.eden.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,17 @@ public class UserService {
                 newUser.getEmail(),
                 newUser.getCreatedAt()
         );
+    }
+
+    public String deleteUser(Long id){
+        User user = userRepository.findUserById(id);
+        if(user == null){
+            return "User not found!";
+        }
+        if(user.getRole().equals(UserRole.ADMIN)){
+            userRepository.delete(user);
+            return "User was deleted successfully!";
+        }
+            return "You don't have permission to delete the user";
     }
 }
