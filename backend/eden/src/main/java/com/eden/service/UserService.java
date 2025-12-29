@@ -15,10 +15,6 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public UserService(){
-
-    }
-
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
@@ -67,7 +63,8 @@ public class UserService {
     }
 
     public String deleteUser(Long id){
-        User user = userRepository.findUserById(id);
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found!"));
         if(user == null){
             return "User not found!";
         }

@@ -11,7 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("/users")
 public class UserController {
 
     UserService userService;
@@ -20,10 +23,15 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/users")
+    @GetMapping
+    public ResponseEntity<List<User>> getALlUsers(){
+        return ResponseEntity.ok(userService.listAllUsers());
+    }
+
+    @PostMapping
     public ResponseEntity<UserResponse> getUserById(@RequestBody CreateUserRequest user){
-        UserResponse savedUserResponse = userService.createUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUserResponse) ;
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(userService.createUser(user)) ;
     };
 
 
