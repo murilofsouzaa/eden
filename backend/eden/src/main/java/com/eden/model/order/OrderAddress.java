@@ -1,5 +1,6 @@
 package com.eden.model.order;
 
+import com.eden.model.user.User;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,8 +10,11 @@ public class OrderAddress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false)
     private Long id;
-    @Column(name="user_id", nullable = false)
-    private Long userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
+
     @Column(nullable = false)
     private String street;
     @Column(nullable = false)
@@ -29,10 +33,10 @@ public class OrderAddress {
     public OrderAddress(){
     }
 
-    public OrderAddress(Long id, Long userId, String street, int number,
+    public OrderAddress(Long id, User user, String street, int number,
                         String neighborhood, String city, String state, String country, String zipCode) {
         this.id = id;
-        this.userId = userId;
+        this.user = user;
         this.street = street;
         this.number = number;
         this.neighborhood = neighborhood;
@@ -50,12 +54,12 @@ public class OrderAddress {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getStreet() {
