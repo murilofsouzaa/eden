@@ -1,10 +1,8 @@
 package com.eden.repository;
 
-import ch.qos.logback.core.status.Status;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.math.BigDecimal;
 import java.util.List;
