@@ -3,6 +3,7 @@ package com.eden.model.user;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="user")
@@ -25,12 +26,14 @@ public class User {
     private UserRole role;
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+    @Column
+    LocalDateTime createdAt;
 
     public User(){
     }
 
     public User(Long id, String email, String name, LocalDate birthDay, Gender gender, String password, UserRole role,
-                UserStatus status) {
+                UserStatus status, LocalDateTime createdAt) {
         this.id = id;
         this.email = email;
         this.name = name;
@@ -39,6 +42,7 @@ public class User {
         this.password = password;
         this.role = role;
         this.status = status;
+        this.createdAt = createdAt;
     }
 
     public void validateUser(){
@@ -119,5 +123,13 @@ public class User {
 
     public void setStatus(UserStatus status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
