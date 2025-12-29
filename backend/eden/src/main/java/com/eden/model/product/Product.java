@@ -1,9 +1,6 @@
 package com.eden.model.product;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,7 +9,8 @@ import java.time.LocalDateTime;
 @Table(name="product")
 public class Product {
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false)
     private Long id;
     @Column(nullable = false)
     private String title;
@@ -28,6 +26,10 @@ public class Product {
     private String category;
     @Column(nullable = false)
     private LocalDateTime createdAt;
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
+
+
 
     public Product(){};
 
