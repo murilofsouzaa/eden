@@ -15,4 +15,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("SELECT o FROM OrderAddress o WHERE o.number = :number")
     Order findOrderByAddressNumber(@Param("number") int number);
+
+
 }
