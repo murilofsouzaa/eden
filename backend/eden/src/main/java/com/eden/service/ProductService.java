@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -40,6 +41,8 @@ public class ProductService {
                 product.getId(),
                 product.getTitle(),
                 product.getDescription(),
+                product.getPrice(),
+                product.getStock(),
                 product.getCreatedAt()
         );
     }
@@ -72,13 +75,31 @@ public class ProductService {
 
     }
 
-    public Product getProductById(Long id){
+    public ProductResponse getProductById(Long id){
         return productRepository.findById(id)
+                .map(product -> new ProductResponse(
+                        product.getId(),
+                        product.getTitle(),
+                        product.getDescription(),
+                        product.getPrice(),
+                        product.getStock(),
+                        product.getCreatedAt()
+                ))
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
     }
 
-    public List<Product> getAllProducts(){
-        return productRepository.findAll();
+    public List<ProductResponse> getAllProducts() {
+        return productRepository.findAll()
+                .stream()
+                .map(product -> new ProductResponse(
+                        product.getId(),
+                        product.getTitle(),
+                        product.getDescription(),
+                        product.getPrice(),
+                        product.getStock(),
+                        product.getCreatedAt()
+                ))
+                .toList();
     }
 
     public List<Product> getAllAvailableProducts(){

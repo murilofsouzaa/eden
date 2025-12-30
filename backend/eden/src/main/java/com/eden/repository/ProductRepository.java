@@ -1,5 +1,6 @@
 package com.eden.repository;
 
+import com.eden.dto.product.ProductResponse;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductStatus;
@@ -18,6 +19,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByPriceBetween(@Param("min") BigDecimal minPrice, @Param("max") BigDecimal maxPrice);
     List<Product> findByTitleContainingIgnoreCase(String part);
     List<Product> findByStatus(ProductStatus status);
-
-    Long id(Long id);
 }

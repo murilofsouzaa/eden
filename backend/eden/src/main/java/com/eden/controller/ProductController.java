@@ -4,10 +4,10 @@ import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
 import com.eden.model.product.Product;
 import com.eden.service.ProductService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -19,8 +19,14 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductResponse>> getAllProducts(){
+        return ResponseEntity.ok(productService.getAllProducts());
+    }
+
+
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id){
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id){
         return ResponseEntity.ok(productService.getProductById(id));
     }
 
