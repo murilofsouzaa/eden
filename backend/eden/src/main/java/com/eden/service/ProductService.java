@@ -2,6 +2,7 @@ package com.eden.service;
 
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
+import com.eden.dto.product.UpdateProductRequest;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductStatus;
@@ -38,6 +39,33 @@ public class ProductService {
                 product.getDescription(),
                 product.getCreatedAt()
         );
+    }
+
+    public String updateProduct(Long id, UpdateProductRequest updateProductRequest){
+        Product updateProduct = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found!"));
+
+        updateProduct.setTitle(updateProductRequest.title());
+        updateProduct.setDescription(updateProductRequest.description());
+        updateProduct.setPrice(updateProductRequest.price());
+        updateProduct.setStock(updateProductRequest.stock());
+        updateProduct.setCategory(updateProductRequest.category());
+        updateProduct.setImgURL(updateProductRequest.imgURL());
+        updateProduct.setCreatedAt(updateProductRequest.updatedAt());
+
+        productRepository.save(updateProduct);
+
+        return "Updated successfully!";
+    }
+
+    public String deleteProduct(Long id){
+        Product product  = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found!"));
+
+        productRepository.delete(product);
+
+        return "Product deleted successfully!";
+
     }
 
     public Product getProductById(Long id){
