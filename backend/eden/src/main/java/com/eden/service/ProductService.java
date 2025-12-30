@@ -156,7 +156,7 @@ public class ProductService {
                 )).toList();
     }
 
-    public List<ProductResponse> getAllProductsBetweenPrice(BigDecimal minPrice, BigDecimal maxPrice){
+    public List<ProductResponse> getAllProductsBetweenPrice (BigDecimal minPrice, BigDecimal maxPrice){
         return productRepository.findByPriceBetween(minPrice, maxPrice)
                 .stream()
                 .map(product -> new ProductResponse(

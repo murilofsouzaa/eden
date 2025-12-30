@@ -23,8 +23,6 @@ public record CreateProductRequest(
         String imgURL,
 
         @NotNull
-        ProductStatus status,
-        @NotNull
-        LocalDateTime createdAt
+        ProductStatus status
 ) {
 }

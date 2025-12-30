@@ -7,9 +7,11 @@ import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.service.ProductService;
 import com.eden.service.UserService;
+import jakarta.persistence.Entity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -38,9 +40,22 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProductsByCategory(enumCategory));
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id){
         return ResponseEntity.ok(productService.getProductById(id));
+    }
+
+    @GetMapping("/filter/price")
+    public ResponseEntity<List<ProductResponse>> getAllProductsBetweenPrice(
+            @RequestParam(required = false) BigDecimal minPrice,
+            @RequestParam(required = false) BigDecimal maxPrice){
+        return ResponseEntity.ok(productService.getAllProductsBetweenPrice(minPrice, maxPrice));
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<ProductResponse>> getAllProductsByTextPart(@RequestParam String part){
+        return ResponseEntity.ok(productService.getAllProductsByTextPart(part));
     }
 
     @PostMapping
@@ -57,4 +72,5 @@ public class ProductController {
     public ResponseEntity<ProductResponse> deleteProduct (@PathVariable Long id){
         return ResponseEntity.ok(productService.deleteProduct(id));
     }
+
 }
