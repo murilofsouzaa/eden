@@ -22,8 +22,8 @@ public class Product {
     private String imgURL;
     @Column(nullable = false)
     private int stock;
-    @Column
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private ProductCategories category;
     @Column(nullable = false)
     private LocalDateTime createdAt;
     @Enumerated(EnumType.STRING)
@@ -34,7 +34,7 @@ public class Product {
     public Product(){};
 
     public Product(Long id, String title, String description, BigDecimal price,
-                   String imgURL, int stock, String category, LocalDateTime createdAt) {
+                   String imgURL, int stock, ProductCategories category, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -47,10 +47,6 @@ public class Product {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -93,11 +89,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getCategory() {
+    public ProductCategories getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ProductCategories category) {
         this.category = category;
     }
 

@@ -3,6 +3,7 @@ package com.eden.dto.product;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public record ProductResponse(
         @NotBlank
@@ -12,6 +13,6 @@ public record ProductResponse(
         @NotBlank
         String description,
         @NotBlank
-        LocalDate createdAt
+        LocalDateTime createdAt
 ) {
 }

@@ -30,7 +30,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.FOUND).body(userService.getUserById(id));
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .body(userService.getUserById(id));
     }
 
     @PostMapping

@@ -16,6 +16,7 @@ public record CreateProductRequest(
         int stock,
         @NotBlank
         String category,
+        String imgURL,
         @NotBlank
         LocalDateTime createdAt
 ) {
