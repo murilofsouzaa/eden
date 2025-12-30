@@ -13,18 +13,18 @@ import java.time.LocalDateTime;
 
 public record CreateUserRequest(
 
-        @NotBlank
+        @NotNull
         String name,
-        @NotBlank
+        @NotNull
         LocalDate birthDay,
         @NotNull
         Gender gender,
         @Email
         String email,
-        @NotBlank
+        @NotNull
         String password,
         UserRole role,
-        @NotBlank
+        @NotNull
         LocalDateTime createdAt
 
 ) {

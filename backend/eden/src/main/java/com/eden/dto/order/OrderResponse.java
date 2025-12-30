@@ -1,17 +1,18 @@
 package com.eden.dto.order;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 public record OrderResponse(
-        @NotBlank
+        @NotNull
         Long id,
-        @NotBlank
+        @NotNull
         Long userId,
-        @NotBlank
+        @NotNull
         LocalDateTime createdAt,
-        @NotBlank
+        @NotNull
         boolean status
 ) {
 }

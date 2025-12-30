@@ -3,6 +3,7 @@ package com.eden.controller;
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
 import com.eden.model.product.Product;
+import com.eden.model.product.ProductCategories;
 import com.eden.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,15 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
+    @GetMapping("/all/available")
+    public ResponseEntity<List<ProductResponse>> getAllAvailableProducts(){
+       return ResponseEntity.ok(productService.getAllAvailableProducts());
+    }
+
+    @GetMapping("/all/category/{category}")
+    public ResponseEntity<List<ProductResponse>> getAllProductsByCategory(@PathVariable ProductCategories category){
+        return ResponseEntity.ok(productService.getAllProductsByCategory(   category));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id){

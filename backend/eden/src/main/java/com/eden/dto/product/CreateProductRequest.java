@@ -3,27 +3,28 @@ package com.eden.dto.product;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductStatus;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record CreateProductRequest(
-        @NotBlank
+        @NotNull
         String title,
-        @NotBlank
+        @NotNull
         String description,
-        @NotBlank
+        @NotNull
         BigDecimal price,
-        @NotBlank
+        @NotNull
         int stock,
-        @NotBlank
+        @NotNull
         ProductCategories category,
 
         String imgURL,
 
-        @NotBlank
+        @NotNull
         ProductStatus status,
-        @NotBlank
+        @NotNull
         LocalDateTime createdAt
 ) {
 }

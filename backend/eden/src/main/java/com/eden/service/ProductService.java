@@ -43,11 +43,13 @@ public class ProductService {
                 product.getDescription(),
                 product.getPrice(),
                 product.getStock(),
+                product.getCategory(),
+                product.getStatus(),
                 product.getCreatedAt()
         );
     }
 
-    public String updateProduct(Long id, UpdateProductRequest updateProductRequest){
+        public String updateProduct(Long id, UpdateProductRequest updateProductRequest){
         Product updateProduct = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
 
@@ -83,6 +85,8 @@ public class ProductService {
                         product.getDescription(),
                         product.getPrice(),
                         product.getStock(),
+                        product.getCategory(),
+                        product.getStatus(),
                         product.getCreatedAt()
                 ))
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
@@ -97,6 +101,8 @@ public class ProductService {
                         product.getDescription(),
                         product.getPrice(),
                         product.getStock(),
+                        product.getCategory(),
+                        product.getStatus(),
                         product.getCreatedAt()
                 ))
                 .toList();
@@ -111,6 +117,8 @@ public class ProductService {
                         product.getDescription(),
                         product.getPrice(),
                         product.getStock(),
+                        product.getCategory(),
+                        product.getStatus(),
                         product.getCreatedAt()
                 )).toList();
     }
@@ -124,6 +132,8 @@ public class ProductService {
                         product.getDescription(),
                         product.getPrice(),
                         product.getStock(),
+                        product.getCategory(),
+                        product.getStatus(),
                         product.getCreatedAt()
                 )).toList();
     }
@@ -137,6 +147,8 @@ public class ProductService {
                         product.getDescription(),
                         product.getPrice(),
                         product.getStock(),
+                        product.getCategory(),
+                        product.getStatus(),
                         product.getCreatedAt()
                 )).toList();
     }
@@ -150,6 +162,8 @@ public class ProductService {
                        product.getDescription(),
                        product.getPrice(),
                        product.getStock(),
+                       product.getCategory(),
+                       product.getStatus(),
                        product.getCreatedAt()
                )).toList();
     }

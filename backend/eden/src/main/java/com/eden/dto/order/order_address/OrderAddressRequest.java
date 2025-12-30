@@ -5,24 +5,24 @@ import jakarta.validation.constraints.NotNull;
 
 public record OrderAddressRequest(
 
-        @NotBlank
+        @NotNull
         String street,
 
         @NotNull
         Integer number,
 
-        @NotBlank
+        @NotNull
         String neighborhood,
 
-        @NotBlank
+        @NotNull
         String city,
 
-        @NotBlank
+        @NotNull
         String state,
 
-        @NotBlank
+        @NotNull
         String country,
 
-        @NotBlank
+        @NotNull
         String zipCode
 ) {}

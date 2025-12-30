@@ -2,19 +2,20 @@ package com.eden.dto.shopping_cart.cart_item;
 
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
 public record ItemCartResponse (
         @Id
         Long id,
-        @NotBlank
+        @NotNull
         Long cartId,
-        @NotBlank
+        @NotNull
         Long productId,
-        @NotBlank
+        @NotNull
         int quantity,
-        @NotBlank
+        @NotNull
         BigDecimal unitPrice
 )
 {}

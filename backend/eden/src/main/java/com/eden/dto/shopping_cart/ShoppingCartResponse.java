@@ -1,17 +1,18 @@
 package com.eden.dto.shopping_cart;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 public record ShoppingCartResponse(
-        @NotBlank
+        @NotNull
         Long id,
-        @NotBlank
+        @NotNull
         Long userId,
-        @NotBlank
+        @NotNull
         boolean status,
-        @NotBlank
+        @NotNull
         LocalDateTime createdAt
 ) {
 }
