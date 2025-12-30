@@ -102,19 +102,19 @@ public class ProductService {
                 .toList();
     }
 
-    public List<Product> getAllAvailableProducts(){
+    public List<ProductResponse> getAllAvailableProducts(){
         return productRepository.findByStatus(ProductStatus.AVAILABLE);
     }
 
-    public List<Product> getAllProductsByCategory(ProductCategories category){
+    public List<ProductResponse> getAllProductsByCategory(ProductCategories category){
         return productRepository.findByCategory(category);
     }
 
-    public List<Product> getAllProductsBetweenPrice(BigDecimal minPrice, BigDecimal maxPrice){
+    public List<ProductResponse> getAllProductsBetweenPrice(BigDecimal minPrice, BigDecimal maxPrice){
         return productRepository.findByPriceBetween(minPrice, maxPrice);
     }
 
-    public List<Product> getAllProductsByTextPart(String part){
+    public List<ProductResponse> getAllProductsByTextPart(String part){
        return productRepository.findByTitleContainingIgnoreCase(part);
     }
 
