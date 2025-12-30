@@ -103,19 +103,55 @@ public class ProductService {
     }
 
     public List<ProductResponse> getAllAvailableProducts(){
-        return productRepository.findByStatus(ProductStatus.AVAILABLE);
+        return productRepository.findByStatus(ProductStatus.AVAILABLE)
+                .stream()
+                .map(product -> new ProductResponse(
+                        product.getId(),
+                        product.getTitle(),
+                        product.getDescription(),
+                        product.getPrice(),
+                        product.getStock(),
+                        product.getCreatedAt()
+                )).toList();
     }
 
     public List<ProductResponse> getAllProductsByCategory(ProductCategories category){
-        return productRepository.findByCategory(category);
+        return productRepository.findByCategory(category)
+                .stream()
+                .map(product -> new ProductResponse(
+                        product.getId(),
+                        product.getTitle(),
+                        product.getDescription(),
+                        product.getPrice(),
+                        product.getStock(),
+                        product.getCreatedAt()
+                )).toList();
     }
 
     public List<ProductResponse> getAllProductsBetweenPrice(BigDecimal minPrice, BigDecimal maxPrice){
-        return productRepository.findByPriceBetween(minPrice, maxPrice);
+        return productRepository.findByPriceBetween(minPrice, maxPrice)
+                .stream()
+                .map(product -> new ProductResponse(
+                        product.getId(),
+                        product.getTitle(),
+                        product.getDescription(),
+                        product.getPrice(),
+                        product.getStock(),
+                        product.getCreatedAt()
+                )).toList();
     }
 
     public List<ProductResponse> getAllProductsByTextPart(String part){
-       return productRepository.findByTitleContainingIgnoreCase(part);
+       return productRepository.findByTitleContainingIgnoreCase(part)
+               .stream()
+               .map(product -> new ProductResponse(
+                       product.getId(),
+                       product.getTitle(),
+                       product.getDescription(),
+                       product.getPrice(),
+                       product.getStock(),
+                       product.getCreatedAt()
+               )).toList();
     }
 
 }

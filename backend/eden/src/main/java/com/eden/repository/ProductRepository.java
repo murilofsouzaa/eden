@@ -14,9 +14,9 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<ProductResponse> findByCategory(ProductCategories category);
+    List<Product> findByCategory(ProductCategories category);
     @Query("SELECT p FROM Product p WHERE p.price >= :min AND p.price <= :max")
-    List<ProductResponse> findByPriceBetween(@Param("min") BigDecimal minPrice, @Param("max") BigDecimal maxPrice);
-    List<ProductResponse> findByTitleContainingIgnoreCase(String part);
-    List<ProductResponse> findByStatus(ProductStatus status);
+    List<Product> findByPriceBetween(@Param("min") BigDecimal minPrice, @Param("max") BigDecimal maxPrice);
+    List<Product> findByTitleContainingIgnoreCase(String part);
+    List<Product> findByStatus(ProductStatus status);
 }
