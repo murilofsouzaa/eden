@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 public class ProductService {
 
-    ProductRepository productRepository;
+    final ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository){
         this.productRepository = productRepository;
@@ -49,31 +49,49 @@ public class ProductService {
         );
     }
 
-        public String updateProduct(Long id, UpdateProductRequest updateProductRequest){
-        Product updateProduct = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found!"));
+        public ProductResponse updateProduct(Long id, UpdateProductRequest updateProductRequest){
+            Product updateProduct = productRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Product not found!"));
 
-        updateProduct.setTitle(updateProductRequest.title());
-        updateProduct.setDescription(updateProductRequest.description());
-        updateProduct.setPrice(updateProductRequest.price());
-        updateProduct.setStock(updateProductRequest.stock());
-        updateProduct.setCategory(updateProductRequest.category());
-        updateProduct.setImgURL(updateProductRequest.imgURL());
-        updateProduct.setStatus(updateProductRequest.status());
-        updateProduct.setUpdatedAt(updateProductRequest.updatedAt());
+            updateProduct.setTitle(updateProductRequest.title());
+            updateProduct.setDescription(updateProductRequest.description());
+            updateProduct.setPrice(updateProductRequest.price());
+            updateProduct.setStock(updateProductRequest.stock());
+            updateProduct.setCategory(updateProductRequest.category());
+            updateProduct.setImgURL(updateProductRequest.imgURL());
+            updateProduct.setStatus(updateProductRequest.status());
+            updateProduct.setUpdatedAt(updateProductRequest.updatedAt());
 
-        productRepository.save(updateProduct);
+            productRepository.save(updateProduct);
 
-        return "Updated successfully!";
+            return new ProductResponse(
+                    updateProduct.getId(),
+                    updateProduct.getTitle(),
+                    updateProduct.getDescription(),
+                    updateProduct.getPrice(),
+                    updateProduct.getStock(),
+                    updateProduct.getCategory(),
+                    updateProduct.getStatus(),
+                    updateProduct.getCreatedAt()
+            );
     }
 
-    public String deleteProduct(Long id){
+    public ProductResponse deleteProduct(Long id){
         Product product  = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
 
         productRepository.delete(product);
 
-        return "Product deleted successfully!";
+        return new ProductResponse(
+                product.getId(),
+                product.getTitle(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getStock(),
+                product.getCategory(),
+                product.getStatus(),
+                product.getCreatedAt()
+        );
 
     }
 

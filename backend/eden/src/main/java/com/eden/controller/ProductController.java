@@ -2,9 +2,11 @@ package com.eden.controller;
 
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
+import com.eden.dto.product.UpdateProductRequest;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.service.ProductService;
+import com.eden.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +16,7 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    private ProductService productService;
+    private final ProductService productService;
 
     public ProductController(ProductService productService){
         this.productService = productService;
@@ -44,5 +46,15 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<ProductResponse> createProduct(@RequestBody CreateProductRequest productRequest){
         return ResponseEntity.ok(productService.createProduct(productRequest));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponse> updateProduct(Long id, @RequestBody UpdateProductRequest updateProductRequest){
+        return ResponseEntity.ok(productService.updateProduct(id, updateProductRequest));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ProductResponse> deleteProduct (@PathVariable Long id){
+        return ResponseEntity.ok(productService.deleteProduct(id));
     }
 }
