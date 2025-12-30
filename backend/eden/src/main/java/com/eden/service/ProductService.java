@@ -29,6 +29,8 @@ public class ProductService {
         product.setDescription(createProductRequest.description());
         product.setPrice(createProductRequest.price());
         product.setStock(createProductRequest.stock());
+        product.setCategory(createProductRequest.category());
+        product.setStatus(createProductRequest.status());
         product.setCreatedAt(LocalDateTime.now());
         product.setImgURL(createProductRequest.imgURL());
 

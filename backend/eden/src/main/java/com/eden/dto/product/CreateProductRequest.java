@@ -1,5 +1,7 @@
 package com.eden.dto.product;
 
+import com.eden.model.product.ProductCategories;
+import com.eden.model.product.ProductStatus;
 import jakarta.validation.constraints.NotBlank;
 
 import java.math.BigDecimal;
@@ -15,10 +17,12 @@ public record CreateProductRequest(
         @NotBlank
         int stock,
         @NotBlank
-        String category,
+        ProductCategories category,
 
         String imgURL,
 
+        @NotBlank
+        ProductStatus status,
         @NotBlank
         LocalDateTime createdAt
 ) {

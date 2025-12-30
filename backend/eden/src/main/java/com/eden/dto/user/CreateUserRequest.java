@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Min;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public record CreateUserRequest(
@@ -22,7 +23,9 @@ public record CreateUserRequest(
         String email,
         @NotBlank
         String password,
-        UserRole role
+        UserRole role,
+        @NotBlank
+        LocalDateTime createdAt
 
 ) {
 }

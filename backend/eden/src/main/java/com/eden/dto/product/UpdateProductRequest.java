@@ -1,6 +1,7 @@
 package com.eden.dto.product;
 
 import com.eden.model.product.ProductCategories;
+import com.eden.model.product.ProductStatus;
 import jakarta.validation.constraints.NotBlank;
 
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ public record UpdateProductRequest(
         int stock,
         ProductCategories category,
         String imgURL,
+        ProductStatus status,
         LocalDateTime updatedAt
 ) {
 }
