@@ -31,8 +31,9 @@ public class ProductController {
     }
 
     @GetMapping("/all/category/{category}")
-    public ResponseEntity<List<ProductResponse>> getAllProductsByCategory(@PathVariable ProductCategories category){
-        return ResponseEntity.ok(productService.getAllProductsByCategory(   category));
+    public ResponseEntity<List<ProductResponse>> getAllProductsByCategory(@PathVariable String category){
+        ProductCategories enumCategory = ProductCategories.valueOf(category.toUpperCase());
+        return ResponseEntity.ok(productService.getAllProductsByCategory(enumCategory));
     }
 
     @GetMapping("/{id}")

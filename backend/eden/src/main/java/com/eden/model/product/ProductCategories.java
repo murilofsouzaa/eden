@@ -2,6 +2,8 @@ package com.eden.model.product;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import jakarta.websocket.ClientEndpoint;
 
 public enum ProductCategories {
     @JsonProperty("shirts")
