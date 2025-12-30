@@ -51,7 +51,7 @@ public class ProductService {
         updateProduct.setStock(updateProductRequest.stock());
         updateProduct.setCategory(updateProductRequest.category());
         updateProduct.setImgURL(updateProductRequest.imgURL());
-        updateProduct.setCreatedAt(updateProductRequest.updatedAt());
+        updateProduct.setUpdatedAt(updateProductRequest.updatedAt());
 
         productRepository.save(updateProduct);
 
