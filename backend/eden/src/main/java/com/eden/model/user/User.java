@@ -1,5 +1,6 @@
 package com.eden.model.user;
 
+import com.eden.model.shopping_cart.ShoppingCart;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -29,11 +30,15 @@ public class User {
     @Column
     LocalDateTime createdAt;
 
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+    private ShoppingCart cart;
+
     public User(){
     }
 
     public User(Long id, String email, String name, LocalDate birthDay, Gender gender, String password, UserRole role,
-                UserStatus status, LocalDateTime createdAt) {
+                UserStatus status, LocalDateTime createdAt, ShoppingCart cart) {
         this.id = id;
         this.email = email;
         this.name = name;
@@ -43,6 +48,7 @@ public class User {
         this.role = role;
         this.status = status;
         this.createdAt = createdAt;
+        this.cart = cart;
     }
 
     public void validateUser(){
@@ -127,5 +133,13 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public ShoppingCart getCart() {
+        return cart;
+    }
+
+    public void setCart(ShoppingCart cart) {
+        this.cart = cart;
     }
 }

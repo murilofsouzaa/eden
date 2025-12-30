@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "shopping_cart_item")
-public class ShoppingCartItem {
+public class ItemCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,11 +25,11 @@ public class ShoppingCartItem {
     @Column(nullable = false)
     private BigDecimal unitPrice;
 
-    public ShoppingCartItem(){
+    public ItemCart(){
 
     }
 
-    public ShoppingCartItem(ShoppingCart cart, Product product, int quantity, BigDecimal unitPrice) {
+    public ItemCart(ShoppingCart cart, Product product, int quantity, BigDecimal unitPrice) {
         this.cart = cart;
         this.product = product;
         this.quantity = quantity;
@@ -81,13 +81,5 @@ public class ShoppingCartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public BigDecimal getUnit_price() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
     }
 }

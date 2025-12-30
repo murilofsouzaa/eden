@@ -1,5 +1,6 @@
 package com.eden.dto.shopping_cart;
 
+import com.eden.model.user.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -7,7 +8,7 @@ import java.time.LocalDateTime;
 
 public record CreateShoppingCartRequest(
         @NotNull
-        Long userId,
+        User user,
         @NotNull
         boolean status,
         @NotNull

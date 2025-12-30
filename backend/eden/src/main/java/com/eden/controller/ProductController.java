@@ -53,8 +53,8 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProductsBetweenPrice(minPrice, maxPrice));
     }
 
-    @GetMapping("/filter")
-    public ResponseEntity<List<ProductResponse>> getAllProductsByTextPart(@RequestParam String part){
+    @GetMapping("/filter/{part}")
+    public ResponseEntity<List<ProductResponse>> getAllProductsByTextPart(@PathVariable String part){
         return ResponseEntity.ok(productService.getAllProductsByTextPart(part));
     }
 

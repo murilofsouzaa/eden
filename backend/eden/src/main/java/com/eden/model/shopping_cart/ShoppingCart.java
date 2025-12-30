@@ -24,7 +24,7 @@ public class ShoppingCart {
     private LocalDateTime createdAt;
 
     @OneToMany
-    List<ShoppingCartItem> items = new ArrayList<>();
+    List<ItemCart> items = new ArrayList<>();
 
     public ShoppingCart(){
 
@@ -53,7 +53,7 @@ public class ShoppingCart {
         this.user = user;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -67,5 +67,13 @@ public class ShoppingCart {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<ItemCart> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemCart> items) {
+        this.items = items;
     }
 }
