@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> getUserById(@RequestBody CreateUserRequest user){
+    public ResponseEntity<UserResponse> createUser(@RequestBody CreateUserRequest user){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.createUser(user)) ;
     }
