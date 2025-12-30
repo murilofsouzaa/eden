@@ -10,6 +10,7 @@ import com.eden.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ProductService {
         product.setDescription(createProductRequest.description());
         product.setPrice(createProductRequest.price());
         product.setStock(createProductRequest.stock());
-        product.setCreatedAt(createProductRequest.createdAt());
+        product.setCreatedAt(LocalDateTime.now());
         product.setImgURL(createProductRequest.imgURL());
 
         productRepository.save(product);
@@ -51,6 +52,7 @@ public class ProductService {
         updateProduct.setStock(updateProductRequest.stock());
         updateProduct.setCategory(updateProductRequest.category());
         updateProduct.setImgURL(updateProductRequest.imgURL());
+        updateProduct.setStatus(updateProductRequest.status());
         updateProduct.setUpdatedAt(updateProductRequest.updatedAt());
 
         productRepository.save(updateProduct);

@@ -8,6 +8,7 @@ import com.eden.model.user.UserRole;
 import com.eden.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,6 +30,7 @@ public class UserService {
         newUser.setBirthDay(userRequest.birthDay());
         newUser.setPassword(userRequest.password());
         newUser.setRole(userRequest.role());
+        newUser.setCreatedAt(LocalDateTime.now());
 
         userRepository.save(newUser);
 
