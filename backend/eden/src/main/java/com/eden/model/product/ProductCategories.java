@@ -1,10 +1,19 @@
 package com.eden.model.product;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum ProductCategories {
-    SHIRT,
-    T_SHIRT,
+    @JsonProperty("shirts")
+    SHIRTS,
+    @JsonProperty("t_shirts")
+    T_SHIRTS,
+    @JsonProperty("pants")
     PANTS,
+    @JsonProperty("shoes")
     SHOES,
-    CAP,
-    SWEATSHIRT
+    @JsonProperty("caps")
+    CAPS,
+    @JsonProperty("sweatshirts")
+    SWEATSHIRTS;
 }

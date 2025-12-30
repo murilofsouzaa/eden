@@ -1,5 +1,10 @@
 package com.eden.model.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum UserStatus {
-    ACTIVE, INACTIVE
+    @JsonProperty("active")
+    ACTIVE,
+    @JsonProperty("inactive")
+    INACTIVE
 }
