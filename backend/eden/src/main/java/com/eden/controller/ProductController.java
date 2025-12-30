@@ -25,12 +25,12 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
-    @GetMapping("/all/available")
+    @GetMapping("/available")
     public ResponseEntity<List<ProductResponse>> getAllAvailableProducts(){
        return ResponseEntity.ok(productService.getAllAvailableProducts());
     }
 
-    @GetMapping("/all/category/{category}")
+    @GetMapping("/category/{category}")
     public ResponseEntity<List<ProductResponse>> getAllProductsByCategory(@PathVariable String category){
         ProductCategories enumCategory = ProductCategories.valueOf(category.toUpperCase());
         return ResponseEntity.ok(productService.getAllProductsByCategory(enumCategory));
@@ -45,5 +45,4 @@ public class ProductController {
     public ResponseEntity<ProductResponse> createProduct(@RequestBody CreateProductRequest productRequest){
         return ResponseEntity.ok(productService.createProduct(productRequest));
     }
-
 }

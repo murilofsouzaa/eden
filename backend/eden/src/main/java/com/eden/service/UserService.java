@@ -4,7 +4,6 @@ import com.eden.dto.user.CreateUserRequest;
 import com.eden.dto.user.UpdateUserRequest;
 import com.eden.dto.user.UserResponse;
 import com.eden.model.user.User;
-import com.eden.model.user.UserRole;
 import com.eden.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +42,7 @@ public class UserService {
         );
     }
 
-    public String updateUser(Long id, UpdateUserRequest updateUserRequest){
+    public UserResponse updateUser(Long id, UpdateUserRequest updateUserRequest){
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found!"));
 
@@ -62,7 +61,13 @@ public class UserService {
 
         userRepository.save(user);
 
-        return "Updated successfully!";
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getGender(),
+                user.getEmail(),
+                user.getCreatedAt()
+        );
     }
 
     public String deleteUser(Long id){

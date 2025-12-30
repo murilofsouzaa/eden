@@ -1,6 +1,7 @@
 package com.eden.controller;
 
 import com.eden.dto.user.CreateUserRequest;
+import com.eden.dto.user.UpdateUserRequest;
 import com.eden.dto.user.UserResponse;
 import com.eden.model.user.User;
 import com.eden.repository.UserRepository;
@@ -38,6 +39,11 @@ public class UserController {
     public ResponseEntity<UserResponse> createUser(@RequestBody CreateUserRequest user){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.createUser(user)) ;
+    }
+
+    @PutMapping
+    public ResponseEntity<UserResponse> updateUser(Long id, @RequestBody UpdateUserRequest updateUserRequest){
+        return ResponseEntity.ok(userService.updateUser(id, updateUserRequest));
     }
 
     @DeleteMapping("/{id}")
