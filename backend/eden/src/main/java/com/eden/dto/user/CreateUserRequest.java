@@ -1,6 +1,7 @@
 package com.eden.dto.user;
 
 import com.eden.model.user.Gender;
+import com.eden.model.user.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotBlank;
@@ -20,5 +21,8 @@ public record CreateUserRequest(
         @Email
         String email,
         @NotBlank
-        String password) {
+        String password,
+        UserRole role
+
+) {
 }

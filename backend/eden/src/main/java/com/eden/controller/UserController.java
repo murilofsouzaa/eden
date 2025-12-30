@@ -28,11 +28,22 @@ public class UserController {
         return ResponseEntity.ok(userService.listAllUsers());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.FOUND).body(userService.getUserById(id));
+    }
+
     @PostMapping
     public ResponseEntity<UserResponse> getUserById(@RequestBody CreateUserRequest user){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.createUser(user)) ;
-    };
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id){
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 

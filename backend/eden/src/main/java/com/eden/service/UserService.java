@@ -28,6 +28,7 @@ public class UserService {
         newUser.setGender(userRequest.gender());
         newUser.setBirthDay(userRequest.birthDay());
         newUser.setPassword(userRequest.password());
+        newUser.setRole(userRequest.role());
 
         userRepository.save(newUser);
 
@@ -65,14 +66,14 @@ public class UserService {
     public String deleteUser(Long id){
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found!"));
-        if(user == null){
-            return "User not found!";
-        }
-        if(user.getRole().equals(UserRole.ADMIN)){
+
             userRepository.delete(user);
             return "User was deleted successfully!";
-        }
-            return "You don't have permission to delete the user";
+    }
+
+    public User getUserById(Long id){
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found!"));
     }
 
     public List<User> listAllUsers(){
