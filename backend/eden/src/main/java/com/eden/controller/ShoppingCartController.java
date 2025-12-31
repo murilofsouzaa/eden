@@ -2,7 +2,9 @@ package com.eden.controller;
 
 import com.eden.dto.shopping_cart.CreateShoppingCartRequest;
 import com.eden.dto.shopping_cart.ShoppingCartResponse;
+import com.eden.dto.shopping_cart.cart_item.AddItemCartRequest;
 import com.eden.service.ShoppingCartService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,5 +36,15 @@ public class ShoppingCartController {
             @RequestBody CreateShoppingCartRequest shoppingCartRequest)
     {
         return ResponseEntity.ok(shoppingCartService.createShoppingCart(userId, shoppingCartRequest));
+    }
+
+    @PostMapping("/carts/{cartId}/items")
+    public ResponseEntity<ShoppingCartResponse> addItem(
+            @PathVariable Long cartId,
+            @RequestBody @Valid AddItemCartRequest request
+    ) {
+        return ResponseEntity.ok(
+                shoppingCartService.addItem(cartId, request)
+        );
     }
 }

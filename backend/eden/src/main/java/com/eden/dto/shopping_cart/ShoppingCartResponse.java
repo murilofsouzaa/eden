@@ -12,7 +12,6 @@ import java.util.List;
 public record ShoppingCartResponse(
         @NotNull
         Long id,
-        List<ItemCart> item,
         @NotNull
         boolean status,
         @NotNull

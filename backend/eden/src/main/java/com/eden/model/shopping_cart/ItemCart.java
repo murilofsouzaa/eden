@@ -76,6 +76,10 @@ public class ItemCart {
         return unitPrice;
     }
 
+    public void setUnitPrice (BigDecimal unitPrice){
+        this.unitPrice = unitPrice;
+    }
+
     public int getQuantity() {
         return quantity;
     }
