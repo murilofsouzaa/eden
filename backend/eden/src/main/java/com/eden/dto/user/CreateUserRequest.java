@@ -1,5 +1,6 @@
 package com.eden.dto.user;
 
+import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.Gender;
 import com.eden.model.user.UserRole;
 import jakarta.validation.constraints.Email;
@@ -23,9 +24,7 @@ public record CreateUserRequest(
         String email,
         @NotNull
         String password,
-        UserRole role,
-        @NotNull
-        LocalDateTime createdAt
+        UserRole role
 
 ) {
 }

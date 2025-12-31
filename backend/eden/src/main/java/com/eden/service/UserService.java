@@ -3,7 +3,9 @@ package com.eden.service;
 import com.eden.dto.user.CreateUserRequest;
 import com.eden.dto.user.UpdateUserRequest;
 import com.eden.dto.user.UserResponse;
+import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.User;
+import com.eden.repository.ShoppingCartRepository;
 import com.eden.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ public class UserService {
     public UserResponse createUser(CreateUserRequest userRequest){
 
         User newUser = new User();
+        ShoppingCart cart = new ShoppingCart();
+        cart.setUser(newUser);
 
         newUser.setName(userRequest.name());
         newUser.setEmail(userRequest.email());
@@ -30,14 +34,14 @@ public class UserService {
         newUser.setPassword(userRequest.password());
         newUser.setRole(userRequest.role());
         newUser.setCreatedAt(LocalDateTime.now());
-
+        newUser.setCart(cart);
         userRepository.save(newUser);
 
         return new UserResponse(
                 newUser.getId(),
                 newUser.getName(),
                 newUser.getGender(),
-                newUser.getEmail(),
+                    newUser.getEmail(),
                 newUser.getCreatedAt()
         );
     }
@@ -81,6 +85,10 @@ public class UserService {
     public User getUserById(Long id){
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found!"));
+    }
+
+    public User getUserByUsername(String username){
+        return userRepository.findUserByName(username);
     }
 
     public List<User> listAllUsers(){

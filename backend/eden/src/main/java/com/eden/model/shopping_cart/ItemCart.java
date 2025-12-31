@@ -1,6 +1,7 @@
 package com.eden.model.shopping_cart;
 
 import com.eden.model.product.Product;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -14,6 +15,7 @@ public class ItemCart {
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
+    @JsonBackReference
     private ShoppingCart cart;
 
     @ManyToOne

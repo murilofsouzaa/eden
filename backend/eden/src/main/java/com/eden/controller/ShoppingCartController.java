@@ -21,6 +21,13 @@ public class ShoppingCartController {
         return ResponseEntity.ok(shoppingCartService.getCart(cartId));
     }
 
+    @GetMapping("/{username}/{cartId}")
+        public ResponseEntity<ShoppingCartResponse> getShoppingCartByUsername(
+                @PathVariable String username, @PathVariable Long cartId)
+        {
+            return ResponseEntity.ok(shoppingCartService.getCartByUsername(username, cartId));
+        }
+
     @PostMapping("/{userId}")
     public ResponseEntity<ShoppingCartResponse> createShoppingCart(
             @PathVariable Long userId,

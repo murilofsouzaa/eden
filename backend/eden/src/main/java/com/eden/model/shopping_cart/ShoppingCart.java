@@ -1,6 +1,7 @@
 package com.eden.model.shopping_cart;
 
 import com.eden.model.user.User;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -18,16 +19,22 @@ public class ShoppingCart {
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
-    @Column
+    @Column(nullable = false)
     private boolean status;
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @OneToMany
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     List<ItemCart> items = new ArrayList<>();
 
-    public ShoppingCart(){
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+        this.status = true;
+    }
 
+    public ShoppingCart(){
     }
 
     public ShoppingCart(Long id, User user, boolean status, LocalDateTime createdAt) {

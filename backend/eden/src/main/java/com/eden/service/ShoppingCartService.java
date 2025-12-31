@@ -34,7 +34,6 @@ public class ShoppingCartService {
 
         return new ShoppingCartResponse(
                 newCart.getId(),
-                newCart.getUser(),
                 newCart.getStatus(),
                 newCart.getCreatedAt()
         );
@@ -44,10 +43,22 @@ public class ShoppingCartService {
         ShoppingCart cart = shoppingCartRepository.findShoppingCartById(cartId);
         return new ShoppingCartResponse(
                 cart.getId(),
-                cart.getUser(),
                 cart.getStatus(),
                 cart.getCreatedAt()
                 );
+    }
+
+    public ShoppingCartResponse getCartByUsername(String username, Long cartId){
+        User user = userService.getUserByUsername(username);
+        ShoppingCart cart = user.getCart();
+        cart.setId(cartId);
+        cart.setUser(user);
+
+        return new ShoppingCartResponse(
+                cart.getId(),
+                cart.getStatus(),
+                cart.getCreatedAt()
+        );
     }
 
     public List<ItemCartResponse> getCartItems(Long cartId){

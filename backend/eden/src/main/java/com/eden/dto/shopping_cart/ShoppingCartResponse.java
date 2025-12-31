@@ -11,8 +11,6 @@ public record ShoppingCartResponse(
         @NotNull
         Long id,
         @NotNull
-        User user,
-        @NotNull
         boolean status,
         @NotNull
         LocalDateTime createdAt

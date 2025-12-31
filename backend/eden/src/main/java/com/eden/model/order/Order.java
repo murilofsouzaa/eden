@@ -25,6 +25,9 @@ public class Order {
     @Column(nullable = false)
     private boolean status;
 
+    @OneToOne
+    OrderAddress orderAddress;
+
     @OneToMany
     List<OrderItem> items = new ArrayList<>();
 

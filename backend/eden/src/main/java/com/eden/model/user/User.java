@@ -1,10 +1,15 @@
 package com.eden.model.user;
 
+import com.eden.model.address.Address;
+import com.eden.model.order.Order;
 import com.eden.model.shopping_cart.ShoppingCart;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -13,16 +18,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false)
     private Long id;
+    @NotNull
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private LocalDate birthDay;
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    @NotNull
     @Column(nullable = false)
     private String email;
+    @NotNull
     @Column(nullable = false)
     private String password;
+
+    @OneToMany
+    private List<Address> addressList;
+
     @Enumerated(EnumType.STRING)
     private UserRole role;
     @Enumerated(EnumType.STRING)
@@ -30,15 +42,15 @@ public class User {
     @Column
     LocalDateTime createdAt;
 
-    @OneToOne
-    @JoinColumn(name = "cart_id")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private ShoppingCart cart;
 
     public User(){
     }
 
     public User(Long id, String email, String name, LocalDate birthDay, Gender gender, String password, UserRole role,
-                UserStatus status, LocalDateTime createdAt, ShoppingCart cart) {
+                UserStatus status, LocalDateTime createdAt, ShoppingCart cart, List<Address> addressList) {
         this.id = id;
         this.email = email;
         this.name = name;
@@ -49,6 +61,7 @@ public class User {
         this.status = status;
         this.createdAt = createdAt;
         this.cart = cart;
+        this.addressList = addressList;
     }
 
     public void validateUser(){
@@ -141,5 +154,13 @@ public class User {
 
     public void setCart(ShoppingCart cart) {
         this.cart = cart;
+    }
+
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
     }
 }
