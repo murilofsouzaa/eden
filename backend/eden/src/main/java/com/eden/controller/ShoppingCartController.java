@@ -30,14 +30,6 @@ public class ShoppingCartController {
             return ResponseEntity.ok(shoppingCartService.getCartByUsername(username, cartId));
         }
 
-    @PostMapping("/{userId}")
-    public ResponseEntity<ShoppingCartResponse> createShoppingCart(
-            @PathVariable Long userId,
-            @RequestBody CreateShoppingCartRequest shoppingCartRequest)
-    {
-        return ResponseEntity.ok(shoppingCartService.createShoppingCart(userId, shoppingCartRequest));
-    }
-
     @PostMapping("/carts/{cartId}/items")
     public ResponseEntity<ShoppingCartResponse> addItem(
             @PathVariable Long cartId,

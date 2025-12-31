@@ -31,23 +31,6 @@ public class ShoppingCartService {
         this.userService = userService;
     }
 
-    public ShoppingCartResponse createShoppingCart(Long id, CreateShoppingCartRequest shoppingCartRequest){
-        User user = userService.getUserById(id);
-        ShoppingCart newCart = new ShoppingCart();
-
-        newCart.setUser(user);
-        newCart.setStatus(shoppingCartRequest.status());
-        newCart.setCreatedAt(LocalDateTime.now());
-
-        shoppingCartRepository.save(newCart);
-
-        return new ShoppingCartResponse(
-                newCart.getId(),
-                newCart.getStatus(),
-                newCart.getCreatedAt()
-        );
-    }
-
     @Transactional
     public ShoppingCartResponse addItem(Long cartId, AddItemCartRequest request) {
 
