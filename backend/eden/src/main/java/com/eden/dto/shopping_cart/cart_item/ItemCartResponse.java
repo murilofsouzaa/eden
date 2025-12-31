@@ -12,8 +12,6 @@ public record ItemCartResponse (
         @Id
         Long id,
         @NotNull
-        ShoppingCart cart,
-        @NotNull
         Product product,
         @NotNull
         int quantity,

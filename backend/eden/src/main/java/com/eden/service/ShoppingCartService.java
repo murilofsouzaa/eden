@@ -34,6 +34,7 @@ public class ShoppingCartService {
 
         return new ShoppingCartResponse(
                 newCart.getId(),
+                newCart.getItems(),
                 newCart.getStatus(),
                 newCart.getCreatedAt()
         );
@@ -43,6 +44,7 @@ public class ShoppingCartService {
         ShoppingCart cart = shoppingCartRepository.findShoppingCartById(cartId);
         return new ShoppingCartResponse(
                 cart.getId(),
+                cart.getItems(),
                 cart.getStatus(),
                 cart.getCreatedAt()
                 );
@@ -56,6 +58,7 @@ public class ShoppingCartService {
 
         return new ShoppingCartResponse(
                 cart.getId(),
+                cart.getItems(),
                 cart.getStatus(),
                 cart.getCreatedAt()
         );
@@ -67,7 +70,6 @@ public class ShoppingCartService {
                 .stream()
                 .map(item -> new ItemCartResponse(
                         item.getId(),
-                        item.getCart(),
                         item.getProduct(),
                         item.getQuantity(),
                         item.getUnitPrice()

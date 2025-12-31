@@ -25,7 +25,6 @@ public class ShoppingCart {
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     List<ItemCart> items = new ArrayList<>();
 
     @PrePersist
