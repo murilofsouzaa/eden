@@ -3,10 +3,13 @@ package com.eden.controller;
 import com.eden.dto.shopping_cart.CreateShoppingCartRequest;
 import com.eden.dto.shopping_cart.ShoppingCartResponse;
 import com.eden.dto.shopping_cart.cart_item.AddItemCartRequest;
+import com.eden.dto.shopping_cart.cart_item.ItemCartResponse;
 import com.eden.service.ShoppingCartService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/cart")
@@ -30,13 +33,17 @@ public class ShoppingCartController {
             return ResponseEntity.ok(shoppingCartService.getCartByUsername(username, cartId));
         }
 
-    @PostMapping("/carts/{cartId}/items")
-    public ResponseEntity<ShoppingCartResponse> addItem(
+    @GetMapping("/cart/{cartId}/items")
+    public ResponseEntity<List<ItemCartResponse>> getCartItems(@PathVariable Long id){
+        return ResponseEntity.ok(shoppingCartService.getCartItems(id));
+    }
+
+    @PostMapping("/cart/{cartId}/items")
+    public ResponseEntity<ItemCartResponse> addItem(
             @PathVariable Long cartId,
             @RequestBody @Valid AddItemCartRequest request
     ) {
-        return ResponseEntity.ok(
-                shoppingCartService.addItem(cartId, request)
+        return ResponseEntity.ok(shoppingCartService.addItem(cartId, request)
         );
     }
 }

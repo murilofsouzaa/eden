@@ -11,6 +11,7 @@ import com.eden.model.user.User;
 import com.eden.repository.ProductRepository;
 import com.eden.repository.ShoppingCartRepository;
 import jakarta.transaction.Transactional;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,8 +32,8 @@ public class ShoppingCartService {
         this.userService = userService;
     }
 
-    @Transactional
-    public ShoppingCartResponse addItem(Long cartId, AddItemCartRequest request) {
+    @Transactional(rollbackOn = Exception.class)
+    public ItemCartResponse addItem(Long cartId, AddItemCartRequest request) {
 
         ShoppingCart cart = shoppingCartRepository.findById(cartId)
                 .orElseThrow(() -> new RuntimeException("Cart not found"));
@@ -46,12 +47,16 @@ public class ShoppingCartService {
                 .findFirst()
                 .orElse(null);
 
+        ItemCart item;
+
         if (existingItem != null) {
             existingItem.setQuantity(
                     existingItem.getQuantity() + request.quantity()
             );
+            item = existingItem;
+
         } else {
-            ItemCart item = new ItemCart();
+            item = new ItemCart();
             item.setCart(cart);
             item.setProduct(product);
             item.setQuantity(request.quantity());
@@ -62,10 +67,12 @@ public class ShoppingCartService {
 
         shoppingCartRepository.save(cart);
 
-        return new ShoppingCartResponse(
-                cart.getId(),
-                cart.getStatus(),
-                cart.getCreatedAt()
+        return new ItemCartResponse(
+                item.getId(),
+                item.getProduct(),
+                item.getQuantity(),
+                item.getUnitPrice()
+
         );
     }
 
