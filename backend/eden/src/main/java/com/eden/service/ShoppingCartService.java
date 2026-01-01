@@ -14,6 +14,7 @@ import jakarta.transaction.Transactional;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -76,13 +77,9 @@ public class ShoppingCartService {
         );
     }
 
-    public ShoppingCartResponse getCart(Long cartId){
+    public ShoppingCart getCart(Long cartId){
         ShoppingCart cart = shoppingCartRepository.findShoppingCartById(cartId);
-        return new ShoppingCartResponse(
-                cart.getId(),
-                cart.getStatus(),
-                cart.getCreatedAt()
-                );
+        return cart;
     }
 
     public ShoppingCartResponse getCartByUsername(String username, Long cartId){
@@ -94,6 +91,7 @@ public class ShoppingCartService {
         return new ShoppingCartResponse(
                 cart.getId(),
                 cart.getStatus(),
+                cart.getTotalPrice(),
                 cart.getCreatedAt()
         );
     }
@@ -105,9 +103,17 @@ public class ShoppingCartService {
                 .map(item -> new ItemCartResponse(
                         item.getId(),
                         item.getProduct(),
+
                         item.getQuantity(),
                         item.getUnitPrice()
                 ))
                 .toList();
+    }
+
+    public BigDecimal getCartPrice(Long id){
+        ShoppingCart cart = shoppingCartRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException(("Cart not found!")));
+
+        return cart.getTotalPrice();
     }
 }
