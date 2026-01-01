@@ -3,6 +3,7 @@ package com.eden.service;
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
 import com.eden.dto.product.UpdateProductRequest;
+import com.eden.mapper.ProductMapper;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductStatus;
@@ -37,16 +38,7 @@ public class    ProductService {
 
         productRepository.save(product);
 
-        return new ProductResponse(
-                product.getId(),
-                product.getTitle(),
-                product.getDescription(),
-                product.getPrice(),
-                product.getStock(),
-                product.getCategory(),
-                product.getStatus(),
-                product.getCreatedAt()
-        );
+        return ProductMapper.toResponse(product);
     }
 
         public ProductResponse updateProduct(Long id, UpdateProductRequest updateProductRequest){
@@ -64,16 +56,7 @@ public class    ProductService {
 
             productRepository.save(updateProduct);
 
-            return new ProductResponse(
-                    updateProduct.getId(),
-                    updateProduct.getTitle(),
-                    updateProduct.getDescription(),
-                    updateProduct.getPrice(),
-                    updateProduct.getStock(),
-                    updateProduct.getCategory(),
-                    updateProduct.getStatus(),
-                    updateProduct.getCreatedAt()
-            );
+            return ProductMapper.toResponse(updateProduct);
     }
 
     public ProductResponse deleteProduct(Long id){
@@ -82,108 +65,40 @@ public class    ProductService {
 
         productRepository.delete(product);
 
-        return new ProductResponse(
-                product.getId(),
-                product.getTitle(),
-                product.getDescription(),
-                product.getPrice(),
-                product.getStock(),
-                product.getCategory(),
-                product.getStatus(),
-                product.getCreatedAt()
-        );
-
+        return ProductMapper.toResponse(product);
     }
 
     public ProductResponse getProductById(Long id){
-        return productRepository.findById(id)
-                .map(product -> new ProductResponse(
-                        product.getId(),
-                        product.getTitle(),
-                        product.getDescription(),
-                        product.getPrice(),
-                        product.getStock(),
-                        product.getCategory(),
-                        product.getStatus(),
-                        product.getCreatedAt()
-                ))
+        Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
+
+        return ProductMapper.toResponse(product);
     }
 
     public List<ProductResponse> getAllProducts() {
-        return productRepository.findAll()
-                .stream()
-                .map(product -> new ProductResponse(
-                        product.getId(),
-                        product.getTitle(),
-                        product.getDescription(),
-                        product.getPrice(),
-                        product.getStock(),
-                        product.getCategory(),
-                        product.getStatus(),
-                        product.getCreatedAt()
-                ))
-                .toList();
+        List<Product> products = productRepository.findAll();
+        return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllAvailableProducts(){
-        return productRepository.findByStatus(ProductStatus.AVAILABLE)
-                .stream()
-                .map(product -> new ProductResponse(
-                        product.getId(),
-                        product.getTitle(),
-                        product.getDescription(),
-                        product.getPrice(),
-                        product.getStock(),
-                        product.getCategory(),
-                        product.getStatus(),
-                        product.getCreatedAt()
-                )).toList();
+        List<Product> products = productRepository.findByStatus(ProductStatus.AVAILABLE);
+        return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllProductsByCategory(ProductCategories category){
-        return productRepository.findByCategory(category)
-                .stream()
-                .map(product -> new ProductResponse(
-                        product.getId(),
-                        product.getTitle(),
-                        product.getDescription(),
-                        product.getPrice(),
-                        product.getStock(),
-                        product.getCategory(),
-                        product.getStatus(),
-                        product.getCreatedAt()
-                )).toList();
+        List<Product> products = productRepository.findByCategory(category);
+                return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllProductsBetweenPrice (BigDecimal minPrice, BigDecimal maxPrice){
-        return productRepository.findByPriceBetween(minPrice, maxPrice)
-                .stream()
-                .map(product -> new ProductResponse(
-                        product.getId(),
-                        product.getTitle(),
-                        product.getDescription(),
-                        product.getPrice(),
-                        product.getStock(),
-                        product.getCategory(),
-                        product.getStatus(),
-                        product.getCreatedAt()
-                )).toList();
+       List<Product> products = productRepository.findByPriceBetween(minPrice, maxPrice);
+        return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllProductsByTextPart(String part){
-       return productRepository.findByTitleContainingIgnoreCase(part)
-               .stream()
-               .map(product -> new ProductResponse(
-                       product.getId(),
-                       product.getTitle(),
-                       product.getDescription(),
-                       product.getPrice(),
-                       product.getStock(),
-                       product.getCategory(),
-                       product.getStatus(),
-                       product.getCreatedAt()
-               )).toList();
+       List<Product> products = productRepository.findByTitleContainingIgnoreCase(part);
+        return ProductMapper.toResponseList(products);
+
     }
 
 }

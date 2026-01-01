@@ -3,6 +3,8 @@ package com.eden.mapper;
 import com.eden.dto.product.ProductResponse;
 import com.eden.model.product.Product;
 
+import java.util.List;
+
 public class ProductMapper {
 
     public static ProductResponse toResponse (Product product){
@@ -16,5 +18,11 @@ public class ProductMapper {
                 product.getStatus(),
                 product.getCreatedAt()
                 );
+    }
+
+    public static List<ProductResponse> toResponseList(List<Product> products){
+        return products.stream()
+                .map(ProductMapper::toResponse)
+                .toList();
     }
 }
