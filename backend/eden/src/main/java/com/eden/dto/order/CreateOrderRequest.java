@@ -1,5 +1,6 @@
 package com.eden.dto.order;
 
+import com.eden.model.order.OrderStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,6 +12,6 @@ public record CreateOrderRequest(
         @NotNull
         LocalDateTime createdAt,
         @NotNull
-        boolean status
+        OrderStatus status
 ) {
 }

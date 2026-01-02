@@ -70,9 +70,9 @@ public class ShoppingCartService {
         return ItemCartMapper.toResponse(item);
     }
 
-    public ShoppingCart getCart(Long cartId){
+    public ShoppingCartResponse getCart(Long cartId){
         ShoppingCart cart = shoppingCartRepository.findShoppingCartById(cartId);
-        return cart;
+        return ShoppingCartMapper.toResponse(cart);
     }
 
     public ShoppingCartResponse getCartByUsername(String username, Long cartId){

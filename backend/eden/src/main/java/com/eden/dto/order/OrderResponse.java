@@ -3,6 +3,7 @@ package com.eden.dto.order;
 import com.eden.dto.order.order_address.OrderAddressResponse;
 import com.eden.dto.order.order_item.OrderItemResponse;
 import com.eden.model.order.OrderAddress;
+import com.eden.model.order.OrderStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -21,6 +22,6 @@ public record OrderResponse(
         @NotNull
         LocalDateTime createdAt,
         @NotNull
-        boolean status
+        OrderStatus status
 ) {
 }

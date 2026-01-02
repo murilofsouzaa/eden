@@ -22,8 +22,9 @@ public class Order {
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
     @Column(nullable = false)
-    private boolean status;
+    OrderStatus status;
 
     @OneToOne
     OrderAddress orderAddress;
@@ -35,10 +36,12 @@ public class Order {
 
     }
 
-    public Order(Long id, User user, LocalDateTime createdAt, boolean status) {
+    public Order(Long id, User user, LocalDateTime createdAt,OrderAddress orderAddress, List<OrderItem> items, OrderStatus status) {
         this.id = id;
         this.user = user;
         this.createdAt = createdAt;
+        this.orderAddress = orderAddress;
+        this.items = items;
         this.status = status;
     }
 
@@ -72,11 +75,11 @@ public class Order {
         this.createdAt = createdAt;
     }
 
-    public boolean getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 
