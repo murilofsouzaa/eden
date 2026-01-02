@@ -91,11 +91,4 @@ public class ShoppingCartService {
                 .map(ItemCartMapper::toResponse)
                 .toList();
     }
-
-    public BigDecimal getCartPrice(Long id){
-        ShoppingCart cart = shoppingCartRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException(("Cart not found!")));
-
-        return cart.getTotalPrice();
-    }
 }

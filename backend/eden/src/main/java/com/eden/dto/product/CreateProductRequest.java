@@ -19,7 +19,6 @@ public record CreateProductRequest(
         int stock,
         @NotNull
         ProductCategories category,
-
         String imgURL,
 
         @NotNull

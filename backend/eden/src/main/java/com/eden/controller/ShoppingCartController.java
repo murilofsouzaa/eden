@@ -1,10 +1,8 @@
 package com.eden.controller;
 
-import com.eden.dto.shopping_cart.CreateShoppingCartRequest;
 import com.eden.dto.shopping_cart.ShoppingCartResponse;
 import com.eden.dto.shopping_cart.cart_item.AddItemCartRequest;
 import com.eden.dto.shopping_cart.cart_item.ItemCartResponse;
-import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.service.ShoppingCartService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

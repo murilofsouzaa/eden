@@ -22,12 +22,18 @@ public class OrderService {
     }
 
     @Transactional
+    public OrderResponse showOrder(Long id){
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found!"));
+
+        return OrderMapper.toResponse(order);
+    }
+
+    @Transactional
     public OrderResponse createOrder(CreateOrderRequest orderRequest){
         Order order = new Order();
-        order.setId(order.getId());
-        order.setOrderAddress(order.getOrderAddress());
+        order.setOrderAddress(orderRequest.address());
         order.setCreatedAt(LocalDateTime.now());
-        order.setStatus(orderRequest.status());
 
         orderRepository.save(order);
 
