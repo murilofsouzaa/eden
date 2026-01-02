@@ -49,6 +49,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
@@ -58,6 +64,18 @@
 
 	</dependencies>
 	<build>
+		<sourceDirectory>backend/eden/src/main/java</sourceDirectory>
+		<testSourceDirectory>backend/eden/src/test/java</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>backend/eden/src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>backend/eden/src/test/resources</directory>
+			</testResource>
+		</testResources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

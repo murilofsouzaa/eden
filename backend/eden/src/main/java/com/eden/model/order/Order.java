@@ -1,5 +1,6 @@
 package com.eden.model.order;
 
+import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.User;
 import jakarta.persistence.*;
 
@@ -112,7 +113,7 @@ public class Order {
         return shoppingCart;
     }
 
-    public void setShoppingCart(com.eden.model.shopping_cart.ShoppingCart shoppingCart) {
+    public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 }
