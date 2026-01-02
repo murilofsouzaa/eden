@@ -14,6 +14,9 @@ public class OrderItem {
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private com.eden.model.product.Product product;
     @Column(nullable = false)
     private int quantity;
     @Column(name = "unit_price", nullable = false)
@@ -22,9 +25,10 @@ public class OrderItem {
     public OrderItem(){
     }
 
-    public OrderItem(Long id, Order order, int quantity, BigDecimal unitPrice) {
+    public OrderItem(Long id, Order order, com.eden.model.product.Product product, int quantity, BigDecimal unitPrice) {
         this.id = id;
         this.order = order;
+        this.product = product;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
@@ -52,8 +56,18 @@ public class OrderItem {
         return order;
     }
 
+    public void setOrder(Order order) {this.order = order;}
+
     public void setOrderId( Order orderId) {
         this.order = order;
+    }
+
+    public com.eden.model.product.Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(com.eden.model.product.Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {

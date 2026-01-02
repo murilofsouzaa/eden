@@ -18,7 +18,7 @@ public record OrderResponse(
         @NotNull
         OrderAddressResponse orderAddressResponse,
         @NotNull
-        List<OrderItemResponse> orderItemsResponse,
+        List<OrderItemResponse> items,
         @NotNull
         LocalDateTime createdAt,
         @NotNull

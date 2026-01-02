@@ -30,7 +30,9 @@ public class OrderMapper {
     public static OrderItemResponse orderItemToResponse(OrderItem orderItem){
         return new OrderItemResponse(
                 orderItem.getId(),
-                orderItem.getOrder(),
+                orderItem.getOrder().getId(),
+                orderItem.getProduct().getId(),
+                orderItem.getProduct().getTitle(),
                 orderItem.getQuantity(),
                 orderItem.getUnit_price(),
                 orderItem.subtotal()

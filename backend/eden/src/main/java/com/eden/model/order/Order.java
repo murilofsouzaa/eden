@@ -26,11 +26,15 @@ public class Order {
     @Column(nullable = false)
     OrderStatus status;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     OrderAddress orderAddress;
 
-    @OneToMany
-    List<OrderItem> items = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "shopping_cart_id")
+    private com.eden.model.shopping_cart.ShoppingCart shoppingCart;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> items = new ArrayList<>();
 
     public Order(){
 
@@ -43,6 +47,11 @@ public class Order {
         this.orderAddress = orderAddress;
         this.items = items;
         this.status = status;
+    }
+
+    @PrePersist
+    public void prePersist(){
+        this.status = OrderStatus.CREATED;
     }
 
     public BigDecimal total(){
@@ -97,5 +106,13 @@ public class Order {
 
     public void setItems(List<OrderItem> items) {
         this.items = items;
+    }
+
+    public com.eden.model.shopping_cart.ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(com.eden.model.shopping_cart.ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

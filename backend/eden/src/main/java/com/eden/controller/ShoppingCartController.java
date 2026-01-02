@@ -32,12 +32,12 @@ public class ShoppingCartController {
             return ResponseEntity.ok(shoppingCartService.getCartByUsername(username, cartId));
         }
 
-    @GetMapping("/cart/{cartId}/items")
-    public ResponseEntity<List<ItemCartResponse>> getCartItems(@PathVariable Long id){
-        return ResponseEntity.ok(shoppingCartService.getCartItems(id));
+    @GetMapping("/{cartId}/items")
+    public ResponseEntity<List<ItemCartResponse>> getCartItems(@PathVariable("cartId") Long cartId){
+        return ResponseEntity.ok(shoppingCartService.getCartItems(cartId));
     }
 
-    @PostMapping("/cart/{cartId}/items")
+    @PostMapping("/{cartId}/items")
     public ResponseEntity<ItemCartResponse> addItem(
             @PathVariable Long cartId,
             @RequestBody @Valid AddItemCartRequest request
