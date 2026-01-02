@@ -1,6 +1,5 @@
 package com.eden.service;
 
-import com.eden.dto.shopping_cart.CreateShoppingCartRequest;
 import com.eden.dto.shopping_cart.ShoppingCartResponse;
 import com.eden.dto.shopping_cart.cart_item.AddItemCartRequest;
 import com.eden.dto.shopping_cart.cart_item.ItemCartResponse;
@@ -13,11 +12,9 @@ import com.eden.model.user.User;
 import com.eden.repository.ProductRepository;
 import com.eden.repository.ShoppingCartRepository;
 import jakarta.transaction.Transactional;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service

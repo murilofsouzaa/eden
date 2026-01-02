@@ -3,6 +3,7 @@ package com.eden.service;
 import com.eden.dto.user.CreateUserRequest;
 import com.eden.dto.user.UpdateUserRequest;
 import com.eden.dto.user.UserResponse;
+import com.eden.mapper.UserMapper;
 import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.User;
 import com.eden.repository.ShoppingCartRepository;
@@ -37,13 +38,7 @@ public class UserService {
         newUser.setCart(cart);
         userRepository.save(newUser);
 
-        return new UserResponse(
-                newUser.getId(),
-                newUser.getName(),
-                newUser.getGender(),
-                    newUser.getEmail(),
-                newUser.getCreatedAt()
-        );
+        return UserMapper.toResponse(newUser);
     }
 
     public UserResponse updateUser(Long id, UpdateUserRequest updateUserRequest){
@@ -65,13 +60,7 @@ public class UserService {
 
         userRepository.save(user);
 
-        return new UserResponse(
-                user.getId(),
-                user.getName(),
-                user.getGender(),
-                user.getEmail(),
-                user.getCreatedAt()
-        );
+        return UserMapper.toResponse(user);
     }
 
     public String deleteUser(Long id){
