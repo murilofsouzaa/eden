@@ -4,6 +4,8 @@ import com.eden.dto.shopping_cart.CreateShoppingCartRequest;
 import com.eden.dto.shopping_cart.ShoppingCartResponse;
 import com.eden.dto.shopping_cart.cart_item.AddItemCartRequest;
 import com.eden.dto.shopping_cart.cart_item.ItemCartResponse;
+import com.eden.mapper.ItemCartMapper;
+import com.eden.mapper.ShoppingCartMapper;
 import com.eden.model.product.Product;
 import com.eden.model.shopping_cart.ItemCart;
 import com.eden.model.shopping_cart.ShoppingCart;
@@ -68,13 +70,7 @@ public class ShoppingCartService {
 
         shoppingCartRepository.save(cart);
 
-        return new ItemCartResponse(
-                item.getId(),
-                item.getProduct(),
-                item.getQuantity(),
-                item.getUnitPrice()
-
-        );
+        return ItemCartMapper.toResponse(item);
     }
 
     public ShoppingCart getCart(Long cartId){
@@ -88,25 +84,14 @@ public class ShoppingCartService {
         cart.setId(cartId);
         cart.setUser(user);
 
-        return new ShoppingCartResponse(
-                cart.getId(),
-                cart.getStatus(),
-                cart.getTotalPrice(),
-                cart.getCreatedAt()
-        );
+        return ShoppingCartMapper.toResponse(cart);
     }
 
     public List<ItemCartResponse> getCartItems(Long cartId){
         ShoppingCart cart = shoppingCartRepository.findShoppingCartById(cartId);
         return cart.getItems()
                 .stream()
-                .map(item -> new ItemCartResponse(
-                        item.getId(),
-                        item.getProduct(),
-
-                        item.getQuantity(),
-                        item.getUnitPrice()
-                ))
+                .map(ItemCartMapper::toResponse)
                 .toList();
     }
 
