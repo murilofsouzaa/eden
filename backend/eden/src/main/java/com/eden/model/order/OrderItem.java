@@ -48,7 +48,7 @@ public class OrderItem {
         this.id = id;
     }
 
-    public Order getOrderId() {
+    public Order getOrder() {
         return order;
     }
 

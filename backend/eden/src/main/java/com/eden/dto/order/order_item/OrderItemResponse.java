@@ -1,5 +1,6 @@
 package com.eden.dto.order.order_item;
 
+import com.eden.dto.order.OrderResponse;
 import com.eden.model.order.Order;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,6 +15,8 @@ public record OrderItemResponse(
         @NotNull
         int quantity,
         @NotNull
-        BigDecimal unitPrice
+        BigDecimal unitPrice,
+        @NotNull
+        BigDecimal subtotal
 ) {
 }
