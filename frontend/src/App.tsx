@@ -1,12 +1,9 @@
-function App() {
-const name:string = "Murilo";
+import {Header } from "./components/Header"
 
+function App() {
   return (
     <>
-    <h1>Eden</h1>
-
-    <p>Username: {name} </p>
-
+    <Header></Header>
     </>
   )
 }
