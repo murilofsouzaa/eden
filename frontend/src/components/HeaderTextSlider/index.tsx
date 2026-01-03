@@ -12,14 +12,14 @@ export function HeaderTextSlider(){
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => {
-
-                return (prevIndex + 1) % texts.length;
-            });
-        }, 4000);
-
+            setCurrentIndex((currentIndex)=>{
+                return (currentIndex + 1) % texts.length;
+            })
+        }, 3000);
+        
         return () => clearInterval(interval);
     }, []);
+    
 
     return (
         <>
