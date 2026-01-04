@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     border: none;
+    max-width: 340px;
 }
 
 .section-title{
@@ -14,4 +15,19 @@
 .cards-subsection{
     display: flex;
     border: none;
+}
+
+.carrousel{
+    overflow: hidden;
+    cursor: grab;
+}
+
+.inner {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.inner img {
+    pointer-events: none;
+    user-select: none;
 }
