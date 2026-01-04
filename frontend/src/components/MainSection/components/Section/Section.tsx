@@ -21,7 +21,7 @@ export function Section(props){
                         className="section-title fs-1 mb-5 mt-5 mx-3"
                         >{props.title}
                 </h2>
-                <div className="d-flex">
+                <div className="cards-subsection d-flex">
                         {products.map(product =>{
                         return <Card key={product.id} product={product}></Card>
                         })}

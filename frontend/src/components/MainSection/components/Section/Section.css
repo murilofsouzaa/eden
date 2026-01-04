@@ -1,5 +1,17 @@
+.section{
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
 .section-title{
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     letter-spacing: 1px; 
+    
+}
+
+.cards-subsection{
+    display: flex;
+    border: none;
 }

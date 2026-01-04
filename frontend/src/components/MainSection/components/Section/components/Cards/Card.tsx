@@ -10,7 +10,7 @@ export function Card({product}:CardProps){
     <div className="card">
       {
         <>
-          <img src={product.imgUrl}></img>
+          <img src={product.imgUrl} className="w-100 h-100 object-fit-cover"></img>
           <h3>{product.title}</h3>
           <p>{
             new Intl.NumberFormat('pt-BR',
