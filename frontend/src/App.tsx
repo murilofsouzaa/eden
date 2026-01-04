@@ -1,4 +1,4 @@
-import { Main } from "./components/Main"
+import { Main } from "./components/MainSection"
 import { Header } from "./components/Header"
 
 function App() {

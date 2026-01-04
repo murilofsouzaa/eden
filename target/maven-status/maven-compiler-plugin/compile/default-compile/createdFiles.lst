@@ -25,6 +25,7 @@ com/eden/model/shopping_cart/ShoppingCart.class
 com/eden/dto/shopping_cart/cart_item/ItemCartResponse.class
 com/eden/model/order/OrderItem.class
 com/eden/model/user/UserStatus.class
+com/eden/config/CorsConfig.class
 com/eden/dto/product/CreateProductRequest.class
 com/eden/controller/UserController.class
 com/eden/service/ShoppingCartService.class

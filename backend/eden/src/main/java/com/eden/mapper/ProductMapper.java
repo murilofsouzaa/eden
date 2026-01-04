@@ -16,7 +16,8 @@ public class ProductMapper {
                 product.getStock(),
                 product.getCategory(),
                 product.getStatus(),
-                product.getCreatedAt()
+                product.getCreatedAt(),
+                product.getImgURL()
                 );
     }
 

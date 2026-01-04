@@ -1,4 +1,5 @@
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/EdenApplication.java
+/home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/config/CorsConfig.java
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/controller/OrderController.java
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/controller/ProductController.java
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/controller/ShoppingCartController.java

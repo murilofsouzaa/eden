@@ -1,5 +1,5 @@
 import "./Header.css";
-import {HeaderTextSlider} from "../HeaderTextSlider/index";
+import {HeaderTextSlider} from "./HeaderTextSlider/";
 import headerEdenLogo from "../../assets/logo/headerEdenLogo.png";
 import searchIcon from "../../assets/icons/search.png";
 import userIcon from "../../assets/icons/person.png";

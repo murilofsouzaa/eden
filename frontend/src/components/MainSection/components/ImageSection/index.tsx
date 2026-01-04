@@ -17,7 +17,7 @@ import vitinBanner from "../../../../assets/models/vitin-banner.jpg";
                 setCurrentIndex((previousImage) =>{
                     return (previousImage + 1) % imgUrls.length;}
                 )
-            }, 2000);
+            }, 5000);
             return () => {return clearInterval(interval)};
         }, []);
 

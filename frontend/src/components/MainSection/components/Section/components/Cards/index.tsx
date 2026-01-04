@@ -1,0 +1,25 @@
+import "./Card.css";
+import type { Products } from "../../../../../../services/productService.ts";
+
+interface CardProps {
+  product: Products;
+}
+
+export function Card({product}:CardProps){  
+  return (
+    <div className="card">
+      {
+        <>
+          <h3>{product.title}</h3>
+          <p>{product.description}</p>
+          <p>{
+            new Intl.NumberFormat('pt-BR',
+              {
+                style: 'currency',
+                currency: 'BRL'
+              }).format(product.price)}</p>
+        </>
+      }
+    </div>
+  );
+}

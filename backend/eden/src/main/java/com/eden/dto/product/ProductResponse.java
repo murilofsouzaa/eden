@@ -25,6 +25,7 @@
                 @NotNull
                 ProductStatus status,
                 @NotNull
-                LocalDateTime createdAt
+                LocalDateTime createdAt,
+                String imgUrl
         ) {
         }
