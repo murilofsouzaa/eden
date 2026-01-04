@@ -1,9 +1,3 @@
-@import url(https://fonts.google.com/share?selection.family=Montserrat:ital,wght@0,100..900;1,100..900);
-
-*{
-    font-family: "Montserrat";
-}
-
 p{
     padding: 14px;
     background-color: rgb(238, 238, 238);

@@ -1,10 +1,10 @@
-import { Section } from "./components/Section"
-import { ImageSection } from "./components/ImageSection"
+import { Section } from "./components/Section/Section"
+import { ImageSection } from "./components/ImageSection/ImageSection"
 export function Main() {
     return(
-        <>
+        <div className="main-section">
             <ImageSection></ImageSection>
-            <Section></Section>
-        </>
+            <Section title={"MAIS VENDIDOS"}></Section>
+        </div>
     );
 }

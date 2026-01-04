@@ -1,0 +1,21 @@
+.card > *{
+    background-color: transparent;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-shrink: 0;
+    width: 360px;
+}
+
+.card > img{
+    width: 46%;
+}
+
+.card > h3{
+    font-size: 20px;
+}
