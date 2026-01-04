@@ -1,0 +1,29 @@
+# Images
+frontend/public/clothes/
+frontend/src/assets/clothes/
+backend/eden/src/main/resources/static/clothes/
+
+# Compiled files
+target/
+*.class
+*.jar
+*.war
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Node
+node_modules/
+dist/
+build/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+.DS_Store
+
+# Logs
+*.log
