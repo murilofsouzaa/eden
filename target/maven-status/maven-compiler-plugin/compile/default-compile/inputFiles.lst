@@ -31,6 +31,7 @@
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/model/order/OrderStatus.java
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/model/product/Product.java
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/model/product/ProductCategories.java
+/home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/model/product/ProductGender.java
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/model/product/ProductStatus.java
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/model/shopping_cart/ItemCart.java
 /home/murilo/Documents/eden/backend/eden/src/main/java/com/eden/model/shopping_cart/ShoppingCart.java
