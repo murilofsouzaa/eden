@@ -3,6 +3,7 @@ package com.eden.repository;
 import com.eden.dto.product.ProductResponse;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
+import com.eden.model.product.ProductGender;
 import com.eden.model.product.ProductStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,4 +20,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByPriceBetween(@Param("min") BigDecimal minPrice, @Param("max") BigDecimal maxPrice);
     List<Product> findByTitleContainingIgnoreCase(String part);
     List<Product> findByStatus(ProductStatus status);
+    List<Product> findByGender(ProductGender gender);
 }

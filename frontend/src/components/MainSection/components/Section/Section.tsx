@@ -5,11 +5,7 @@ import { useState, useEffect, useRef} from "react";
 import { motion } from 'framer-motion';
 import "./Section.css";
 
-interface SectionProps {
-        title: string;
-}
-
-export function Section(props: SectionProps){
+export function Section(props){
 
         const carrousel = useRef<HTMLDivElement>(null);
         const inner = useRef<HTMLDivElement>(null);
@@ -28,26 +24,30 @@ export function Section(props: SectionProps){
         }, [products]);
 
    return (
-        <motion.div ref={carrousel} className="carrousel">
+        <div ref={carrousel} className="carrousel">
                 <motion.div 
                         ref={inner}
                         className="inner"
                         drag="x"
-                        dragConstraints={{ left: -width, right: 0 }}
+                        dragConstraints={{ left: -width + 20, right: 0 }}
                         whileTap={{ cursor: "grabbing" }}
                 >
-                        <motion.div className="section">
-                                <h2
-                                        className="section-title fs-1 mb-5 mt-5 mx-4"
-                                        >{props.title}
-                                </h2>
-                                <motion.div className="cards-subsection d-flex">
+                        <div className="section">
+                                <h2 className="section-title fs-1 mb-3 mt-5 mx-4">{props.title}</h2>
+                                
+                                {props.gender && (
+                                        <div className="d-flex gap-4 mx-4">
+                                                <div className="gender-btn">{props.gender.masculine}</div>
+                                                <div className="gender-btn">{props.gender.feminine}</div>
+                                        </div>
+                                )}
+                                <div className="cards-subsection d-flex">
                                         {products.slice(0,7).map(product =>{
                                         return <Card key={product.id} product={product}></Card>
                                         })}
-                                </motion.div>
-                        </motion.div>
+                                </div>
+                        </div>
                 </motion.div>
-        </motion.div>
+        </div>
         );
 }

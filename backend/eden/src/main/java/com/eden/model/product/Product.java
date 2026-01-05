@@ -24,6 +24,8 @@ public class Product {
     private int stock;
     @Enumerated(EnumType.STRING)
     private ProductCategories category;
+    @Enumerated(EnumType.STRING)
+    private ProductGender gender;
     @Column(nullable = false)
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -120,5 +122,13 @@ public class Product {
 
     public void setStatus(ProductStatus status) {
         this.status = status;
+    }
+
+    public ProductGender getGender() {
+        return gender;
+    }
+
+    public void setGender(ProductGender gender) {
+        this.gender = gender;
     }
 }

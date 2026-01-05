@@ -6,6 +6,7 @@ import com.eden.dto.product.UpdateProductRequest;
 import com.eden.mapper.ProductMapper;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
+import com.eden.model.product.ProductGender;
 import com.eden.model.product.ProductStatus;
 import com.eden.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -96,7 +97,11 @@ public class    ProductService {
     public List<ProductResponse> getAllProductsByTextPart(String part){
        List<Product> products = productRepository.findByTitleContainingIgnoreCase(part);
         return ProductMapper.toResponseList(products);
+    }
 
+    public List<ProductResponse> getAllProductsByGender(ProductGender gender){
+        List<Product> products = productRepository.findByGender(gender);
+        return ProductMapper.toResponseList(products);
     }
 
 }

@@ -5,6 +5,7 @@ import com.eden.dto.product.ProductResponse;
 import com.eden.dto.product.UpdateProductRequest;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
+import com.eden.model.product.ProductGender;
 import com.eden.service.ProductService;
 import com.eden.service.UserService;
 import jakarta.persistence.Entity;
@@ -40,6 +41,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProductsByCategory(enumCategory));
     }
 
+    @GetMapping("/gender/{gender}")
+    public ResponseEntity<List<ProductResponse>> getAllProductsByGender(@PathVariable String gender){
+        ProductGender enumGender = ProductGender.valueOf(gender.toUpperCase());
+        return ResponseEntity.ok(productService.getAllProductsByGender(enumGender));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id){
