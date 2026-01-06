@@ -1,13 +1,11 @@
 import "./ImageSection.css"
 import {useState, useEffect} from "react";
-import mahhtlaBanner from "../../../../assets/models/mahhtla-banner.jpg";
-import vitinBanner from "../../../../assets/models/vitin-banner.jpg";
 
     export function ImageSection() {
 
         const imgUrls: string[] = [
-            mahhtlaBanner,
-            vitinBanner
+            "/models/mahhtla-banner.jpg",
+            "/models/vitin-banner.jpg"
         ]
 
         const [currentIndex, setCurrentIndex] = useState(0);

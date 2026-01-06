@@ -12,7 +12,7 @@ export function Section(props){
         const inner = useRef<HTMLDivElement>(null);
         const [width, setWidth] = useState(0);
         const [products, setProducts] = useState<Products[]>([]);
-        const [selectedGender, setSelectedGender] = useState<string | null>(props.gender ? 'MASCULINE' : null);
+        const [selectedGender, setSelectedGender] = useState("MASCULINE")
 
         useEffect(() => {
                 if (props.gender) {
@@ -44,29 +44,28 @@ export function Section(props){
                         whileTap={{ cursor: "grabbing" }}
                 >
                         <div className="section">
-                                <h2 className="section-title fs-1 mb-3 mt-5 mx-4">{props.title}</h2>
-                                
+                                <h2 className="section-title fs-4 mb-0 mt-5 mx-4">{props.title}</h2>
                                 {props.gender && (
-                                        <div className="d-flex gap-4 mx-4 mb-4">
-                                                <div 
+                                        <div className="d-flex gap-4 mt-4 mx-4 mb-3">
+                                                <button
                                                         className={`gender-btn ${selectedGender === 'MASCULINE' ? 'active' : ''}`}
                                                         onClick={() => handleGenderClick('MASCULINE')}
                                                         style={{ cursor: 'pointer' }}
                                                 >
                                                         {props.gender.masculine}
-                                                </div>
-                                                <div 
+                                                </button>
+                                                <button 
                                                         className={`gender-btn ${selectedGender === 'FEMININE' ? 'active' : ''}`}
                                                         onClick={() => handleGenderClick('FEMININE')}
                                                         style={{ cursor: 'pointer' }}
                                                 >
                                                         {props.gender.feminine}
-                                                </div>
+                                                </button>
                                         </div>
                                 )}
                                 <div className="cards-subsection d-flex">
                                         {products.slice(0,7).map(product =>{
-                                                return <Card key={product.id} product={product}></Card>
+                                                return <Card key={product.id} product={product} variant={props.variant}></Card>
                                         })}
                                 </div>
                                 

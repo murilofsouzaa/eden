@@ -4,10 +4,14 @@ export function Main() {
     return(
         <div className="main-section">
             <ImageSection></ImageSection>
-            <Section title={"MAIS VENDIDOS"}></Section>
+            <Section title={"MAIS VENDIDOS"} variant={"best-seller"}></Section>
             <Section 
-            title={"CATEGORIAS"}
-            gender={{masculine: "Masculino", feminine: "Feminino"}}></Section>
+                title={"CATEGORIAS"}
+                gender={
+                    {masculine: "Masculino", feminine: "Feminino"}
+                }
+                variant={"category"}>
+            </Section>
         </div>
     );
 }

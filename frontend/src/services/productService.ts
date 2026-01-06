@@ -8,6 +8,7 @@ export interface Products{
     stock: number,
     productCategory: string,
     productStatus: string,
+    category: string,
     createdAt: Date,
     imgUrl: string
 }

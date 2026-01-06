@@ -7,8 +7,8 @@
 
 .section-title{
     font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    letter-spacing: 1px; 
+    font-weight: 700;
+    letter-spacing: 1px;
     
 }
 
@@ -33,9 +33,17 @@
 }
 
 .gender-btn{
-    padding: 10px 20px 10px 20px;
+    padding: 14px 24px 14px 24px;
     border-radius: 20px;
     background-color: rgba(219, 218, 218, 0.521);
+    font-weight: 600;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.gender-btn.active{
+    background-color: black;
+    color: white;
 }
 
 .gender-btn:hover{
