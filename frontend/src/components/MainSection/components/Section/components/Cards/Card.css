@@ -10,9 +10,16 @@
     cursor: grab;
 }
 
+
 .card .price{
     padding: 10px 10px 10px 10px;
     background-color: transparent;
+}
+
+
+.card-category > .img-card-category{
+    width: 100%;
+    height: 600px;
 }
 
 .card > h2{

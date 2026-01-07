@@ -35,13 +35,12 @@ export function Card({product, variant = "default"}:CardProps){
     <div className={`card card-${variant}`}>
       {variant === 'category' && (
         <>
-          <img src={product.imgUrl} className="w-100 h-100 object-fit-cover"></img>
+          <img src={product.imgUrl} className={`img-card-${variant} object-fit-cover`}></img>
           <div>
             <h3>{category(product.category) == undefined ? "" : category(product.category).toUpperCase()}</h3>
             <button>COMPRE AGORA</button>
           </div>
         </>
-            
       )}
 
 

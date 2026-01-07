@@ -3,6 +3,7 @@
     flex-direction: column;
     border: none;
     max-width: 340px;
+    margin-left: 20px;
 }
 
 .section-title{

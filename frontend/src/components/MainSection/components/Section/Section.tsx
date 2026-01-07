@@ -6,6 +6,14 @@ import { useState, useEffect, useRef} from "react";
 import { motion } from 'framer-motion';
 import "./Section.css";
 
+type Category =
+  | "shirts"
+  | "t_shirts"
+  | "pants"
+  | "shorts"
+  | "shoes"
+  | "caps";
+
 export function Section(props){
 
         const carrousel = useRef<HTMLDivElement>(null);
@@ -19,6 +27,7 @@ export function Section(props){
                         getAllProductsByGender('masculine').then(data => setProducts(data));
                         return;
                 }
+
                 getAllProducts().then(data => setProducts(data));
         }, []);
 
@@ -33,6 +42,10 @@ export function Section(props){
                 setSelectedGender(gender);
                 getAllProductsByGender(gender.toLowerCase()).then(data => setProducts(data));
         };
+
+        const uniqueCategories: Category[]= Array.from(
+                new Set(products.map(product => product.category))
+        ) as Category[];
 
    return (
         <div ref={carrousel} className="carrousel">
@@ -64,10 +77,29 @@ export function Section(props){
                                         </div>
                                 )}
                                 <div className="cards-subsection d-flex">
-                                        {products.slice(0,7).map(product =>{
-                                                return <Card key={product.id} product={product} variant={props.variant}></Card>
-                                        })}
+                                        {props.variant === "category"
+                                        ? uniqueCategories.map((category) => {
+                                                const foundProduct = products.find(
+                                                (product) => product.category === category
+                                                );
+                                                if (!foundProduct) return null;
+                                                return (
+                                                <Card
+                                                        key={category}
+                                                        product={foundProduct}
+                                                        variant={props.variant}
+                                                />
+                                                );
+                                        })
+                                        : products.slice(0, 7).map((product) => (
+                                                <Card
+                                                key={product.id}
+                                                product={product}
+                                                variant={props.variant}
+                                                />
+                                        ))}
                                 </div>
+
                                 
                         </div>
                 </motion.div>

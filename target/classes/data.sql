@@ -21,18 +21,25 @@ INSERT INTO "user" (username, email, password, gender, status, created_at, updat
 ('ana_costa', 'ana@example.com', 'senha000', 'FEMALE', 'ACTIVE', NOW(), NOW()),
 ('carlos_mendes', 'carlos@example.com', 'senha111', 'MALE', 'ACTIVE', NOW(), NOW());
 
--- Inserir Produtos (Roupas com imagens e gender)
+-- Inserir Produtos (todas as categorias possíveis do enum)
 INSERT INTO product (title, description, price, img_URL, stock, category, gender, status, created_at, updated_at) VALUES
-('Camiseta Básica Branca', 'Camiseta 100% algodão confortável', 39.90, 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop', 50, 'CAMISETA', 'MASCULINE', 'ACTIVE', NOW(), NOW()),
-('Calça Jeans Premium', 'Calça jeans azul escuro com ajuste perfeito', 119.90, 'https://images.unsplash.com/photo-1542272604-787c62d465d1?w=500&h=500&fit=crop', 35, 'CALCA', 'MASCULINE', 'ACTIVE', NOW(), NOW()),
-('Jaqueta de Couro', 'Jaqueta de couro legítimo com forro interno', 299.90, 'https://images.unsplash.com/photo-1595777707802-41a3a8a4fab2?w=500&h=500&fit=crop', 20, 'JAQUETA', 'MASCULINE', 'ACTIVE', NOW(), NOW()),
-('Vestido Floral', 'Vestido floral perfeito para o verão', 89.90, 'https://images.unsplash.com/photo-1595777707802-41a3a8a4fab2?w=500&h=500&fit=crop', 25, 'VESTIDO', 'FEMININE', 'ACTIVE', NOW(), NOW()),
-('Shorts de Algodão', 'Shorts confortável ideal para o calor', 59.90, 'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&h=500&fit=crop', 40, 'SHORT', 'MASCULINE', 'ACTIVE', NOW(), NOW()),
-('Blusa Elegant', 'Blusa elegante para ocasiões especiais', 149.90, 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop', 30, 'BLUSA', 'FEMININE', 'ACTIVE', NOW(), NOW()),
-('Polo Masculina', 'Polo clássica em cores variadas', 79.90, 'https://images.unsplash.com/photo-1560751588-543cb1ba47f0?w=500&h=500&fit=crop', 45, 'CAMISETA', 'MASCULINE', 'ACTIVE', NOW(), NOW()),
-('Saia Midi', 'Saia midi elegante em tecido leve', 99.90, 'https://images.unsplash.com/photo-1574794066290-cb0edd64d981?w=500&h=500&fit=crop', 28, 'SAIA', 'FEMININE', 'ACTIVE', NOW(), NOW()),
-('Jaqueta Bomber', 'Jaqueta bomber moderna e confortável', 179.90, 'https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500&h=500&fit=crop', 22, 'JAQUETA', 'MASCULINE', 'ACTIVE', NOW(), NOW()),
-('Legging Premium', 'Legging de alta qualidade com suporte', 109.90, 'https://images.unsplash.com/photo-1506629082632-121e5dfc5d53?w=500&h=500&fit=crop', 50, 'CALCA', 'FEMININE', 'ACTIVE', NOW(), NOW());
+('Shirt Basic White', '100% cotton basic shirt', 39.90, 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop', 50, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Shirt Slim Fit', 'Slim fit shirt for daily use', 49.90, 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop', 40, 'SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
+('T-Shirt Classic', 'Classic T-shirt with soft fabric', 29.90, 'https://images.unsplash.com/photo-1520975916090-3105956dac38?w=500&h=500&fit=crop', 60, 'T_SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('T-Shirt Crop', 'Comfortable crop t-shirt', 34.90, 'https://images.unsplash.com/photo-1520975378300-8028d7f8d3fd?w=500&h=500&fit=crop', 55, 'T_SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
+('Pants Denim Dark', 'Denim pants with perfect fit', 119.90, 'https://images.unsplash.com/photo-1542272604-787c62d465d1?w=500&h=500&fit=crop', 35, 'PANTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Pants Legging Premium', 'High quality legging pants', 109.90, 'https://images.unsplash.com/photo-1506629082632-121e5dfc5d53?w=500&h=500&fit=crop', 50, 'PANTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
+('Shoes Running', 'Lightweight running shoes', 199.90, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop', 25, 'SHOES', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Shoes Casual', 'Casual shoes for everyday', 179.90, 'https://images.unsplash.com/photo-1519741491150-6b2d1d84cf90?w=500&h=500&fit=crop', 28, 'SHOES', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
+('Cap Classic', 'Classic cap adjustable', 59.90, 'https://images.unsplash.com/photo-1526642732334-54e7a86f9f4b?w=500&h=500&fit=crop', 45, 'CAPS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Cap Sport', 'Sport cap breathable', 64.90, 'https://images.unsplash.com/photo-1526642802781-99c49d08e9a6?w=500&h=500&fit=crop', 42, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
+('Sweatshirt Hoodie', 'Soft hoodie sweatshirt', 139.90, 'https://images.unsplash.com/photo-1490481651871-ab68de25d43a?w=500&h=500&fit=crop', 33, 'SWEATSHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Sweatshirt Oversized', 'Oversized sweatshirt', 149.90, 'https://images.unsplash.com/photo-1490481743850-a1d74e923102?w=500&h=500&fit=crop', 30, 'SWEATSHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW());
 
 -- Inserir Carrinhos de Compras
 INSERT INTO shopping_cart (user_id, created_at, updated_at) VALUES
