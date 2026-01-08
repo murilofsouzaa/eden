@@ -13,6 +13,7 @@ import com.eden.repository.ProductRepository;
 import com.eden.repository.ShoppingCartRepository;
 import com.eden.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -23,11 +24,12 @@ public class ShoppingCartService {
 
     private final ShoppingCartRepository shoppingCartRepository;
     private final ProductRepository productRepository;
+    @Lazy
     private final UserRepository userRepository;
     private final ShoppingCartValidator validator;
 
     public ShoppingCartService(
-            ShoppingCartRepository shoppingCartRepository, UserRepository userRepository,
+            ShoppingCartRepository shoppingCartRepository, @Lazy UserRepository userRepository,
             ProductRepository productRepository, ShoppingCartValidator shoppingCartValidator){
         this.shoppingCartRepository = shoppingCartRepository;
         this.productRepository = productRepository;

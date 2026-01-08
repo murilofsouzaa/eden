@@ -8,6 +8,7 @@ import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.User;
 import com.eden.repository.UserRepository;
 import com.eden.service.cart.ShoppingCartService;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class UserService {
     final private ShoppingCartService shoppingCartService;
     final private UserValidator validator;
 
-    public UserService(UserRepository userRepository, ShoppingCartService shoppingCartService, UserValidator validator){
+    public UserService(UserRepository userRepository, @Lazy ShoppingCartService shoppingCartService, UserValidator validator){
         this.userRepository = userRepository;
         this.shoppingCartService = shoppingCartService;
         this.validator = validator;
