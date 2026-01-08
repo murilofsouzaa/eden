@@ -6,9 +6,7 @@ import com.eden.dto.product.UpdateProductRequest;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductGender;
-import com.eden.service.ProductService;
-import com.eden.service.UserService;
-import jakarta.persistence.Entity;
+import com.eden.service.product.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

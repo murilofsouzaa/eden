@@ -1,4 +1,4 @@
-package com.eden.service;
+package com.eden.service.product;
 
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
@@ -18,13 +18,17 @@ import java.util.List;
 @Service
 public class    ProductService {
 
-    final ProductRepository productRepository;
+    final private ProductRepository productRepository;
+    final private ProductValidator productValidator;
 
-    public ProductService(ProductRepository productRepository){
+    public ProductService(ProductRepository productRepository, ProductValidator productValidator){
         this.productRepository = productRepository;
+        this.productValidator = productValidator;
     }
 
     public ProductResponse createProduct(CreateProductRequest createProductRequest){
+        productValidator.validate(createProductRequest);
+
         Product product = new Product();
         product.setTitle(createProductRequest.title());
         product.setDescription(createProductRequest.description());

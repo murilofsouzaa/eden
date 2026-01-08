@@ -1,4 +1,4 @@
-package com.eden.service;
+package com.eden.service.order;
 
 import com.eden.dto.order.CreateOrderRequest;
 import com.eden.dto.order.OrderResponse;
@@ -13,6 +13,7 @@ import com.eden.model.user.User;
 import com.eden.repository.OrderAddressRepository;
 import com.eden.repository.OrderRepository;
 import com.eden.repository.ShoppingCartRepository;
+import com.eden.service.user.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +28,17 @@ public class OrderService {
     private final UserService userService;
     private final OrderAddressRepository orderAddressRepository;
     private final ShoppingCartRepository shoppingCartRepository;
+    private final OrderValidator orderValidator;
 
-    public OrderService(OrderRepository orderRepository, UserService userService, OrderAddressRepository orderAddressRepository, ShoppingCartRepository shoppingCartRepository){
+    public OrderService(OrderRepository orderRepository, UserService userService, 
+                       OrderAddressRepository orderAddressRepository, 
+                       ShoppingCartRepository shoppingCartRepository,
+                       OrderValidator orderValidator){
         this.orderRepository = orderRepository;
         this.userService = userService;
         this.orderAddressRepository = orderAddressRepository;
         this.shoppingCartRepository = shoppingCartRepository;
+        this.orderValidator = orderValidator;
     }
 
     @Transactional
@@ -50,13 +56,7 @@ public class OrderService {
         ShoppingCart shoppingCart = shoppingCartRepository.findById(orderRequest.shoppingCartId())
                 .orElseThrow(() -> new RuntimeException("Shopping cart not found!"));
 
-        if (!shoppingCart.getUser().getId().equals(user.getId())) {
-            throw new RuntimeException("Shopping cart does not belong to this user!");
-        }
-
-        if (shoppingCart.getItems().isEmpty()) {
-            throw new RuntimeException("Shopping cart is empty!");
-        }
+        orderValidator.validate(user, shoppingCart);
 
         OrderAddress address = new OrderAddress();
         address.setUser(user);

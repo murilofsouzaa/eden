@@ -21,25 +21,51 @@ INSERT INTO "user" (username, email, password, gender, status, created_at, updat
 ('ana_costa', 'ana@example.com', 'senha000', 'FEMALE', 'ACTIVE', NOW(), NOW()),
 ('carlos_mendes', 'carlos@example.com', 'senha111', 'MALE', 'ACTIVE', NOW(), NOW());
 
--- Inserir Produtos (todas as categorias possíveis do enum)
+-- Inserir Produtos (Roupas com imagens e gender)
 INSERT INTO product (title, description, price, img_URL, stock, category, gender, status, created_at, updated_at) VALUES
-('Shirt Basic White', '100% cotton basic shirt', 39.90, 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop', 50, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Shirt Slim Fit', 'Slim fit shirt for daily use', 49.90, 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&h=500&fit=crop', 40, 'SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+-- MASCULINE - SHIRTS (Camisas)
+('Camisa Gymshark Branca', 'Camisa de treino premium branca', 89.90, '/clothes/modelo-camisa-gymsahrk-branca.jpeg', 50, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Gymshark Preta', 'Camisa de treino premium preta', 89.90, '/clothes/modelo-camisa-gymsahrk-preta.jpeg', 45, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Gymshark Verde', 'Camisa de treino premium verde', 89.90, '/clothes/modelo-camisa-gymsahrk-verde.jpeg', 40, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Compressão Branca', 'Camisa de compressão manga longa branca', 119.90, '/clothes/homem-camisa-de-compressao-longa-branca.jpeg', 30, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Compressão Preta', 'Camisa de compressão manga longa preta', 119.90, '/clothes/homem-camisa-de-compressao-longa-preta.jpeg', 30, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
-('T-Shirt Classic', 'Classic T-shirt with soft fabric', 29.90, 'https://images.unsplash.com/photo-1520975916090-3105956dac38?w=500&h=500&fit=crop', 60, 'T_SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('T-Shirt Crop', 'Comfortable crop t-shirt', 34.90, 'https://images.unsplash.com/photo-1520975378300-8028d7f8d3fd?w=500&h=500&fit=crop', 55, 'T_SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+-- MASCULINE - T_SHIRTS (Regatas/Camisetas)
+('Regata Preta', 'Regata masculina confortável', 59.90, '/clothes/guy-black-regata.jpeg', 35, 'T_SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Regata Branca', 'Regata masculina básica', 59.90, '/clothes/guy-white-regata.jpeg', 40, 'T_SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
-('Pants Denim Dark', 'Denim pants with perfect fit', 119.90, 'https://images.unsplash.com/photo-1542272604-787c62d465d1?w=500&h=500&fit=crop', 35, 'PANTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Pants Legging Premium', 'High quality legging pants', 109.90, 'https://images.unsplash.com/photo-1506629082632-121e5dfc5d53?w=500&h=500&fit=crop', 50, 'PANTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+-- MASCULINE - PANTS (Calças/Shorts)
+('Short Gymshark Verde', 'Short de treino verde premium', 79.90, '/clothes/modelo-short-gymshark-verde.jpeg', 25, 'PANTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
-('Shoes Running', 'Lightweight running shoes', 199.90, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop', 25, 'SHOES', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Shoes Casual', 'Casual shoes for everyday', 179.90, 'https://images.unsplash.com/photo-1519741491150-6b2d1d84cf90?w=500&h=500&fit=crop', 28, 'SHOES', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+-- MASCULINE - SHOES (Sapatos)
+('Tênis Esportivo Preto', 'Tênis de alta performance para treinos', 299.90, '/clothes/tenis-masculino-preto.jpeg', 20, 'SHOES', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Tênis Running Branco', 'Tênis confortável para corrida', 279.90, '/clothes/tenis-masculino-branco.jpeg', 25, 'SHOES', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
-('Cap Classic', 'Classic cap adjustable', 59.90, 'https://images.unsplash.com/photo-1526642732334-54e7a86f9f4b?w=500&h=500&fit=crop', 45, 'CAPS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Cap Sport', 'Sport cap breathable', 64.90, 'https://images.unsplash.com/photo-1526642802781-99c49d08e9a6?w=500&h=500&fit=crop', 42, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+-- MASCULINE - CAPS (Bonés)
+('Boné Preto Clássico', 'Boné ajustável estilo urbano', 49.90, '/clothes/bone-masculino-preto.jpeg', 60, 'CAPS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Boné Branco Premium', 'Boné premium com logo bordado', 54.90, '/clothes/bone-masculino-branco.jpeg', 55, 'CAPS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
-('Sweatshirt Hoodie', 'Soft hoodie sweatshirt', 139.90, 'https://images.unsplash.com/photo-1490481651871-ab68de25d43a?w=500&h=500&fit=crop', 33, 'SWEATSHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Sweatshirt Oversized', 'Oversized sweatshirt', 149.90, 'https://images.unsplash.com/photo-1490481743850-a1d74e923102?w=500&h=500&fit=crop', 30, 'SWEATSHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW());
+-- FEMININE - SHIRTS (Camisas)
+('Camisa Fitness Rosa', 'Camisa feminina de treino rosa', 79.90, '/clothes/mulher-camisa-fitness-rosa.jpeg', 35, 'SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Compressão Lilás', 'Camisa de compressão feminina lilás', 99.90, '/clothes/mulher-camisa-compressao-lilas.jpeg', 30, 'SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
+-- FEMININE - T_SHIRTS (Regatas/Tops)
+('Conjunto Top e Short Preto', 'Conjunto feminino preto para treino', 149.90, '/clothes/mulher-short-top-preto.jpeg', 20, 'T_SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Conjunto Top e Short Verde', 'Conjunto feminino verde para treino', 149.90, '/clothes/mulher-short-top-verde.jpeg', 22, 'T_SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Conjunto Top e Short Branco Azulado', 'Conjunto feminino branco azulado', 149.90, '/clothes/mulher-short-top-branco-azulado.jpeg', 25, 'T_SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Conjunto Top e Short Azul Claro', 'Conjunto feminino azul claro', 149.90, '/clothes/asiatica-top-short-azul-claro.jpeg', 18, 'T_SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
+-- FEMININE - PANTS (Calças/Shorts)
+('Legging Fitness Preta', 'Legging de alta compressão preta', 89.90, '/clothes/mulher-legging-preta.jpeg', 40, 'PANTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Short Ciclista Rosa', 'Short ciclista confortável rosa', 69.90, '/clothes/mulher-short-ciclista-rosa.jpeg', 35, 'PANTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
+-- FEMININE - SHOES (Sapatos)
+('Tênis Fitness Rosa', 'Tênis feminino para academia rosa', 259.90, '/clothes/tenis-feminino-rosa.jpeg', 28, 'SHOES', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Tênis Running Branco Feminino', 'Tênis de corrida feminino branco', 269.90, '/clothes/tenis-feminino-branco.jpeg', 32, 'SHOES', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
+-- FEMININE - CAPS (Bonés)
+('Boné Feminino Branco', 'Boné ajustável feminino branco', 44.90, '/clothes/bone-feminino-branco.jpeg', 50, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Viseira Esportiva Rosa', 'Viseira feminina para corrida rosa', 39.90, '/clothes/viseira-feminina-rosa.jpeg', 45, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW());
 
 -- Inserir Carrinhos de Compras
 INSERT INTO shopping_cart (user_id, created_at, updated_at) VALUES
@@ -52,33 +78,33 @@ INSERT INTO shopping_cart (user_id, created_at, updated_at) VALUES
 -- Inserir Itens nos Carrinhos
 INSERT INTO cart_item (shopping_cart_id, product_id, quantity, created_at, updated_at) VALUES
 (1, 1, 2, NOW(), NOW()),
-(1, 3, 1, NOW(), NOW()),
-(2, 2, 1, NOW(), NOW()),
-(2, 5, 3, NOW(), NOW()),
-(3, 4, 1, NOW(), NOW()),
-(4, 7, 2, NOW(), NOW()),
-(5, 9, 1, NOW(), NOW());
+(1, 4, 1, NOW(), NOW()),
+(2, 8, 1, NOW(), NOW()),
+(2, 6, 3, NOW(), NOW()),
+(3, 13, 1, NOW(), NOW()),
+(4, 14, 2, NOW(), NOW()),
+(5, 19, 1, NOW(), NOW());
 
 -- Inserir Endereços (associados aos pedidos)
 -- Os endereços serão criados junto com os pedidos
 
 -- Inserir Pedidos
 INSERT INTO "order" (user_id, status, total_amount, created_at, updated_at) VALUES
-(1, 'PENDING', 319.70, NOW(), NOW()),
-(2, 'CONFIRMED', 239.70, NOW(), NOW()),
-(3, 'DELIVERED', 89.90, NOW(), NOW()),
+(1, 'PENDING', 358.70, NOW(), NOW()),
+(2, 'CONFIRMED', 239.60, NOW(), NOW()),
+(3, 'DELIVERED', 79.90, NOW(), NOW()),
 (4, 'PENDING', 159.80, NOW(), NOW()),
-(5, 'CONFIRMED', 179.90, NOW(), NOW());
+(5, 'CONFIRMED', 89.90, NOW(), NOW());
 
 -- Inserir Itens dos Pedidos
 INSERT INTO order_item (order_id, product_id, quantity, unit_price, created_at, updated_at) VALUES
-(1, 1, 2, 39.90, NOW(), NOW()),
-(1, 3, 1, 299.90, NOW(), NOW()),
-(2, 2, 1, 119.90, NOW(), NOW()),
-(2, 5, 3, 59.90, NOW(), NOW()),
-(3, 4, 1, 89.90, NOW(), NOW()),
-(4, 7, 2, 79.90, NOW(), NOW()),
-(5, 9, 1, 179.90, NOW(), NOW());
+(1, 1, 2, 89.90, NOW(), NOW()),
+(1, 4, 1, 119.90, NOW(), NOW()),
+(2, 8, 1, 79.90, NOW(), NOW()),
+(2, 6, 3, 59.90, NOW(), NOW()),
+(3, 13, 1, 79.90, NOW(), NOW()),
+(4, 14, 2, 79.90, NOW(), NOW()),
+(5, 19, 1, 89.90, NOW(), NOW());
 
 -- Inserir Endereços dos Pedidos
 INSERT INTO order_address (order_id, street, city, state, zip_code, country, number, complement, created_at, updated_at) VALUES

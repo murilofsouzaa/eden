@@ -1,4 +1,4 @@
-package com.eden.service;
+package com.eden.service.user;
 
 import com.eden.dto.user.CreateUserRequest;
 import com.eden.dto.user.UpdateUserRequest;
@@ -6,8 +6,8 @@ import com.eden.dto.user.UserResponse;
 import com.eden.mapper.UserMapper;
 import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.User;
-import com.eden.repository.ShoppingCartRepository;
 import com.eden.repository.UserRepository;
+import com.eden.service.cart.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,17 +17,19 @@ import java.util.List;
 public class UserService {
 
     final private UserRepository userRepository;
+    final private ShoppingCartService shoppingCartService;
+    final private UserValidator validator;
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, ShoppingCartService shoppingCartService, UserValidator validator){
         this.userRepository = userRepository;
+        this.shoppingCartService = shoppingCartService;
+        this.validator = validator;
     }
+       
 
     public UserResponse createUser(CreateUserRequest userRequest){
 
         User newUser = new User();
-        ShoppingCart cart = new ShoppingCart();
-        cart.setUser(newUser);
-
         newUser.setName(userRequest.name());
         newUser.setEmail(userRequest.email());
         newUser.setGender(userRequest.gender());
@@ -35,6 +37,10 @@ public class UserService {
         newUser.setPassword(userRequest.password());
         newUser.setRole(userRequest.role());
         newUser.setCreatedAt(LocalDateTime.now());
+        
+        userRepository.save(newUser);
+        
+        ShoppingCart cart = shoppingCartService.createCart(newUser);
         newUser.setCart(cart);
         userRepository.save(newUser);
 
@@ -44,6 +50,8 @@ public class UserService {
     public UserResponse updateUser(Long id, UpdateUserRequest updateUserRequest){
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found!"));
+
+        validator.validateUpdateRequest(updateUserRequest);
 
         if (updateUserRequest.name() != null) {
             user.setName(updateUserRequest.name());

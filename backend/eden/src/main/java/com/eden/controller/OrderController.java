@@ -3,7 +3,7 @@ package com.eden.controller;
 
 import com.eden.dto.order.CreateOrderRequest;
 import com.eden.dto.order.OrderResponse;
-import com.eden.service.OrderService;
+import com.eden.service.order.OrderService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
