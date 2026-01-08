@@ -24,6 +24,7 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     OrderStatus status;
 
