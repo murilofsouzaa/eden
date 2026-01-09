@@ -6,13 +6,31 @@ import { useState, useEffect, useRef} from "react";
 import { motion } from 'framer-motion';
 import "./Section.css";
 
-type Category =
+type MasculineCategory =
   | "shirts"
   | "t_shirts"
+  | "regatta"
   | "pants"
   | "shorts"
+  | "set"
   | "shoes"
-  | "caps";
+  | "caps"
+  | "sweatshirts";
+
+
+type FeminineCategory =
+  | "shirts"
+  | "t_shirts"
+  | "regatta"
+  | "pants"
+  | "shorts"
+  | "legging"
+  | "set"
+  | "shoes"
+  | "caps"
+  | "sweatshirts";
+
+type Gender = "masculine" | "feminine";
 
 export function Section(props){
 
@@ -20,16 +38,15 @@ export function Section(props){
         const inner = useRef<HTMLDivElement>(null);
         const [width, setWidth] = useState(0);
         const [products, setProducts] = useState<Products[]>([]);
-        const [selectedGender, setSelectedGender] = useState("MASCULINE")
+        const [selectedGender, setSelectedGender] = useState<Gender>("masculine")
 
         useEffect(() => {
                 if (props.gender) {
-                        getAllProductsByGender('masculine').then(data => setProducts(data));
-                        return;
+                        getAllProductsByGender(selectedGender.toUpperCase()).then(data => setProducts(data));
+                } else {
+                        getAllProducts().then(data => setProducts(data));
                 }
-
-                getAllProducts().then(data => setProducts(data));
-        }, []);
+        }, [selectedGender, props.gender]);
 
         useEffect(() => {
                 if (inner.current && carrousel.current) {
@@ -39,13 +56,12 @@ export function Section(props){
         }, [products]);
 
         const handleGenderClick = (gender: string) => {
-                setSelectedGender(gender);
-                getAllProductsByGender(gender.toLowerCase()).then(data => setProducts(data));
+                setSelectedGender(gender.toLowerCase() as Gender);
         };
 
-        const uniqueCategories: Category[]= Array.from(
+        const uniqueCategories = Array.from(
                 new Set(products.map(product => product.category))
-        ) as Category[];
+        ) as (MasculineCategory | FeminineCategory)[];
 
    return (
         <div ref={carrousel} className="carrousel">
@@ -61,15 +77,15 @@ export function Section(props){
                                 {props.gender && (
                                         <div className="d-flex gap-4 mt-4 mx-4 mb-3">
                                                 <button
-                                                        className={`gender-btn ${selectedGender === 'MASCULINE' ? 'active' : ''}`}
-                                                        onClick={() => handleGenderClick('MASCULINE')}
+                                                        className={`gender-btn ${selectedGender === 'masculine' ? 'active' : ''}`}
+                                                        onClick={() => handleGenderClick('masculine')}
                                                         style={{ cursor: 'pointer' }}
                                                 >
                                                         {props.gender.masculine}
                                                 </button>
                                                 <button 
-                                                        className={`gender-btn ${selectedGender === 'FEMININE' ? 'active' : ''}`}
-                                                        onClick={() => handleGenderClick('FEMININE')}
+                                                        className={`gender-btn ${selectedGender === 'feminine' ? 'active' : ''}`}
+                                                        onClick={() => handleGenderClick('feminine')}
                                                         style={{ cursor: 'pointer' }}
                                                 >
                                                         {props.gender.feminine}
@@ -80,22 +96,25 @@ export function Section(props){
                                         {props.variant === "category"
                                         ? uniqueCategories.map((category) => {
                                                 const foundProduct = products.find(
-                                                (product) => product.category === category
+                                                        (product) => product.category === category
                                                 );
                                                 if (!foundProduct) return null;
+
                                                 return (
-                                                <Card
-                                                        key={category}
-                                                        product={foundProduct}
-                                                        variant={props.variant}
-                                                />
+                                                        <Card
+                                                                key={category}
+                                                                product={foundProduct}
+                                                                variant={props.variant}
+                                                                gender={selectedGender}
+                                                        />
                                                 );
                                         })
                                         : products.slice(0, 7).map((product) => (
                                                 <Card
-                                                key={product.id}
-                                                product={product}
-                                                variant={props.variant}
+                                                        key={product.id}
+                                                        product={product}
+                                                        variant={props.variant}
+                                                        gender={selectedGender}
                                                 />
                                         ))}
                                 </div>

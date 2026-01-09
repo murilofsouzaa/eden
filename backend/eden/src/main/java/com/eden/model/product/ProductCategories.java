@@ -10,8 +10,16 @@ public enum ProductCategories {
     SHIRTS,
     @JsonProperty("t_shirts")
     T_SHIRTS,
+    @JsonProperty("regatta")
+    REGATTA,
     @JsonProperty("pants")
     PANTS,
+    @JsonProperty("legging")
+    LEGGING,
+    @JsonProperty("shorts")
+    SHORTS,
+    @JsonProperty("set")
+    SET,
     @JsonProperty("shoes")
     SHOES,
     @JsonProperty("caps")

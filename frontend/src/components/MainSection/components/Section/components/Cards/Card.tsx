@@ -2,47 +2,108 @@ import "./Card.css";
 import type { Products } from "../../../../../../services/productService.ts";
 
 type CardVariant = "best-seller" | "category" | "default";
+type Gender = "feminine" | "masculine";
+
 
 interface CardProps {
   product: Products;
   variant?:CardVariant;
+  gender:Gender;
 }
 
-const category = (category?:string)=>{
+const masculineCategory = (category?:string)=>{
   switch (category) {
     case "shirts":
-      return "Camisetas"
+      return "Camisas"
 
     case "t_shirts":
-      return "Camisas"
+      return "Camisetas"
+
+    case "regatta":
+      return "Regatas";
 
     case "pants":
       return "Calças";
     
+    case "shorts":
+      return "Shorts";
+
+    case "set":
+      return "Conjuntos";
+
     case "shoes":
       return "Sapatos";
     
     case "caps":
-      return "Bonés"
+      return "Bonés";
+
+    case "sweatshirts":
+      return "Moletons";
 
     default:
       return "";
   }
 }
 
-export function Card({product, variant = "default"}:CardProps){  
+const feminineCategory = (category?:string)=>{
+  switch (category) {
+    case "shirts":
+      return "Camisas"
+
+    case "t_shirts":
+      return "Camisetas"
+
+    case "regatta":
+      return "Regatas";
+
+    case "pants":
+      return "Calças";
+    
+    case "legging":
+      return "Leggings";
+
+    case "shorts":
+      return "Shorts";
+
+    case "set":
+      return "Conjuntos";
+
+    case "shoes":
+      return "Sapatos";
+    
+    case "caps":
+      return "Bonés";
+
+    case "sweatshirts":
+      return "Moletons";
+
+    default:
+      return "";
+  }
+}
+
+export function Card({product, variant = "default", gender}:CardProps){  
   return (
     <div className={`card card-${variant}`}>
-      {variant === 'category' && (
+      {variant === 'category'&& gender === "masculine"  && (
         <>
           <img src={product.imgUrl} className={`img-card-${variant} object-fit-cover`}></img>
           <div>
-            <h3>{category(product.category) == undefined ? "" : category(product.category).toUpperCase()}</h3>
+            <h3>{masculineCategory(product.category) == undefined ? "" : masculineCategory(product.category).toUpperCase()}</h3>
             <button>COMPRE AGORA</button>
           </div>
         </>
       )}
 
+      {variant === 'category'&& gender === "feminine"  && (
+        <>
+          <img src={product.imgUrl} className={`img-card-${variant} object-fit-cover`}></img>
+          <div>
+            <h3>{feminineCategory(product.category) == undefined ? "" : feminineCategory(product.category).toUpperCase()}</h3>
+            <button>COMPRE AGORA</button>
+          </div>
+        </>
+      )}
 
       {variant === "best-seller" && (
         <>
