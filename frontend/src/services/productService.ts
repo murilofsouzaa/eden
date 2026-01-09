@@ -22,3 +22,8 @@ export const getAllProductsByGender = async (gender: string) =>{
   const response = await api.get(`/products/gender/${gender}`);
   return response.data
 } 
+
+export const getBestSellers = async ()=>{
+  const response = await api.get("products/best-sellers?status=DELIVERED");
+  return response.data;
+}

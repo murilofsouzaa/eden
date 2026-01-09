@@ -1,5 +1,6 @@
 import { Card } from "./components/Cards/Card.tsx";
 import type { Products } from "../../../../services/productService.ts";
+import { getBestSellers } from "../../../../services/productService.ts";
 import { getAllProducts } from "../../../../services/productService.ts";
 import { getAllProductsByGender } from "../../../../services/productService.ts";
 import { useState, useEffect, useRef} from "react";
@@ -41,12 +42,22 @@ export function Section(props){
         const [selectedGender, setSelectedGender] = useState<Gender>("masculine")
 
         useEffect(() => {
-                if (props.gender) {
-                        getAllProductsByGender(selectedGender.toUpperCase()).then(data => setProducts(data));
-                } else {
-                        getAllProducts().then(data => setProducts(data));
-                }
-        }, [selectedGender, props.gender]);
+                const fetchProducts = async () => {
+                        let data;
+                        
+                        if (props.category === "best-sellers") {
+                                data = await getBestSellers();
+                        } else if (props.gender) {
+                                data = await getAllProductsByGender(selectedGender.toUpperCase());
+                        } else {
+                                data = await getAllProducts();
+                        }
+                        
+                        setProducts(data);
+                };
+
+                fetchProducts();
+        }, [selectedGender, props.gender, props.category]);
 
         useEffect(() => {
                 if (inner.current && carrousel.current) {
@@ -64,6 +75,26 @@ export function Section(props){
         ) as (MasculineCategory | FeminineCategory)[];
 
    return (
+        <>
+         <h2 className="section-title fs-4 mb-0 mt-5 mx-4">{props.title}</h2>
+         {props.gender && (
+                <div className="d-flex gap-4 mt-4 mx-4 mb-3">
+                        <button
+                                className={`gender-btn ${selectedGender === 'masculine' ? 'active' : ''}`}
+                                onClick={() => handleGenderClick('masculine')}
+                                style={{ cursor: 'pointer' }}
+                        >
+                                {props.gender.masculine}
+                        </button>
+                        <button 
+                                className={`gender-btn ${selectedGender === 'feminine' ? 'active' : ''}`}
+                                onClick={() => handleGenderClick('feminine')}
+                                style={{ cursor: 'pointer' }}
+                        >
+                                {props.gender.feminine}
+                        </button>
+                </div>
+                                )}
         <div ref={carrousel} className="carrousel">
                 <motion.div 
                         ref={inner}
@@ -73,25 +104,6 @@ export function Section(props){
                         whileTap={{ cursor: "grabbing" }}
                 >
                         <div className="section">
-                                <h2 className="section-title fs-4 mb-0 mt-5 mx-4">{props.title}</h2>
-                                {props.gender && (
-                                        <div className="d-flex gap-4 mt-4 mx-4 mb-3">
-                                                <button
-                                                        className={`gender-btn ${selectedGender === 'masculine' ? 'active' : ''}`}
-                                                        onClick={() => handleGenderClick('masculine')}
-                                                        style={{ cursor: 'pointer' }}
-                                                >
-                                                        {props.gender.masculine}
-                                                </button>
-                                                <button 
-                                                        className={`gender-btn ${selectedGender === 'feminine' ? 'active' : ''}`}
-                                                        onClick={() => handleGenderClick('feminine')}
-                                                        style={{ cursor: 'pointer' }}
-                                                >
-                                                        {props.gender.feminine}
-                                                </button>
-                                        </div>
-                                )}
                                 <div className="cards-subsection d-flex">
                                         {props.variant === "category"
                                         ? uniqueCategories.map((category) => {
@@ -123,5 +135,6 @@ export function Section(props){
                         </div>
                 </motion.div>
         </div>
+        </>
         );
 }
