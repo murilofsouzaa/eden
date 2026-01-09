@@ -3,12 +3,14 @@ package com.eden.service.product;
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
 import com.eden.dto.product.UpdateProductRequest;
+import com.eden.model.order.OrderStatus;
 import com.eden.mapper.ProductMapper;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductGender;
 import com.eden.model.product.ProductStatus;
 import com.eden.repository.ProductRepository;
+import com.eden.repository.OrderItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -20,10 +22,14 @@ public class    ProductService {
 
     final private ProductRepository productRepository;
     final private ProductValidator productValidator;
+    final private OrderItemRepository orderItemRepository;
 
-    public ProductService(ProductRepository productRepository, ProductValidator productValidator){
+    public ProductService(ProductRepository productRepository, ProductValidator productValidator,
+        OrderItemRepository orderItemRepository
+    ){
         this.productRepository = productRepository;
         this.productValidator = productValidator;
+        this.orderItemRepository = orderItemRepository;
     }
 
     public ProductResponse createProduct(CreateProductRequest createProductRequest){
@@ -105,6 +111,11 @@ public class    ProductService {
 
     public List<ProductResponse> getAllProductsByGender(ProductGender gender){
         List<Product> products = productRepository.findByGender(gender);
+        return ProductMapper.toResponseList(products);
+    }
+
+    public List<ProductResponse> getBestSellers(OrderStatus status){
+        List<Product> products = orderItemRepository.findTopBestSellers(status);
         return ProductMapper.toResponseList(products);
     }
 

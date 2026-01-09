@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -21,6 +23,11 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponse> showOrder(@PathVariable("id") Long orderId){
         return ResponseEntity.ok(orderService.showOrder(orderId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<OrderResponse>> getAllOrders(){
+        return ResponseEntity.ok(orderService.getAllOrders());
     }
 
     @PostMapping

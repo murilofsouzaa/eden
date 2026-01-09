@@ -1,5 +1,5 @@
 -- Limpar todas as tabelas primeiro
-TRUNCATE TABLE shopping_cart_item, shopping_cart, order_item, orders, product, users CASCADE;
+TRUNCATE TABLE shopping_cart_item, shopping_cart, order_item, orders, order_address, product, users CASCADE;
 
 -- Remover check constraint se existir
 ALTER TABLE product DROP CONSTRAINT IF EXISTS product_category_check;
@@ -13,6 +13,7 @@ ALTER SEQUENCE users_id_seq RESTART WITH 1;
 ALTER SEQUENCE product_id_seq RESTART WITH 1;
 ALTER SEQUENCE shopping_cart_id_seq RESTART WITH 1;
 ALTER SEQUENCE orders_id_seq RESTART WITH 1;
+ALTER SEQUENCE order_address_id_seq RESTART WITH 1;
 
 -- ==================== INSERIR USUÁRIOS ====================
 INSERT INTO users (name, email, password, birth_day, gender, role, status, created_at) VALUES
@@ -133,3 +134,40 @@ INSERT INTO shopping_cart_item (cart_id, product_id, quantity, unit_price) VALUE
 -- Carrinho da Lucia (id=6) - Produtos femininos
 (6, 8, 1, 159.90),   -- Calça Oversized Lado
 (6, 4, 1, 79.90);    -- Regata Preta Feminina
+
+-- ==================== INSERIR ENDEREÇOS DE ENTREGA ====================
+INSERT INTO order_address (user_id, street, number, neighborhood, city, state, country, zip_code) VALUES
+(1, 'Rua das Flores', 123, 'Centro', 'São Paulo', 'SP', 'Brasil', '01310-100'),
+(2, 'Avenida Paulista', 1500, 'Bela Vista', 'São Paulo', 'SP', 'Brasil', '01310-200'),
+(3, 'Rua Augusta', 789, 'Consolação', 'São Paulo', 'SP', 'Brasil', '01305-100'),
+(4, 'Rua Oscar Freire', 456, 'Jardins', 'São Paulo', 'SP', 'Brasil', '01426-001'),
+(5, 'Avenida Rebouças', 2020, 'Pinheiros', 'São Paulo', 'SP', 'Brasil', '05402-100'),
+(6, 'Rua Haddock Lobo', 595, 'Cerqueira César', 'São Paulo', 'SP', 'Brasil', '01414-001'),
+(7, 'Rua da Consolação', 3000, 'Consolação', 'São Paulo', 'SP', 'Brasil', '01416-000');
+
+-- ==================== INSERIR PEDIDOS ====================
+INSERT INTO orders (user_id, created_at, status, order_address_id, shopping_cart_id) VALUES
+(1, '2025-12-01 10:30:00', 'DELIVERED', 1, 1),
+(2, '2025-12-05 14:20:00', 'DELIVERED', 2, 2),
+(3, '2025-12-10 09:15:00', 'DELIVERED', 3, 3),
+(4, '2025-12-15 16:45:00', 'DELIVERED', 4, 4),
+(5, '2025-12-20 11:00:00', 'DELIVERED', 5, 5),
+(6, '2026-01-02 13:30:00', 'SHIPPED', 6, 6),
+(7, '2026-01-05 10:00:00', 'SHIPPED', 7, NULL);
+
+-- ==================== INSERIR ITENS DOS PEDIDOS ====================
+INSERT INTO order_item (order_id, product_id, quantity, unit_price) VALUES
+(1, 18, 3, 119.90),
+(1, 29, 2, 89.90),
+(2, 1, 2, 129.90),
+(2, 4, 3, 79.90),
+(3, 18, 2, 119.90),
+(3, 32, 1, 279.90),
+(4, 1, 3, 129.90),
+(4, 2, 2, 129.90),
+(5, 18, 2, 119.90),
+(5, 22, 1, 99.90),
+(6, 3, 1, 129.90),
+(6, 5, 2, 69.90),
+(7, 34, 1, 199.90),
+(7, 31, 1, 259.90);

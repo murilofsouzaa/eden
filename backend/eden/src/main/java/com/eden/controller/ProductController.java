@@ -3,6 +3,7 @@ package com.eden.controller;
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
 import com.eden.dto.product.UpdateProductRequest;
+import com.eden.model.order.OrderStatus;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductGender;
@@ -60,6 +61,12 @@ public class ProductController {
     @GetMapping("/filter/{part}")
     public ResponseEntity<List<ProductResponse>> getAllProductsByTextPart(@PathVariable String part){
         return ResponseEntity.ok(productService.getAllProductsByTextPart(part));
+    }
+
+    @GetMapping("/best-sellers")
+    public ResponseEntity<List<ProductResponse>> getBestSellers(
+        @RequestParam(defaultValue = "DELIVERED") OrderStatus status){
+        return ResponseEntity.ok(productService.getBestSellers(status));
     }
 
     @PostMapping

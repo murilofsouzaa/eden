@@ -49,6 +49,11 @@ public class OrderService {
         return OrderMapper.toResponse(order);
     }
 
+    public List<OrderResponse> getAllOrders(){
+        List<Order> orders = orderRepository.findAll();
+        return OrderMapper.toResponseList(orders);
+    }
+
     @Transactional
     public OrderResponse createOrder(CreateOrderRequest orderRequest){
         User user = userService.getUserById(orderRequest.userId());
