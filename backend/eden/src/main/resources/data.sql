@@ -45,12 +45,10 @@ INSERT INTO product (title, description, price, img_url, stock, category, gender
 ('Tênis Feminino Academia', 'Tênis feminino para treinos, conforto e estabilidade', 249.90, '/clothes/news/feminine-gym-shoes.jpeg', 25, 'SHOES', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Femininos - SWEATSHIRTS
-('Moletom Cinza Feminino', 'Moletom feminino confortável, perfeito para dias frios', 189.90, '/clothes/news2/moletom-cinza-feminino.jpeg', 40, 'SWEATSHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
-('Moletom Azul Feminino', 'Moletom azul feminino, estilo casual e confortável', 199.90, '/clothes/news2/moletom-azul-feminino.jpeg', 35, 'SWEATSHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Moletom Vermelho Feminino', 'Moletom feminino vermelho, alta performance', 199.90, '/clothes/news2/moletom-vermelho-femininio.jpeg', 35, 'SWEATSHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Femininos - CAPS
-('Boné Rosa Feminino', 'Boné feminino rosa, estilo casual e moderno', 59.90, '/clothes/news/bone-rosa-feminino.jpeg', 35, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
-('Boné Bege Feminino Gym', 'Boné feminino bege para academia, estilo esportivo', 59.90, '/clothes/bone-feminino-gym-bege.jpeg', 40, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Boné Bege Feminino Gym', 'Boné feminino bege gym, estilo casual e moderno', 59.90, '/clothes/bone-feminino-gym-bege.jpeg', 35, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Femininos - SET (Top + Short)
 ('Conjunto Feminino Rosa Fitness', 'Conjunto top e short rosa, perfeito para academia', 149.90, '/clothes/mulher-short-top-verde.jpeg', 30, 'SET', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
@@ -85,17 +83,13 @@ INSERT INTO product (title, description, price, img_url, stock, category, gender
 ('Tênis Esportivo Preto', 'Tênis esportivo preto, performance e design', 259.90, '/clothes/news/tenis-esportivo-preto.jpeg', 28, 'SHOES', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Masculinos - SWEATSHIRTS
-('Moletom Preto Masculino', 'Moletom masculino preto, conforto e estilo', 199.90, '/clothes/news/moletom-preto-masculino.jpeg', 35, 'SWEATSHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Moletom Boys Lies Branco', 'Moletom Boys Lies branco, design exclusivo', 219.90, '/clothes/news2/boys-lies-moletom-masculino-branco.jpeg', 30, 'SWEATSHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Moletom Gym Preto Masculino', 'Moletom gym preto masculino, alta qualidade', 209.90, '/clothes/news2/moletom-gym-preto-masculino.jpeg', 32, 'SWEATSHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Moletom Preto Masculino Básico', 'Moletom masculino preto básico, essencial', 189.90, '/clothes/news2/sweartshirt-masculine-black.jpeg', 40, 'SWEATSHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Moletom Preto Masculino', 'Moletom masculino preto, conforto e estilo', 199.90, '/clothes/news2/sweartshirt-masculine-black.jpeg', 35, 'SWEATSHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Masculinos - CAPS
 ('Boné Preto Masculino', 'Boné masculino preto, clássico e versátil', 59.90, '/clothes/bone-masculino-preto.jpeg', 50, 'CAPS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Masculinos - SET (Top + Short)
-('Conjunto Masculino Cinza Preto', 'Conjunto top compressão e short cinza preto, treino intenso', 169.90, '/clothes/news2/conjunto-roupa-masculino.jpeg', 25, 'SET', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Conjunto Masculino Azul', 'Conjunto top e short azul, conforto e estilo', 159.90, '/clothes/news2/conjunto-azul-masculino.jpeg', 30, 'SET', 'MASCULINE', 'AVAILABLE', NOW(), NOW());
+('Conjunto Masculino Azul', 'Conjunto top compressão e short azul, treino intenso', 169.90, '/clothes/news2/conjunto-azul-masculino.jpeg', 25, 'SET', 'MASCULINE', 'AVAILABLE', NOW(), NOW());
 
 -- ==================== INSERIR CARRINHOS DE COMPRAS ====================
 INSERT INTO shopping_cart (user_id, status, created_at) VALUES
@@ -157,17 +151,37 @@ INSERT INTO orders (user_id, created_at, status, order_address_id, shopping_cart
 
 -- ==================== INSERIR ITENS DOS PEDIDOS ====================
 INSERT INTO order_item (order_id, product_id, quantity, unit_price) VALUES
-(1, 18, 3, 119.90),
-(1, 29, 2, 89.90),
-(2, 1, 2, 129.90),
-(2, 4, 3, 79.90),
-(3, 18, 2, 119.90),
-(3, 32, 1, 279.90),
-(4, 1, 3, 129.90),
-(4, 2, 2, 129.90),
-(5, 18, 2, 119.90),
-(5, 22, 1, 99.90),
-(6, 3, 1, 129.90),
-(6, 5, 2, 69.90),
-(7, 34, 1, 199.90),
-(7, 31, 1, 259.90);
+-- Pedido 1 - João
+(1, 18, 25, 119.90),  -- Camisa Compressão Cinza Preta - BEST SELLER MASCULINO
+(1, 29, 18, 89.90),   -- Short Branco Gymshark - BEST SELLER MASCULINO
+(1, 22, 15, 99.90),   -- Camisa Gymshark Branca
+
+-- Pedido 2 - Maria
+(2, 1, 12, 129.90),   -- Legging Preta Gymshark
+(2, 4, 8, 79.90),     -- Regata Preta Feminina
+(2, 9, 5, 249.90),    -- Tênis Feminino Academia
+
+-- Pedido 3 - Pedro
+(3, 18, 22, 119.90),  -- Camisa Compressão - BEST SELLER MASCULINO
+(3, 25, 20, 69.90),   -- Regata Masculina Branca - BEST SELLER MASCULINO
+(3, 31, 16, 259.90),  -- Tênis Esportivo Preto
+
+-- Pedido 4 - Ana
+(4, 25, 19, 69.90),   -- Regata Masculina Branca - BEST SELLER MASCULINO
+(4, 29, 17, 89.90),   -- Short Branco Gymshark - BEST SELLER MASCULINO
+(4, 22, 14, 99.90),   -- Camisa Gymshark Branca
+
+-- Pedido 5 - Carlos
+(5, 18, 20, 119.90),  -- Camisa Compressão - BEST SELLER MASCULINO
+(5, 31, 18, 259.90),  -- Tênis Esportivo Preto - BEST SELLER MASCULINO
+(5, 28, 12, 149.90),  -- Calça Bege Masculina
+
+-- Pedido 6 - Lucia
+(6, 31, 15, 259.90),  -- Tênis Esportivo Preto - BEST SELLER MASCULINO
+(6, 22, 19, 99.90),   -- Camisa Gymshark Branca - BEST SELLER MASCULINO
+(6, 1, 9, 129.90),    -- Legging Preta
+
+-- Pedido 7 - Roberto (novo)
+(7, 29, 21, 89.90),   -- Short Branco Gymshark - BEST SELLER MASCULINO
+(7, 18, 16, 119.90),  -- Camisa Compressão - BEST SELLER MASCULINO
+(7, 25, 18, 69.90);   -- Regata Masculina Branca - BEST SELLER MASCULINO
