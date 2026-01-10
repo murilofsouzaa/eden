@@ -32,6 +32,9 @@ INSERT INTO product (title, description, price, img_url, stock, category, gender
 ('Legging Cinza Gymshark', 'Legging fitness cinza, perfeita para treinos intensos', 129.90, '/clothes/news/legging-cinza-gymshark.jpeg', 45, 'LEGGING', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 ('Legging Verde Gymshark', 'Legging fitness verde musgo, design moderno e confortável', 129.90, '/clothes/news/legging-verge-gymshark.jpeg', 40, 'LEGGING', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 
+-- Produtos Femininos - SHIRTS
+('Blusa Preta Feminina Gym', 'Blusa preta feminina para treinos, alta performance', 89.90, '/clothes/news2/blusa-preta-feminina-gym.jpeg', 45, 'SHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+
 -- Produtos Femininos - REGATA
 ('Regata Preta Feminina Gymshark', 'Regata fitness preta, tecido leve e respirável', 79.90, '/clothes/news/regata-preta-feminia-gymshark.jpeg', 60, 'REGATTA', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 ('Regata Branca Feminina', 'Regata básica branca feminina, essencial e versátil', 69.90, '/clothes/news/regata-preta-feminia-gymshark.jpeg', 55, 'REGATTA', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
@@ -51,23 +54,22 @@ INSERT INTO product (title, description, price, img_url, stock, category, gender
 ('Boné Bege Feminino Gym', 'Boné feminino bege gym, estilo casual e moderno', 59.90, '/clothes/bone-feminino-gym-bege.jpeg', 35, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Femininos - SET (Top + Short)
-('Conjunto Feminino Rosa Fitness', 'Conjunto top e short rosa, perfeito para academia', 149.90, '/clothes/mulher-short-top-verde.jpeg', 30, 'SET', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
-('Conjunto Feminino Preto Treino', 'Conjunto top e short preto, versátil e confortável', 149.90, '/clothes/mulher-short-top-preto.jpeg', 28, 'SET', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Conjunto Feminino Preto Fitness', 'Conjunto top e short preto, perfeito para academia', 149.90, '/clothes/mulher-short-top-preto.jpeg', 30, 'SET', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Conjunto Feminino Verde Treino', 'Conjunto top e short verde, versátil e confortável', 149.90, '/clothes/mulher-short-top-verde.jpeg', 28, 'SET', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 ('Conjunto Feminino Branco Azulado', 'Conjunto top e short branco azulado, estilo moderno', 159.90, '/clothes/mulher-short-top-branco-azulado.jpeg', 25, 'SET', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 ('Conjunto Feminino Azul Claro', 'Conjunto top e short azul claro, conforto e estilo', 149.90, '/clothes/asiatica-top-short-azul-claro.jpeg', 30, 'SET', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Masculinos - SHIRTS
-('Camisa Compressão Cinza Preta Gymshark', 'Camisa de compressão para treinos intensos', 119.90, '/clothes/news/camisa-compressao-cinza-preta-gymshark.jpeg', 55, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Compressão Longa Preta', 'Camisa de compressão para treinos intensos', 119.90, '/clothes/homem-camisa-de-compressao-longa-preta.jpeg', 55, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 ('Camisa Social Azul Marinho', 'Camisa social azul marinho, elegância e conforto', 139.90, '/clothes/news/camisa-social-azul.jpeg', 30, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 ('Camisa Compressão Longa Branca', 'Camisa de compressão longa branca, alta performance', 129.90, '/clothes/homem-camisa-de-compressao-longa-branca.jpeg', 40, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Camisa Compressão Longa Preta', 'Camisa de compressão longa preta, conforto e estilo', 129.90, '/clothes/homem-camisa-de-compressao-longa-preta.jpeg', 40, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Camisa Gymshark Branca', 'Camisa Gymshark branca, design moderno', 99.90, '/clothes/modelo-camisa-gymsahrk-branca.jpeg', 50, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Camisa Gymshark Preta', 'Camisa Gymshark preta, qualidade premium', 99.90, '/clothes/modelo-camisa-gymsahrk-preta.jpeg', 50, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Camisa Gymshark Verde', 'Camisa Gymshark verde, estilo único', 99.90, '/clothes/modelo-camisa-gymsahrk-verde.jpeg', 45, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Compressão Longa Preta Alternativa', 'Camisa de compressão longa preta, conforto e estilo', 129.90, '/clothes/news/camisa-compressao-cinza-preta-gymshark.jpeg', 40, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Gymshark Preta Modelo', 'Camisa Gymshark preta, design moderno', 99.90, '/clothes/modelo-camisa-gymsahrk-preta.jpeg', 50, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Gymshark Verde', 'Camisa Gymshark verde, estilo único', 99.90, '/clothes/modelo-camisa-gymsahrk-verde.jpeg', 50, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Masculinos - REGATA
 ('Regata Masculina Branca', 'Regata básica branca, essencial para o guarda-roupa', 69.90, '/clothes/news/regata-masculina-branca.jpeg', 70, 'REGATTA', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Regata Preta Masculina', 'Regata preta masculina, versátil e confortável', 69.90, '/clothes/guy-black-regata.jpeg', 65, 'REGATTA', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Regata Preta Guy', 'Regata preta masculina, versátil e confortável', 69.90, '/clothes/guy-black-regata.jpeg', 65, 'REGATTA', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 ('Regata Branca Guy', 'Regata branca masculina, estilo casual', 69.90, '/clothes/guy-white-regata.jpeg', 65, 'REGATTA', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Masculinos - PANTS
@@ -76,7 +78,7 @@ INSERT INTO product (title, description, price, img_url, stock, category, gender
 -- Produtos Masculinos - SHORTS
 ('Short Branco Gymshark', 'Short fitness branco, ideal para treinos e corridas', 89.90, '/clothes/news/short-branco-gymshark.jpeg', 50, 'SHORTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 ('Bermuda Masculina Cinza', 'Bermuda casual cinza, conforto para o dia a dia', 99.90, '/clothes/news/bermuda-masculina-cinza.jpeg', 45, 'SHORTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Short Gymshark Verde', 'Short Gymshark verde, alta performance', 89.90, '/clothes/modelo-short-gymshark-verde.jpeg', 50, 'SHORTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Short Branco Gymshark Alternativo', 'Short branco alta performance', 89.90, '/clothes/news/short-branco-gymshark.jpeg', 50, 'SHORTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Masculinos - SHOES
 ('Tênis Masculino Branco', 'Tênis branco versátil, conforto e estilo', 279.90, '/clothes/news/tenis-masculino-branco.jpeg', 30, 'SHOES', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),

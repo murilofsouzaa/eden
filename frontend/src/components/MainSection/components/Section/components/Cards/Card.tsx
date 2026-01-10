@@ -99,7 +99,7 @@ export function Card({product, variant = "default", gender, order}:CardProps){
 
       {variant === 'category'&& gender === "feminine"  && (
         <>
-          <img src={product.imgUrl} className={`img-card-${variant} w-100 h-100 object-fit-cover`}></img>
+          <img src={product.imgUrl} className={`img-card-${variant} object-fit-cover`}></img>
           <div>
             <h3>{feminineCategory(product.category) == undefined ? "" : feminineCategory(product.category).toUpperCase()}</h3>
             <button>COMPRE AGORA</button>
