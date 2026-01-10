@@ -10,21 +10,50 @@
     cursor: grab;
 }
 
+.card > .priceAndSold {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
 
 .card .price{
     padding: 10px 10px 10px 10px;
     background-color: transparent;
 }
 
+.card .solds{
+    background-color: transparent;
+}
 
 .card-category > .img-card-category{
     width: 330px;
     height: 600px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-best-seller > .best-seller,
+.card-best-seller > img {
+    width: 330px;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-default > img {
+    width: 330px;
+    height: 400px;
+    object-fit: cover;
+    display: block;
 }
 
 .card > h2{
-    margin-top: 60px;
+    margin-top: 20px;
     font-size: 18px;
+    min-height: 50px;
 }
 
 .card div {
@@ -47,3 +76,4 @@
     border-radius: 20px;
     margin-top: 10px;
 }
+

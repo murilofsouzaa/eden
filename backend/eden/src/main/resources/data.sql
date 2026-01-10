@@ -34,7 +34,7 @@ INSERT INTO product (title, description, price, img_url, stock, category, gender
 
 -- Produtos Femininos - REGATA
 ('Regata Preta Feminina Gymshark', 'Regata fitness preta, tecido leve e respirável', 79.90, '/clothes/news/regata-preta-feminia-gymshark.jpeg', 60, 'REGATTA', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
-('Regata Branca Feminina', 'Regata básica branca feminina, essencial e versátil', 69.90, '/clothes/news/regata-branca-feminina.jpeg', 55, 'REGATTA', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+('Regata Branca Feminina', 'Regata básica branca feminina, essencial e versátil', 69.90, '/clothes/news/regata-preta-feminia-gymshark.jpeg', 55, 'REGATTA', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Femininos - PANTS
 ('Calça Oversized Feminina', 'Calça oversized feminina, estilo urbano e confortável', 159.90, '/clothes/news/calça-overzied-feminina.jpeg', 35, 'PANTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),

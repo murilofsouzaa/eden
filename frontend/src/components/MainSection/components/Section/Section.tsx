@@ -1,8 +1,10 @@
 import { Card } from "./components/Cards/Card.tsx";
+import type { Order } from "../../../../services/orderService.ts";
 import type { Products } from "../../../../services/productService.ts";
 import { getBestSellers } from "../../../../services/productService.ts";
 import { getAllProducts } from "../../../../services/productService.ts";
 import { getAllProductsByGender } from "../../../../services/productService.ts";
+import { getAllOrders } from "../../../../services/orderService.ts";
 import { useState, useEffect, useRef} from "react";
 import { motion } from 'framer-motion';
 import "./Section.css";
@@ -39,7 +41,17 @@ export function Section(props){
         const inner = useRef<HTMLDivElement>(null);
         const [width, setWidth] = useState(0);
         const [products, setProducts] = useState<Products[]>([]);
+        const [orders, setOrders] = useState<Order[]>([]);
         const [selectedGender, setSelectedGender] = useState<Gender>("masculine")
+
+        useEffect(() => {
+                const fetchOrders = async () => {
+                        const data = await getAllOrders();
+                        setOrders(data);
+                };
+
+                fetchOrders();
+        }, []);
 
         useEffect(() => {
                 const fetchProducts = async () => {
@@ -121,14 +133,21 @@ export function Section(props){
                                                         />
                                                 );
                                         })
-                                        : products.slice(0, 7).map((product) => (
-                                                <Card
-                                                        key={product.id}
-                                                        product={product}
-                                                        variant={props.variant}
-                                                        gender={selectedGender}
-                                                />
-                                        ))}
+                                        : products.slice(0, 7).map((product) => {
+                                                const relatedOrder = orders.find(order => 
+                                                        order.items.some(item => item.productId === product.id)
+                                                );
+                                                
+                                                return (
+                                                        <Card
+                                                                key={product.id}
+                                                                product={product}
+                                                                variant={props.variant}
+                                                                gender={selectedGender}
+                                                                order={relatedOrder}
+                                                        />
+                                                );
+                                        })}
                                 </div>
 
                                 

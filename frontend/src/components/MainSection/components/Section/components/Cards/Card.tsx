@@ -1,5 +1,6 @@
 import "./Card.css";
 import type { Products } from "../../../../../../services/productService.ts";
+import type { Order } from "../../../../../../services/orderService.ts";
 
 type CardVariant = "best-seller" | "category" | "default";
 type Gender = "feminine" | "masculine";
@@ -7,8 +8,9 @@ type Gender = "feminine" | "masculine";
 
 interface CardProps {
   product: Products;
-  variant?:CardVariant;
-  gender:Gender;
+  variant?: CardVariant;
+  gender: Gender;
+  order?: Order;
 }
 
 const masculineCategory = (category?:string)=>{
@@ -82,7 +84,7 @@ const feminineCategory = (category?:string)=>{
   }
 }
 
-export function Card({product, variant = "default", gender}:CardProps){  
+export function Card({product, variant = "default", gender, order}:CardProps){  
   return (
     <div className={`card card-${variant}`}>
       {variant === 'category'&& gender === "masculine"  && (
@@ -97,7 +99,7 @@ export function Card({product, variant = "default", gender}:CardProps){
 
       {variant === 'category'&& gender === "feminine"  && (
         <>
-          <img src={product.imgUrl} className={`img-card-${variant} object-fit-cover`}></img>
+          <img src={product.imgUrl} className={`img-card-${variant} w-100 h-100 object-fit-cover`}></img>
           <div>
             <h3>{feminineCategory(product.category) == undefined ? "" : feminineCategory(product.category).toUpperCase()}</h3>
             <button>COMPRE AGORA</button>
@@ -107,14 +109,21 @@ export function Card({product, variant = "default", gender}:CardProps){
 
       {variant === "best-seller" && (
         <>
-          <img src={product.imgUrl} className="w-100 h-100 object-fit-cover"></img>
+          <img src={product.imgUrl} className="best-seller w-100 h-100 object-fit-cover"></img>
           <h2>{product.title}</h2>
-          <p className="price">{
-            new Intl.NumberFormat('pt-BR',
-              {
-                style: 'currency',
-                currency: 'BRL'
-              }).format(product.price)}</p>
+          <div className="priceAndSold">
+            <p className="price">{
+              new Intl.NumberFormat('pt-BR',
+                {
+                  style: 'currency',
+                  currency: 'BRL'
+                }).format(product.price)}</p>
+                {order &&
+                <p
+                  className="solds">{order.items?.reduce((total, item) => total + item.quantity, 0)} Vendido(s)
+                </p>
+                }
+          </div>
         </>
       )}
 
