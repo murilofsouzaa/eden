@@ -57,7 +57,7 @@ export function Section(props){
                 const fetchProducts = async () => {
                         let data;
                         
-                        if (props.category === "best-sellers") {
+                        if (props.variant === "best-seller") {
                                 data = await getBestSellers();
                         } else if (props.gender) {
                                 data = await getAllProductsByGender(selectedGender.toUpperCase());
@@ -69,7 +69,7 @@ export function Section(props){
                 };
 
                 fetchProducts();
-        }, [selectedGender, props.gender, props.category]);
+        }, [selectedGender, props.gender, props.variant]);
 
         useEffect(() => {
                 if (inner.current && carrousel.current) {

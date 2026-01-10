@@ -61,7 +61,7 @@ INSERT INTO product (title, description, price, img_url, stock, category, gender
 
 -- Produtos Masculinos - SHIRTS
 ('Camisa Compressão Longa Preta', 'Camisa de compressão para treinos intensos', 119.90, '/clothes/homem-camisa-de-compressao-longa-preta.jpeg', 55, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Camisa Social Azul Marinho', 'Camisa social azul marinho, elegância e conforto', 139.90, '/clothes/news/camisa-social-azul.jpeg', 30, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Camisa Social Azul Marinho', 'Camisa social azul marinho, elegância e conforto', 139.90, '/clothes/modelo-camisa-gymsahrk-branca.jpeg', 30, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 ('Camisa Compressão Longa Branca', 'Camisa de compressão longa branca, alta performance', 129.90, '/clothes/homem-camisa-de-compressao-longa-branca.jpeg', 40, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 ('Camisa Compressão Longa Preta Alternativa', 'Camisa de compressão longa preta, conforto e estilo', 129.90, '/clothes/news/camisa-compressao-cinza-preta-gymshark.jpeg', 40, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 ('Camisa Gymshark Preta Modelo', 'Camisa Gymshark preta, design moderno', 99.90, '/clothes/modelo-camisa-gymsahrk-preta.jpeg', 50, 'SHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
@@ -82,7 +82,7 @@ INSERT INTO product (title, description, price, img_url, stock, category, gender
 
 -- Produtos Masculinos - SHOES
 ('Tênis Masculino Branco', 'Tênis branco versátil, conforto e estilo', 279.90, '/clothes/news/tenis-masculino-branco.jpeg', 30, 'SHOES', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
-('Tênis Esportivo Preto', 'Tênis esportivo preto, performance e design', 259.90, '/clothes/news/tenis-esportivo-preto.jpeg', 28, 'SHOES', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Tênis Esportivo Preto', 'Tênis esportivo preto, performance e design', 259.90, '/clothes/news/tenis-masculino-branco.jpeg', 28, 'SHOES', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
 -- Produtos Masculinos - SWEATSHIRTS
 ('Moletom Preto Masculino', 'Moletom masculino preto, conforto e estilo', 199.90, '/clothes/news2/sweartshirt-masculine-black.jpeg', 35, 'SWEATSHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
@@ -159,9 +159,9 @@ INSERT INTO order_item (order_id, product_id, quantity, unit_price) VALUES
 (1, 22, 15, 99.90),   -- Camisa Gymshark Branca
 
 -- Pedido 2 - Maria
-(2, 1, 12, 129.90),   -- Legging Preta Gymshark
-(2, 4, 8, 79.90),     -- Regata Preta Feminina
-(2, 9, 5, 249.90),    -- Tênis Feminino Academia
+(2, 1, 25, 129.90),   -- Legging Preta Gymshark (boosted)
+(2, 4, 18, 79.90),    -- Regata Preta Feminina (boosted)
+(2, 9, 15, 249.90),   -- Tênis Feminino Academia (boosted)
 
 -- Pedido 3 - Pedro
 (3, 18, 22, 119.90),  -- Camisa Compressão - BEST SELLER MASCULINO
