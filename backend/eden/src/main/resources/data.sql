@@ -181,7 +181,7 @@ INSERT INTO order_item (order_id, product_id, quantity, unit_price) VALUES
 -- Pedido 6 - Lucia
 (6, 31, 15, 259.90),  -- Tênis Esportivo Preto - BEST SELLER MASCULINO
 (6, 22, 19, 99.90),   -- Camisa Gymshark Branca - BEST SELLER MASCULINO
-(6, 1, 9, 129.90),    -- Legging Preta
+(6, 1, 2, 129.90),    -- Legging Preta
 
 -- Pedido 7 - Roberto (novo)
 (7, 29, 21, 89.90),   -- Short Branco Gymshark - BEST SELLER MASCULINO

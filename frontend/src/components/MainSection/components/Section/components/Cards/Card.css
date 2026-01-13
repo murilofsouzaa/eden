@@ -5,59 +5,64 @@
     align-items: center;
     padding: 20px;
     flex-shrink: 0;
-    width: 340px;
+    width: 100%;
     border: none !important;
     cursor: grab;
 }
 
-.card > .priceAndSold {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+.card div {
+    width: 100%;
 }
 
+.best-seller .img-card-best-seller{
+    height: 486px;
+    width: 100%;
+} 
 
-.card .price{
-    padding: 10px 10px 10px 10px;
-    background-color: transparent;
+.best-seller > div{
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.198);
 }
 
-.card .solds{
+.best-seller h2{
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.best-seller p{
     background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+    margin-top: 2px;
+}
+
+.best-seller .price{
+    font-weight: 300;
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.499);
+}
+
+.best-seller .solds{
+    font-size: 14px;
+    font-weight: 500;
+    text-align: end;
+}
+
+.discount{
+    position: relative;
+    bottom: 596px;
+    display: inline;
+    padding: 5px;
+    background-color: rgba(234, 234, 234, 0.015);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.506);
 }
 
 .card-category > .img-card-category{
-    width: 330px;
-    height: 600px;
+    width: 370px;
+    height:680px;
     object-fit: cover;
-    display: block;
-}
-
-.card-best-seller > .best-seller,
-.card-best-seller > img {
-    width: 330px;
-    height: 400px;
-    object-fit: cover;
-    display: block;
-}
-
-.card-default > img {
-    width: 330px;
-    height: 400px;
-    object-fit: cover;
-    display: block;
-}
-
-.card > h2{
-    margin-top: 20px;
-    font-size: 18px;
-    min-height: 50px;
-}
-
-.card div {
-    width: 100%;
+    transition: width 0.3s, height 0.3s;
 }
 
 .card div > h3{

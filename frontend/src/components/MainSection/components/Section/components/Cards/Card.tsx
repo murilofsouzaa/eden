@@ -87,9 +87,40 @@ const feminineCategory = (category?:string)=>{
 export function Card({product, variant = "default", gender, order}:CardProps){  
   return (
     <div className={`card card-${variant}`}>
+
+      {variant === "best-seller" && (
+        <div className="best-seller">
+          <img src={product.imgUrl} className={`img-card-${variant} object-fit-cover`}></img>
+          
+          <div>
+            <h2 className="">{product.title}</h2>
+
+              <p className="price">{
+                new Intl.NumberFormat('pt-BR',
+                  {
+                    style: 'currency',
+                    currency: 'BRL'
+                  }).format(product.price)}</p>
+             
+              <p className="price-discount">{
+                new Intl.NumberFormat('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL'
+                }).format(product.price * (1 - 0.35))
+              }</p>
+              <div className="discount">35% OFF</div>
+              {order &&
+                <p
+                  className="solds">{order.items?.reduce((total, item) => total + item.quantity, 0)} Vendido(s)
+                </p>
+              }
+            </div>
+          </div>
+      )}
+
       {variant === 'category'&& gender === "masculine"  && (
         <>
-          <img src={product.imgUrl} className={`img-card-${variant} object-fit-cover`}></img>
+          <img src={product.imgUrl} className={`img-card-${variant}`}></img>
           <div>
             <h3>{masculineCategory(product.category) == undefined ? "" : masculineCategory(product.category).toUpperCase()}</h3>
             <button>COMPRE AGORA</button>
@@ -99,30 +130,10 @@ export function Card({product, variant = "default", gender, order}:CardProps){
 
       {variant === 'category'&& gender === "feminine"  && (
         <>
-          <img src={product.imgUrl} className={`img-card-${variant} object-fit-cover`}></img>
+          <img src={product.imgUrl} className={`img-card-${variant}`}></img>
           <div>
             <h3>{feminineCategory(product.category) == undefined ? "" : feminineCategory(product.category).toUpperCase()}</h3>
             <button>COMPRE AGORA</button>
-          </div>
-        </>
-      )}
-
-      {variant === "best-seller" && (
-        <>
-          <img src={product.imgUrl} className="best-seller w-100 h-100 object-fit-cover"></img>
-          <h2>{product.title}</h2>
-          <div className="priceAndSold">
-            <p className="price">{
-              new Intl.NumberFormat('pt-BR',
-                {
-                  style: 'currency',
-                  currency: 'BRL'
-                }).format(product.price)}</p>
-                {order &&
-                <p
-                  className="solds">{order.items?.reduce((total, item) => total + item.quantity, 0)} Vendido(s)
-                </p>
-                }
           </div>
         </>
       )}

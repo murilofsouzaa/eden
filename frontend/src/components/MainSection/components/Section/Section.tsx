@@ -87,10 +87,10 @@ export function Section(props){
         ) as (MasculineCategory | FeminineCategory)[];
 
    return (
-        <>
-         <h2 className="section-title fs-4 mb-0 mt-5 mx-4">{props.title}</h2>
+        <div className="section-root">
+         <h2 className="section-title fs-4 mb-0 mt-5">{props.title}</h2>
          {props.gender && (
-                <div className="d-flex gap-4 mt-4 mx-4 mb-3">
+                <div className="d-flex gap-4 mt-4 mb-3">
                         <button
                                 className={`gender-btn ${selectedGender === 'masculine' ? 'active' : ''}`}
                                 onClick={() => handleGenderClick('masculine')}
@@ -116,7 +116,7 @@ export function Section(props){
                         whileTap={{ cursor: "grabbing" }}
                 >
                         <div className="section">
-                                <div className="cards-subsection d-flex">
+                                <div className="cards-subsection">
                                         {props.variant === "category"
                                         ? uniqueCategories.map((category) => {
                                                 const foundProduct = products.find(
@@ -154,6 +154,6 @@ export function Section(props){
                         </div>
                 </motion.div>
         </div>
-        </>
+        </div>
         );
 }
