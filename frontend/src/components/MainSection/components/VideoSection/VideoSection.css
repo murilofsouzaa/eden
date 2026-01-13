@@ -1,5 +1,6 @@
 
 .video-container{
+    margin-top: 60px;
     overflow: hidden;
     height: 900px;
 }
