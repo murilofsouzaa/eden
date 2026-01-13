@@ -1,12 +1,10 @@
-import { Card } from "./components/Cards/Card.tsx";
+import { CategorySection } from "./components/CategorySection";
+import { BestSellerSection } from "./components/BestSellerSection";
 import type { Order } from "../../../../services/orderService.ts";
 import type { Products } from "../../../../services/productService.ts";
-import { getBestSellers } from "../../../../services/productService.ts";
-import { getAllProducts } from "../../../../services/productService.ts";
-import { getAllProductsByGender } from "../../../../services/productService.ts";
+import { getBestSellers, getAllProducts, getAllProductsByGender } from "../../../../services/productService.ts";
 import { getAllOrders } from "../../../../services/orderService.ts";
 import { useState, useEffect, useRef} from "react";
-import { motion } from 'framer-motion';
 import "./Section.css";
 
 type MasculineCategory =
@@ -37,9 +35,9 @@ type Gender = "masculine" | "feminine";
 
 export function Section(props){
 
-        const carrousel = useRef<HTMLDivElement>(null);
-        const inner = useRef<HTMLDivElement>(null);
-        const [width, setWidth] = useState(0);
+        // const carrousel = useRef<HTMLDivElement>(null);
+        // const inner = useRef<HTMLDivElement>(null);
+        // const [width, setWidth] = useState(0);
         const [products, setProducts] = useState<Products[]>([]);
         const [orders, setOrders] = useState<Order[]>([]);
         const [selectedGender, setSelectedGender] = useState<Gender>("masculine")
@@ -71,89 +69,38 @@ export function Section(props){
                 fetchProducts();
         }, [selectedGender, props.gender, props.variant]);
 
-        useEffect(() => {
-                if (inner.current && carrousel.current) {
-                        const totalWidth = inner.current.scrollWidth - carrousel.current.offsetWidth;
-                        setWidth(totalWidth);
-                }
-        }, [products]);
+        // useEffect(() => {
+        //         if (inner.current && carrousel.current) {
+        //                 const totalWidth = inner.current.scrollWidth - carrousel.current.offsetWidth;
+        //                 setWidth(totalWidth);
+        //         }
+        // }, [products]);
 
-        const handleGenderClick = (gender: string) => {
-                setSelectedGender(gender.toLowerCase() as Gender);
-        };
+        // const handleGenderClick = (gender: string) => {
+        //         setSelectedGender(gender.toLowerCase() as Gender);
+        // };
 
         const uniqueCategories = Array.from(
                 new Set(products.map(product => product.category))
         ) as (MasculineCategory | FeminineCategory)[];
 
    return (
-        <div className="section-root">
-         <h2 className="section-title fs-4 mb-0 mt-5">{props.title}</h2>
-         {props.gender && (
-                <div className="d-flex gap-4 mt-4 mb-3">
-                        <button
-                                className={`gender-btn ${selectedGender === 'masculine' ? 'active' : ''}`}
-                                onClick={() => handleGenderClick('masculine')}
-                                style={{ cursor: 'pointer' }}
-                        >
-                                {props.gender.masculine}
-                        </button>
-                        <button 
-                                className={`gender-btn ${selectedGender === 'feminine' ? 'active' : ''}`}
-                                onClick={() => handleGenderClick('feminine')}
-                                style={{ cursor: 'pointer' }}
-                        >
-                                {props.gender.feminine}
-                        </button>
-                </div>
-                                )}
-        <div ref={carrousel} className="carrousel">
-                <motion.div 
-                        ref={inner}
-                        className="inner"
-                        drag="x"
-                        dragConstraints={{ left: -width + 20, right: 0 }}
-                        whileTap={{ cursor: "grabbing" }}
-                >
-                        <div className="section">
-                                <div className="cards-subsection">
-                                        {props.variant === "category"
-                                        ? uniqueCategories.map((category) => {
-                                                const foundProduct = products.find(
-                                                        (product) => product.category === category
-                                                );
-                                                if (!foundProduct) return null;
-
-                                                return (
-                                                        <Card
-                                                                key={category}
-                                                                product={foundProduct}
-                                                                variant={props.variant}
-                                                                gender={selectedGender}
-                                                        />
-                                                );
-                                        })
-                                        : products.slice(0, 7).map((product) => {
-                                                const relatedOrder = orders.find(order => 
-                                                        order.items.some(item => item.productId === product.id)
-                                                );
-                                                
-                                                return (
-                                                        <Card
-                                                                key={product.id}
-                                                                product={product}
-                                                                variant={props.variant}
-                                                                gender={selectedGender}
-                                                                order={relatedOrder}
-                                                        />
-                                                );
-                                        })}
-                                </div>
-
-                                
-                        </div>
-                </motion.div>
-        </div>
-        </div>
+                <>
+                        {props.variant === "category" ? (
+                                <CategorySection
+                                        title={props.title}
+                                        categories={uniqueCategories}
+                                        products={products}
+                                        selectedGender={selectedGender}
+                                />
+                        ) : (
+                                <BestSellerSection
+                                        title={props.title}
+                                        products={products}
+                                        orders={orders}
+                                        selectedGender={selectedGender}
+                                />
+                        )}
+                </>
         );
 }

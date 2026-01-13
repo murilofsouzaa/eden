@@ -1,6 +1,9 @@
 import { Section } from "./components/Section/Section"
 import { ImageSection } from "./components/ImageSection/ImageSection"
 import { VideoSection } from "./components/VideoSection/VideoSection"
+import { LogoSection } from "./components/LogoSection/LogoSection"
+import { AcessoriesSection } from "./components/Section/components/AcessoriesSection"
+
 export function Main() {
     return(
         <div className="main-section">
@@ -20,6 +23,8 @@ export function Main() {
                 category={["shirts", "t_shirts", "pants", "shoes", "caps"]}>
             </Section>
             <VideoSection></VideoSection>
+            <AcessoriesSection></AcessoriesSection>
+            <LogoSection></LogoSection>
         </div>
     );
 }

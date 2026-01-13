@@ -66,11 +66,11 @@
     width: 370px;
     height: 712px;
     object-fit: cover;
-    transition: transform 0.4s , width 0.3s, height 0.3s;
+    transition: transform 0.6s ease;
 }
 
 .card-category:hover > .img-card-category {
-    transform: scale(1.03);
+    transform: scale(1.01);
     border-radius: 6px;
 }
 
