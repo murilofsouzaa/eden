@@ -1,0 +1,46 @@
+
+.video-container{
+    overflow: hidden;
+    height: 900px;
+}
+
+.video-background{
+    filter: blur(3px) brightness(50%);
+    position: relative;
+    right: 300px;
+    height: auto;
+    width: auto;
+}
+
+.video-desc{
+    margin: 20px;
+}
+
+.video-desc > h2{
+    position: relative;
+    bottom: 520px;
+    color: white;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.video-desc > h3{
+    position: relative;
+    bottom: 520px;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+div > button{
+    position: relative;
+    margin-top: 30px;
+    bottom: 520px;
+    padding: 16px;
+    width: 180px;
+    border: none;
+    border-radius: 50px;
+    color: black;
+    font-size: 18px;
+    background-color: white;
+}
