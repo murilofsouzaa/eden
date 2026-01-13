@@ -90,10 +90,10 @@ export function Card({product, variant = "default", gender, order}:CardProps){
 
       {variant === "best-seller" && (
         <div className="best-seller">
-          <img src={product.imgUrl} className={`img-card-${variant} object-fit-cover`}></img>
+          <img src={product.imgUrl} className={`img-card-${variant}`}></img>
           
           <div>
-            <h2 className="">{product.title}</h2>
+          <h2 className="">{product.title}</h2>
 
               <p className="price">{
                 new Intl.NumberFormat('pt-BR',

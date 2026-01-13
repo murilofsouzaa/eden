@@ -33,9 +33,9 @@
 }
 
 .inner img {
-    pointer-events: none;
-    cursor: grab;
+    cursor: pointer;
     user-select: none;
+    pointer-events: none;
 }
 
 .gender-btn{

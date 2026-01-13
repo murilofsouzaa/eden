@@ -11,12 +11,13 @@
 }
 
 .card div {
-    width: 100%;
+    width: 102%;
 }
 
 .best-seller .img-card-best-seller{
     height: 486px;
     width: 100%;
+    object-fit: cover;
 } 
 
 .best-seller > div{
@@ -53,16 +54,24 @@
     position: relative;
     bottom: 596px;
     display: inline;
+    font-weight: 700;
+    font-size: 14px;
+    color: rgb(3, 3, 3);
     padding: 5px;
-    background-color: rgba(234, 234, 234, 0.015);
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.506);
+    background-color: rgba(255, 255, 255, 0.482);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.316);
 }
 
 .card-category > .img-card-category{
     width: 370px;
-    height:680px;
+    height: 712px;
     object-fit: cover;
-    transition: width 0.3s, height 0.3s;
+    transition: transform 0.4s , width 0.3s, height 0.3s;
+}
+
+.card-category:hover > .img-card-category {
+    transform: scale(1.03);
+    border-radius: 6px;
 }
 
 .card div > h3{
