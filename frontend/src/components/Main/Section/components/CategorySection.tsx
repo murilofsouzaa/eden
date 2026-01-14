@@ -1,5 +1,5 @@
-import { Card } from "./Cards/Card";
-import type { Products } from "../../../../services/productService";
+import { Card } from "./Cards/Card.tsx";
+import type { Products } from "../../../../services/productService.ts";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 

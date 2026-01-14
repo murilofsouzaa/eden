@@ -1,6 +1,6 @@
 import "./Card.css";
-import type { Products } from "../../../../../../services/productService.ts";
-import type { Order } from "../../../../../../services/orderService.ts";
+import type { Products } from "../../../../../services/productService.ts";
+import type { Order } from "../../../../../services/orderService.ts";
 
 type CardVariant = "best-seller" | "category" | "default";
 type Gender = "feminine" | "masculine";

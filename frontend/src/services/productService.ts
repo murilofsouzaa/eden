@@ -19,6 +19,11 @@ export const getAllProducts = async () =>{
   return response.data
 } 
 
+export const getAllProductsByCategory = async (category:string) => {
+  const response = await api.get(`/products/category/${category}`);
+  return response.data;
+}
+
 export const getAllProductsByGender = async (gender: string) =>{
   const response = await api.get(`/products/gender/${gender}`);
   return response.data
