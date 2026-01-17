@@ -23,12 +23,13 @@ public class ProductController {
     public ProductController(ProductService productService){
         this.productService = productService;
     }
-
+    //TODO add pagination
     @GetMapping
     public ResponseEntity<List<ProductResponse>> getAllProducts(){
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
+    //TODO add pagination
     @GetMapping("/available")
     public ResponseEntity<List<ProductResponse>> getAllAvailableProducts(){
        return ResponseEntity.ok(productService.getAllAvailableProducts());

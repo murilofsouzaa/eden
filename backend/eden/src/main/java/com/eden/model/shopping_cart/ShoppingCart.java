@@ -46,10 +46,10 @@
 
         public BigDecimal getTotalPrice(){
             return items.stream()
-                    .map(item ->
-                            item.getUnitPrice()
-                                    .multiply(BigDecimal.valueOf(item.getQuantity()))
-                            ).reduce(BigDecimal.ZERO, BigDecimal::add);
+                .map(item ->
+                    item.getUnitPrice()
+                        .multiply(BigDecimal.valueOf(item.getQuantity()))
+                ).reduce(BigDecimal.ZERO, BigDecimal::add);
         }
 
         public Long getId() {

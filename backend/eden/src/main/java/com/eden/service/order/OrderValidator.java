@@ -4,6 +4,7 @@ import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.User;
 import org.springframework.stereotype.Component;
 
+//TODO DELETE THIS CLASS
 @Component
 public class OrderValidator {
     

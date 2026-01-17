@@ -3,6 +3,7 @@ package com.eden.service.user;
 import com.eden.dto.user.UpdateUserRequest;
 import org.springframework.stereotype.Component;
 
+//TODO DELETE THIS CLASS
 @Component
 public class UserValidator {
 

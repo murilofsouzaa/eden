@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+//TODO DELETE THIS CLASS
 @Component
 public class ProductValidator {
     

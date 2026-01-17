@@ -5,6 +5,7 @@ import com.eden.repository.ProductRepository;
 import com.eden.repository.ShoppingCartRepository;
 import org.springframework.stereotype.Component;
 
+//TODO DELETE THIS CLASS
 @Component
 public class ShoppingCartValidator {
 
