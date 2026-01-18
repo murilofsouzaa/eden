@@ -8,9 +8,11 @@ interface CategorySectionProps {
   categories: string[];
   products: Products[];
   selectedGender: string;
+  gender?: { masculine: string; feminine: string };
+  onGenderClick?: (gender: string) => void;
 }
 
-export function CategorySection({ title, categories, products, selectedGender }: CategorySectionProps) {
+export function CategorySection({ title, categories, products, selectedGender, gender, onGenderClick }: CategorySectionProps) {
   const carrousel = useRef<HTMLDivElement>(null);
   const inner = useRef<HTMLDivElement>(null);
   const uniqueCategories = Array.from(new Set(categories));
@@ -18,6 +20,24 @@ export function CategorySection({ title, categories, products, selectedGender }:
   return (
     <div className="section-root">
       <h2 className="section-title fs-4 mb-0 mt-5">{title}</h2>
+      {gender && (
+        <div className="d-flex gap-4 mt-4 mb-3">
+          <button
+            className={`gender-btn ${selectedGender === 'masculine' ? 'active' : ''}`}
+            onClick={() => onGenderClick && onGenderClick('masculine')}
+            style={{ cursor: 'pointer' }}
+          >
+            {gender.masculine}
+          </button>
+          <button
+            className={`gender-btn ${selectedGender === 'feminine' ? 'active' : ''}`}
+            onClick={() => onGenderClick && onGenderClick('feminine')}
+            style={{ cursor: 'pointer' }}
+          >
+            {gender.feminine}
+          </button>
+        </div>
+      )}
       <div ref={carrousel} className="carrousel">
         <motion.div
           ref={inner}

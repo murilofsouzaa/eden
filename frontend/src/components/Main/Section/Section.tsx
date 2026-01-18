@@ -1,11 +1,11 @@
 import { CategorySection } from "./components/CategorySection.tsx";
 import { BestSellerSection } from "./components/BestSellerSection.tsx";
-import { AcessoriesSection } from "./components/AcessoriesSection.tsx";
+
 import type { Order } from "../../../services/orderService.ts";
 import type { Products } from "../../../services/productService.ts";
 import { getBestSellers, getAllProducts, getAllProductsByGender } from "../../../services/productService.ts";
 import { getAllOrders } from "../../../services/orderService.ts";
-import { useState, useEffect, useRef} from "react";
+import { useState, useEffect} from "react";
 import "./Section.css";
 
 type MasculineCategory =
@@ -38,7 +38,7 @@ export function Section(props){
 
         const [products, setProducts] = useState<Products[]>([]);
         const [orders, setOrders] = useState<Order[]>([]);
-        const [selectedGender] = useState<Gender>("masculine")
+        const [selectedGender, setSelectedGender] = useState<Gender>("masculine")
 
         useEffect(() => {
                 const fetchOrders = async () => {
@@ -57,10 +57,7 @@ export function Section(props){
                                 data = await getBestSellers();
                         } else if (props.gender) {
                                 data = await getAllProductsByGender(selectedGender.toUpperCase());
-                        } else if(props.variant === "acessories"){
-
-                        }
-                        else {
+                        } else {
                                 data = await getAllProducts();
                         }
                         
@@ -74,7 +71,10 @@ export function Section(props){
                 new Set(products.map(product => product.category))
         ) as (MasculineCategory | FeminineCategory)[];
 
-   return (
+        function handleGenderClick(gender: Gender): void {
+                setSelectedGender(gender);
+        }
+        return (
                 <>
                         {(() => {
                                 switch (props.variant) {
@@ -94,15 +94,8 @@ export function Section(props){
                                                                 categories={uniqueCategories}
                                                                 products={products}
                                                                 selectedGender={selectedGender}
-                                                        />
-                                                );
-                                        case "acessories":
-                                                return (
-                                                        <AcessoriesSection
-                                                                title={props.title}
-                                                                products={products}
-                                                                categories={uniqueCategories}
-                                                                selectedGender={selectedGender}
+                                                                gender={props.gender}
+                                                                onGenderClick={handleGenderClick}
                                                         />
                                                 );
                                         default:

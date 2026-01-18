@@ -2,7 +2,7 @@ import { Section } from "./Section/Section"
 import { ImageSection } from "./Section/components/ImageSection/ImageSection"
 import { VideoSection } from "./Section/components/VideoSection/VideoSection"
 import { LogoSection } from "./Section/components/LogoSection/LogoSection"
-import { AcessoriesSection } from "./Section/components/AcessoriesSection"
+
 
 export function Main() {
     return(
@@ -23,12 +23,7 @@ export function Main() {
 
             <VideoSection></VideoSection>
 
-            <AcessoriesSection
-                title={"ACESSÓRIOS"}
-                variant={"acessories"}
-                gender={{masculine: "Masculino", feminine: "Feminino"}}
-                categories={["shirts", "t_shirts", "regatta", "pants", "shorts", "set", "shoes", "caps", "sweatshirts", "legging"]}>
-                </AcessoriesSection>
+            {/* Removido AcessoriesSection */}
             <LogoSection></LogoSection>
         </div>
     );
