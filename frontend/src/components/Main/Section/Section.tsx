@@ -8,6 +8,12 @@ import { getAllOrders } from "../../../services/orderService.ts";
 import { useState, useEffect} from "react";
 import "./Section.css";
 
+interface SectionProps{
+        title:string,
+        gender?:{ masculine: string; feminine: string }
+        variant:string,
+}
+
 type MasculineCategory =
   | "shirts"
   | "t_shirts"
@@ -34,7 +40,7 @@ type FeminineCategory =
 
 type Gender = "masculine" | "feminine";
 
-export function Section(props){
+export function Section(props:SectionProps){
 
         const [products, setProducts] = useState<Products[]>([]);
         const [orders, setOrders] = useState<Order[]>([]);

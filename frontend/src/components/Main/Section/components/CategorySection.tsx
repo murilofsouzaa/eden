@@ -9,7 +9,7 @@ interface CategorySectionProps {
   products: Products[];
   selectedGender: string;
   gender?: { masculine: string; feminine: string };
-  onGenderClick?: (gender: string) => void;
+  onGenderClick: (gender?: string) => void;
 }
 
 export function CategorySection({ title, categories, products, selectedGender, gender, onGenderClick }: CategorySectionProps) {
@@ -24,14 +24,14 @@ export function CategorySection({ title, categories, products, selectedGender, g
         <div className="d-flex gap-4 mt-4 mb-3">
           <button
             className={`gender-btn ${selectedGender === 'masculine' ? 'active' : ''}`}
-            onClick={() => onGenderClick && onGenderClick('masculine')}
+            onClick={() => onGenderClick?.('masculine')}
             style={{ cursor: 'pointer' }}
           >
             {gender.masculine}
           </button>
           <button
             className={`gender-btn ${selectedGender === 'feminine' ? 'active' : ''}`}
-            onClick={() => onGenderClick && onGenderClick('feminine')}
+            onClick={() => onGenderClick?.('feminine')}
             style={{ cursor: 'pointer' }}
           >
             {gender.feminine}

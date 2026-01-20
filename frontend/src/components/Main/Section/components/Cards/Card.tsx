@@ -9,7 +9,7 @@ type Gender = "feminine" | "masculine";
 interface CardProps {
   product: Products;
   variant?: CardVariant;
-  gender: Gender;
+  gender?: { masculine: string; feminine: string };
   order?: Order;
 }
 
