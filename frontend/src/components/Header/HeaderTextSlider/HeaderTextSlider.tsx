@@ -22,8 +22,8 @@ export function HeaderTextSlider(){
     
 
     return (
-        <>
+        <div className="d-flex justify-content-center">
             <p>{texts[currentIndex]}</p>
-        </>
+        </div>
     )
 }
