@@ -30,10 +30,15 @@ INSERT INTO shopping_cart (id, user_id, status, created_at) VALUES
 (7, 7, true, NOW());
 
 -- ==================== INSERIR PRODUTOS ====================
-ALTER TABLE product DROP CONSTRAINT IF EXISTS product_category_check;
 
+
+ALTER TABLE product DROP CONSTRAINT IF EXISTS product_gender_check;
+ALTER TABLE product ADD CONSTRAINT product_gender_check 
+  CHECK (gender IN ('FEMININE', 'MASCULINE', 'UNISSEX'));
+
+ALTER TABLE product DROP CONSTRAINT IF EXISTS product_category_check;
 ALTER TABLE product ADD CONSTRAINT product_category_check 
-  CHECK (category IN ('SHIRTS', 'T_SHIRTS', 'REGATTA', 'PANTS', 'LEGGING', 'SHORTS', 'SET', 'SHOES', 'CAPS', 'SWEATSHIRTS'));
+  CHECK (category IN ('SHIRTS', 'T_SHIRTS', 'REGATTA', 'PANTS', 'LEGGING', 'SHORTS', 'SET', 'SHOES', 'CAPS', 'BAGS', 'BELTS', 'HATS', 'WATER_BOTTLE', 'ACCESSORY', 'SWEATSHIRTS'));
 
 INSERT INTO product (id, title, description, price, img_URL, stock, category, gender, status, created_at, updated_at) VALUES
 (1, 'Legging Preta Gymshark', 'Legging fitness de alta qualidade, tecido respirável e confortável', 129.90, '/clothes/news/leggin-preta-gymshark.jpeg', 50, 'LEGGING', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
@@ -74,10 +79,10 @@ INSERT INTO shopping_cart_item (cart_id, product_id, quantity, unit_price) VALUE
 (6, 24, 1, 259.90),
 (7, 20, 1, 89.90);
 
-ALTER TABLE product DROP CONSTRAINT IF EXISTS product_category_check;
 
+ALTER TABLE product DROP CONSTRAINT IF EXISTS product_category_check;
 ALTER TABLE product ADD CONSTRAINT product_category_check 
-  CHECK (category IN ('SHIRTS', 'T_SHIRTS', 'REGATTA', 'PANTS', 'LEGGING', 'SHORTS', 'SET', 'SHOES', 'CAPS', 'SWEATSHIRTS'));
+  CHECK (category IN ('SHIRTS', 'T_SHIRTS', 'REGATTA', 'PANTS', 'LEGGING', 'SHORTS', 'SET', 'SHOES', 'CAPS', 'BAGS', 'BELTS', 'HATS', 'WATER_BOTTLE', 'ACCESSORY', 'SWEATSHIRTS'));
 
 INSERT INTO product (title, description, price, img_URL, stock, category, gender, status, created_at, updated_at) VALUES
 ('Legging Preta Gymshark', 'Legging fitness de alta qualidade, tecido respirável e confortável', 129.90, '/clothes/news/leggin-preta-gymshark.jpeg', 50, 'LEGGING', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
@@ -97,6 +102,15 @@ INSERT INTO product (title, description, price, img_URL, stock, category, gender
 -- Produtos Femininos - SWEATSHIRTS
 ('Moletom Vermelho Feminino', 'Moletom feminino vermelho, alta performance', 199.90, '/clothes/news2/moletom-vermelho-femininio.jpeg', 35, 'SWEATSHIRTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 -- Produtos Femininos - CAPS
+('Boné Bege Feminino Gym', 'Boné feminino bege gym, estilo casual e moderno', 59.90, '/clothes/bone-feminino-gym-bege.jpeg', 35, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+-- Produtos Femininos - BAGS
+('Bolsa Feminina Preta', 'Bolsa preta feminina, espaçosa e elegante', 99.90, '/acessories/bag-feminina-preta.jpeg', 20, 'BAGS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+-- Produtos Femininos - BELTS
+('Cinto Feminino Marrom', 'Cinto feminino marrom, couro sintético', 39.90, '/acessories/cinto-feminino-marrom.jpeg', 15, 'BELTS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+-- Produtos Femininos - HATS
+('Chapéu Feminino Praia', 'Chapéu feminino para praia, proteção UV', 49.90, '/acessories/chapeu-feminino-praia.jpeg', 10, 'HATS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
+-- Produtos Femininos - WATER_BOTTLE
+('Garrafa Feminina Rosa', 'Garrafa de água rosa, 500ml', 29.90, '/acessories/garrafa-rosa.jpeg', 25, 'WATER_BOTTLE', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 ('Boné Bege Feminino Gym', 'Boné feminino bege gym, estilo casual e moderno', 59.90, '/clothes/bone-feminino-gym-bege.jpeg', 35, 'CAPS', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
 -- Produtos Femininos - SET (Top + Short)
 ('Conjunto Feminino Preto Fitness', 'Conjunto top e short preto, perfeito para academia', 149.90, '/clothes/mulher-short-top-preto.jpeg', 30, 'SET', 'FEMININE', 'AVAILABLE', NOW(), NOW()),
@@ -120,8 +134,25 @@ INSERT INTO product (title, description, price, img_URL, stock, category, gender
 ('Moletom Preto Masculino', 'Moletom masculino preto, conforto e estilo', 199.90, '/clothes/news2/sweartshirt-masculine-black.jpeg', 35, 'SWEATSHIRTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
 ('Boné Preto Masculino', 'Boné masculino preto, clássico e versátil', 59.90, '/clothes/bone-masculino-preto.jpeg', 50, 'CAPS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+-- Produtos Masculinos - BAGS
+('Bolsa Masculina Esportiva', 'Bolsa esportiva masculina, resistente', 109.90, '/acessories/bolsa-masculina-esportiva.jpeg', 18, 'BAGS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+-- Produtos Masculinos - BELTS
+('Cinto Masculino Preto', 'Cinto masculino preto, couro legítimo', 49.90, '/acessories/cinto-masculino-preto.jpeg', 12, 'BELTS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+-- Produtos Masculinos - HATS
+('Chapéu Masculino Aventura', 'Chapéu masculino para trilha', 59.90, '/acessories/chapeu-masculino-aventura.jpeg', 8, 'HATS', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
+('Garrafa Masculina Azul', 'Garrafa de água azul, 700ml', 34.90, '/acessories/garrafa-azul.jpeg', 22, 'WATER_BOTTLE', 'MASCULINE', 'AVAILABLE', NOW(), NOW()),
 
 ('Conjunto Masculino Azul', 'Conjunto top compressão e short azul, treino intenso', 169.90, '/clothes/news2/conjunto-azul-masculino.jpeg', 25, 'SET', 'MASCULINE', 'AVAILABLE', NOW(), NOW());
+
+
+-- ==================== NOVOS ACESSÓRIOS BASEADOS EM IMAGENS ====================
+INSERT INTO product (title, description, price, img_URL, stock, category, gender, status, created_at, updated_at) VALUES
+('Bolsa Preta Adidas', 'Bolsa preta Adidas, espaçosa e resistente.', 119.90, '/acessories/bolsa-preta-adidas.jpeg', 15, 'BAGS', 'UNISSEX', 'AVAILABLE', NOW(), NOW()),
+('Bolsa Preta', 'Bolsa preta clássica, ideal para o dia a dia.', 99.90, '/acessories/bolsa-preta.jpeg', 20, 'BAGS', 'UNISSEX', 'AVAILABLE', NOW(), NOW()),
+('Faixa Preta', 'Faixa preta esportiva, confortável e ajustável.', 29.90, '/acessories/faixa-preta.jpeg', 30, 'BELTS', 'UNISSEX', 'AVAILABLE', NOW(), NOW()),
+('Headset', 'Headset esportivo, ideal para treinos com música.', 149.90, '/acessories/headset.jpeg', 10, 'ACCESSORY', 'UNISSEX', 'AVAILABLE', NOW(), NOW()),
+('Joelheira Preta', 'Joelheira preta para proteção durante exercícios.', 39.90, '/acessories/joelheira-preta.jpeg', 25, 'ACCESSORY', 'UNISSEX', 'AVAILABLE', NOW(), NOW()),
+('Garrafa Nike', 'Garrafa de água Nike, resistente e prática.', 34.90, '/acessories/water-bottle-nike.jpeg', 18, 'WATER_BOTTLE', 'UNISSEX', 'AVAILABLE', NOW(), NOW());
 
 
 INSERT INTO order_address (id, user_id, street, number, neighborhood, city, state, country, zip_code) VALUES

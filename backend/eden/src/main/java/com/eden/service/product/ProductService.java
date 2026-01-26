@@ -114,6 +114,20 @@ public class    ProductService {
         return ProductMapper.toResponseList(products);
     }
 
+    public List<ProductResponse> getAllAcessories(){
+        List<Product> products = productRepository.findByCategoryIn(
+            List.of(
+                ProductCategories.BAGS,
+                ProductCategories.CAPS,
+                ProductCategories.BELTS,
+                ProductCategories.HATS,
+                ProductCategories.WATER_BOTTLE,
+                ProductCategories.ACCESSORY
+            )
+        );
+        return ProductMapper.toResponseList(products);
+    }   
+
     public List<ProductResponse> getBestSellers(OrderStatus status){
         List<Product> products = orderItemRepository.findTopBestSellers(status);
         return ProductMapper.toResponseList(products);

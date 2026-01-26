@@ -52,6 +52,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProductById(id));
     }
 
+    @GetMapping("/acessories")
+    public ResponseEntity<List<ProductResponse>> getAllAcessories(){
+        return ResponseEntity.ok(productService.getAllAcessories());
+    }
+
     @GetMapping("/filter/price")
     public ResponseEntity<List<ProductResponse>> getAllProductsBetweenPrice(
             @RequestParam(required = false) BigDecimal minPrice,

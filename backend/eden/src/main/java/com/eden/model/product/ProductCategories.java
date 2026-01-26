@@ -22,8 +22,19 @@ public enum ProductCategories {
     SET,
     @JsonProperty("shoes")
     SHOES,
+    // Acessórios
     @JsonProperty("caps")
-    CAPS,
+    CAPS, // bonés
+    @JsonProperty("bags")
+    BAGS, // bolsas
+    @JsonProperty("belts")
+    BELTS, // cintos
+    @JsonProperty("hats")
+    HATS, // chapéus
+    @JsonProperty("water_bottle")
+    WATER_BOTTLE, // garrafas
+    @JsonProperty("accessory")
+    ACCESSORY, // outros acessórios (ex: headset, joelheira)
     @JsonProperty("sweatshirts")
     SWEATSHIRTS;
 }
