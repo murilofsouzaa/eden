@@ -8,11 +8,13 @@ The Eden project is an online shop focused on gym clothing. The goal is to give 
 
 >It works like a good workout plan: steady, clear, and built to help you move forward.
 
+I'm developing this project to learn concepts such as: Domain Drive Desing, Design Patterns, SOLID, Mobile First and UI/UX.
+
 ## Technologies
 
-**Backend:** Java 24, Spring Boot 3.5.7
+**Backend:** Java, Spring Boot
 
-**Frontend:** React, Bootstrap
+**Frontend:** React, Typescript, TailwindCSS
 
 **Database:** PostgreSQL
 
