@@ -21,20 +21,16 @@ import java.util.List;
 public class    ProductService {
 
     final private ProductRepository productRepository;
-    final private ProductValidator productValidator;
     final private OrderItemRepository orderItemRepository;
 
-    public ProductService(ProductRepository productRepository, ProductValidator productValidator,
+    public ProductService(ProductRepository productRepository,
         OrderItemRepository orderItemRepository
     ){
         this.productRepository = productRepository;
-        this.productValidator = productValidator;
         this.orderItemRepository = orderItemRepository;
     }
 
     public ProductResponse createProduct(CreateProductRequest createProductRequest){
-        productValidator.validate(createProductRequest);
-
         Product product = new Product();
         product.setTitle(createProductRequest.title());
         product.setDescription(createProductRequest.description());

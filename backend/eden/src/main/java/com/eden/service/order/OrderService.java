@@ -28,17 +28,14 @@ public class OrderService {
     private final UserService userService;
     private final OrderAddressRepository orderAddressRepository;
     private final ShoppingCartRepository shoppingCartRepository;
-    private final OrderValidator orderValidator;
 
     public OrderService(OrderRepository orderRepository, UserService userService, 
                        OrderAddressRepository orderAddressRepository, 
-                       ShoppingCartRepository shoppingCartRepository,
-                       OrderValidator orderValidator){
+                       ShoppingCartRepository shoppingCartRepository){
         this.orderRepository = orderRepository;
         this.userService = userService;
         this.orderAddressRepository = orderAddressRepository;
         this.shoppingCartRepository = shoppingCartRepository;
-        this.orderValidator = orderValidator;
     }
 
     @Transactional
@@ -60,8 +57,6 @@ public class OrderService {
 
         ShoppingCart shoppingCart = shoppingCartRepository.findById(orderRequest.shoppingCartId())
                 .orElseThrow(() -> new RuntimeException("Shopping cart not found!"));
-
-        orderValidator.validate(user, shoppingCart);
 
         OrderAddress address = new OrderAddress();
         address.setUser(user);

@@ -26,15 +26,13 @@ public class ShoppingCartService {
     private final ProductRepository productRepository;
     @Lazy
     private final UserRepository userRepository;
-    private final ShoppingCartValidator validator;
 
     public ShoppingCartService(
             ShoppingCartRepository shoppingCartRepository, @Lazy UserRepository userRepository,
-            ProductRepository productRepository, ShoppingCartValidator shoppingCartValidator){
+            ProductRepository productRepository){
         this.shoppingCartRepository = shoppingCartRepository;
         this.productRepository = productRepository;
         this.userRepository = userRepository;
-        this.validator = shoppingCartValidator;
     }
 
     @Transactional(rollbackOn = Exception.class)
@@ -46,10 +44,6 @@ public class ShoppingCartService {
 
     @Transactional(rollbackOn = Exception.class)
     public ItemCartResponse addItem(Long cartId, AddItemCartRequest request) {
-
-        validator.validateIfCartExists(cartId);
-        validator.validateIfProductExists(request.productId());
-        validator.validateAddItemZero(request);
 
         ShoppingCart cart = shoppingCartRepository.findById(cartId)
             .orElseThrow(() -> new RuntimeException("Cart not found"));

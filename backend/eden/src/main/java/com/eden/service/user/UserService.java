@@ -19,12 +19,10 @@ public class UserService {
 
     final private UserRepository userRepository;
     final private ShoppingCartService shoppingCartService;
-    final private UserValidator validator;
 
-    public UserService(UserRepository userRepository, @Lazy ShoppingCartService shoppingCartService, UserValidator validator){
+    public UserService(UserRepository userRepository, @Lazy ShoppingCartService shoppingCartService){
         this.userRepository = userRepository;
         this.shoppingCartService = shoppingCartService;
-        this.validator = validator;
     }
        
 
@@ -51,8 +49,6 @@ public class UserService {
     public UserResponse updateUser(Long id, UpdateUserRequest updateUserRequest){
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found!"));
-
-        validator.validateUpdateRequest(updateUserRequest);
 
         if (updateUserRequest.name() != null) {
             user.setName(updateUserRequest.name());
