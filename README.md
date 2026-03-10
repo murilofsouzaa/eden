@@ -10,7 +10,7 @@ The Eden project is an **online shop focused on gym clothing**. The goal is to g
 
 I'm developing this project to learn concepts such as: Domain Drive Desing, Design Patterns, SOLID, Mobile First and UI/UX.
 
-**Prototype:** https://www.figma.com/proto/bh5TuhdBSesmUsegzCpEdg/EDEN?node-id=18-2&p=f&t=xw2lIBIp7j533ttY-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1
+**Prototype:** https://www.figma.com/proto/bh5TuhdBSesmUsegzCpEdg/EDEN?node-id=50-21&t=xw2lIBIp7j533ttY-1
 
 ## Technologies
 
