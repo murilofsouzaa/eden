@@ -4,11 +4,13 @@
 
 # Eden
 
-The Eden project is an online shop focused on gym clothing. The goal is to give users a fast and simple way to browse items, check details, and place orders. The interface stays clear, the product list stays organised, and the system connects the frontend and backend to keep everything stable and safe. It also lets the team manage stock, prices, and updates without trouble.
+The Eden project is an **online shop focused on gym clothing**. The goal is to give users a fast and simple way to browse items, check details, and place orders. The interface stays clear, the product list stays organised, and the system connects the frontend and backend to keep everything stable and safe. It also lets the team manage stock, prices, and updates without trouble.
 
->It works like a good workout plan: steady, clear, and built to help you move forward.
+**It works like a good workout plan: steady, clear, and built to help you move forward.**
 
 I'm developing this project to learn concepts such as: Domain Drive Desing, Design Patterns, SOLID, Mobile First and UI/UX.
+
+**Prototype:** https://www.figma.com/proto/bh5TuhdBSesmUsegzCpEdg/EDEN?node-id=18-2&p=f&t=xw2lIBIp7j533ttY-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1
 
 ## Technologies
 
