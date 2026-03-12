@@ -38,6 +38,8 @@ public class ShoppingCartService {
 
     @Transactional(rollbackOn = Exception.class)
     public ShoppingCart createCart(User user) {
+        isUserNull(user);
+
         ShoppingCart cart = new ShoppingCart();
         cart.setUser(user);
         return shoppingCartRepository.save(cart);
@@ -45,6 +47,8 @@ public class ShoppingCartService {
 
     @Transactional(rollbackOn = Exception.class)
     public ItemCartResponse addItem(Long cartId, AddItemCartRequest request) {
+
+        isCartNullOrWithoutId(cartId);
 
         ShoppingCart cart = shoppingCartRepository.findById(cartId)
             .orElseThrow(() -> new RuntimeException("Cart not found"));
@@ -82,13 +86,15 @@ public class ShoppingCartService {
     }
 
     public ShoppingCartResponse getCart(Long cartId){
+        isCartNullOrWithoutId(cartId);
+
         ShoppingCart cart = shoppingCartRepository.findShoppingCartById(cartId);
         return ShoppingCartMapper.toResponse(cart);
     }
 
     public ShoppingCartResponse getCartByUsername(String username, Long cartId){
 
-        isCartWithoutId(cartId);
+        isCartNullOrWithoutId(cartId);
         isUsernameIsEmptyOrNull(username);
 
         User user = userRepository.findUserByName(username);
@@ -100,6 +106,8 @@ public class ShoppingCartService {
     }
 
     public List<ItemCartResponse> getCartItems(Long cartId){
+        isCartNullOrWithoutId(cartId);
+
         ShoppingCart cart = shoppingCartRepository.findShoppingCartById(cartId);
         return cart.getItems()
                 .stream()
@@ -107,10 +115,13 @@ public class ShoppingCartService {
                 .toList();
     }
 
-    private Long isCartWithoutId(Long cartId){
+    private Long isCartNullOrWithoutId(Long cartId){
         if(cartId == null){
             throw new IllegalArgumentException("Cart ID cannot be null");
-        }else{
+        }else if (cartId.toString().equals("")) {
+            throw new IllegalArgumentException("The Id cannot be empty");
+        }
+        else{
             return cartId;
         }
     }
@@ -122,6 +133,14 @@ public class ShoppingCartService {
             throw new IllegalArgumentException("The username cannot be empty");
         }else{
             return username;
+        }
+    }
+
+    private User isUserNull(User user){
+        if(user == null){
+            throw new IllegalArgumentException("The user cannot be null");
+        }else{
+            return user;
         }
     }
 }
