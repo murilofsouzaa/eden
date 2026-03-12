@@ -39,8 +39,10 @@ public class OrderService {
     }
 
     @Transactional
-    public OrderResponse showOrder(Long id){
-        Order order = orderRepository.findById(id)
+    public OrderResponse showOrder(Long orderId){
+        isOrderIdNullOrEmpty(orderId);
+
+        Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found!"));
 
         return OrderMapper.toResponse(order);
@@ -96,6 +98,9 @@ public class OrderService {
 
     @Transactional
     public OrderResponse cancelOrder(Long orderId){
+
+        isOrderIdNullOrEmpty(orderId);
+
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException(("Order not found!")));
 
@@ -110,5 +115,13 @@ public class OrderService {
         order.setStatus(OrderStatus.CANCELED);
 
         return OrderMapper.toResponse(order);
+    }
+
+    private void isOrderIdNullOrEmpty(Long orderId) {
+        if(orderId == null){
+            throw new IllegalArgumentException("The Id cannot be null");
+        }else if(orderId.toString().equals("")){
+            throw new IllegalArgumentException("The Id cannot be empty");
+        }
     }
 }
