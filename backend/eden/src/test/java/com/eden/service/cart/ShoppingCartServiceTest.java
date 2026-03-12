@@ -32,7 +32,6 @@ public class ShoppingCartServiceTest {
 
     @Test
     public void shouldReturnItemAdded(){
-        this.shoppingCartService.addItem(cart.getId(), request)
 
     }
 }

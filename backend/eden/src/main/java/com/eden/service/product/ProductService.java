@@ -50,6 +50,16 @@ public class    ProductService {
             Product updateProduct = productRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Product not found!"));
 
+            isFieldsNull(
+                updateProductRequest.title(),
+                updateProductRequest.description(),
+                updateProductRequest.price(),
+                updateProductRequest.imgURL(),
+                updateProductRequest.stock(),
+                updateProductRequest.category(),
+                updateProductRequest.updatedAt()
+            );
+
             updateProduct.setTitle(updateProductRequest.title());
             updateProduct.setDescription(updateProductRequest.description());
             updateProduct.setPrice(updateProductRequest.price());
@@ -127,6 +137,33 @@ public class    ProductService {
     public List<ProductResponse> getBestSellers(OrderStatus status){
         List<Product> products = orderItemRepository.findTopBestSellers(status);
         return ProductMapper.toResponseList(products);
+    }
+
+    private void isFieldsNull(String title, String description, BigDecimal price, String imgURL, int stock,
+                              ProductCategories category, LocalDateTime createdAt){
+
+        if(title == null){
+            throw new IllegalArgumentException("Title cannot be null");
+        }
+        if(description == null){
+            throw new IllegalArgumentException("Description cannot be null");
+        }
+        if(price == null){
+            throw new IllegalArgumentException("Price cannot be null");
+        }
+        if(imgURL == null){
+            throw new IllegalArgumentException("Image URL cannot be null");
+        }
+        if(stock < 0){
+            throw new IllegalArgumentException("Stock cannot be negative");
+        }
+        if(category == null){
+            throw new IllegalArgumentException("Category cannot be null");
+        }
+        if(createdAt == null){
+            throw new IllegalArgumentException("CreatedAt cannot be null");
+        }
+
     }
 
 }
