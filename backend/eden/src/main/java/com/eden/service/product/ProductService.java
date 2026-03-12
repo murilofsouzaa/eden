@@ -31,6 +31,17 @@ public class    ProductService {
     }
 
     public ProductResponse createProduct(CreateProductRequest createProductRequest){
+        LocalDateTime createdAt = LocalDateTime.now();
+        isFieldsNull(
+            createProductRequest.title(),
+            createProductRequest.description(),
+            createProductRequest.price(),
+            createProductRequest.imgURL(),
+            createProductRequest.stock(),
+            createProductRequest.category(),
+            createdAt
+        );
+
         Product product = new Product();
         product.setTitle(createProductRequest.title());
         product.setDescription(createProductRequest.description());
@@ -38,7 +49,7 @@ public class    ProductService {
         product.setStock(createProductRequest.stock());
         product.setCategory(createProductRequest.category());
         product.setStatus(createProductRequest.status());
-        product.setCreatedAt(LocalDateTime.now());
+        product.setCreatedAt(createdAt);
         product.setImgURL(createProductRequest.imgURL());
 
         productRepository.save(product);
@@ -49,6 +60,7 @@ public class    ProductService {
         public ProductResponse updateProduct(Long id, UpdateProductRequest updateProductRequest){
             Product updateProduct = productRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Product not found!"));
+             isProductIdNull(updateProduct.getId());
 
             isFieldsNull(
                 updateProductRequest.title(),
@@ -78,6 +90,8 @@ public class    ProductService {
         Product product  = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
 
+        isProductIdNull(product.getId());
+
         productRepository.delete(product);
 
         return ProductMapper.toResponse(product);
@@ -86,6 +100,8 @@ public class    ProductService {
     public ProductResponse getProductById(Long id){
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
+
+        isProductIdNull(product.getId());
 
         return ProductMapper.toResponse(product);
     }
@@ -137,6 +153,14 @@ public class    ProductService {
     public List<ProductResponse> getBestSellers(OrderStatus status){
         List<Product> products = orderItemRepository.findTopBestSellers(status);
         return ProductMapper.toResponseList(products);
+    }
+
+    private void isProductIdNull(Long id){
+        if(id == null){
+            throw new IllegalArgumentException("Id cannot be null");
+        }else if (id.toString().equals("")){
+            throw new IllegalArgumentException("The id cannot be empty");
+        }
     }
 
     private void isFieldsNull(String title, String description, BigDecimal price, String imgURL, int stock,
