@@ -1,5 +1,11 @@
 package com.eden.service.user;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+
 import com.eden.dto.user.CreateUserRequest;
 import com.eden.dto.user.UpdateUserRequest;
 import com.eden.dto.user.UserResponse;
@@ -8,11 +14,6 @@ import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.User;
 import com.eden.repository.UserRepository;
 import com.eden.service.cart.ShoppingCartService;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 public class UserService {
@@ -89,5 +90,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
+
+    //TODO Implement getProducts
 
 }
