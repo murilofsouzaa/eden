@@ -24,12 +24,13 @@ public class ShoppingCartService {
 
     private final ShoppingCartRepository shoppingCartRepository;
     private final ProductRepository productRepository;
+
     @Lazy
     private final UserRepository userRepository;
 
-    public ShoppingCartService(
-            ShoppingCartRepository shoppingCartRepository, @Lazy UserRepository userRepository,
-            ProductRepository productRepository){
+    public ShoppingCartService( ShoppingCartRepository shoppingCartRepository, @Lazy UserRepository userRepository,
+        ProductRepository productRepository){
+        
         this.shoppingCartRepository = shoppingCartRepository;
         this.productRepository = productRepository;
         this.userRepository = userRepository;
@@ -86,6 +87,10 @@ public class ShoppingCartService {
     }
 
     public ShoppingCartResponse getCartByUsername(String username, Long cartId){
+
+        isCartWithoutId(cartId);
+        isUsernameIsEmptyOrNull(username);
+
         User user = userRepository.findUserByName(username);
         ShoppingCart cart = user.getCart();
         cart.setId(cartId);
@@ -100,5 +105,23 @@ public class ShoppingCartService {
                 .stream()
                 .map(ItemCartMapper::toResponse)
                 .toList();
+    }
+
+    private Long isCartWithoutId(Long cartId){
+        if(cartId == null){
+            throw new IllegalArgumentException("Cart ID cannot be null");
+        }else{
+            return cartId;
+        }
+    }
+
+    private String isUsernameIsEmptyOrNull(String username){
+        if(username == null){
+            throw new IllegalArgumentException("The username cannot be null");
+        }else if(username.equals("")){
+            throw new IllegalArgumentException("The username cannot be empty");
+        }else{
+            return username;
+        }
     }
 }
