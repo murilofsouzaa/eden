@@ -60,6 +60,8 @@ public class OrderService {
         ShoppingCart shoppingCart = shoppingCartRepository.findById(orderRequest.shoppingCartId())
                 .orElseThrow(() -> new RuntimeException("Shopping cart not found!"));
 
+        isFieldsNullOrEmpty(orderRequest);        
+
         OrderAddress address = new OrderAddress();
         address.setUser(user);
         address.setStreet(orderRequest.address().street());
@@ -122,6 +124,27 @@ public class OrderService {
             throw new IllegalArgumentException("The Id cannot be null");
         }else if(orderId.toString().equals("")){
             throw new IllegalArgumentException("The Id cannot be empty");
+        }
+    }
+
+    private void isFieldsNullOrEmpty(CreateOrderRequest request){
+        if(request.userId() == null){
+            throw new IllegalArgumentException("User ID cannot be null");
+        }
+        else if(request.userId().toString().equals("")){
+            throw new IllegalArgumentException("User ID cannot be empty");
+        }
+        if(request.address() == null){
+            throw new IllegalArgumentException("Address cannot be null");
+        }
+        else if(request.address().toString().equals("")){
+            throw new IllegalArgumentException("Address cannot be empty");
+        }
+        if(request.shoppingCartId() == null){
+            throw new IllegalArgumentException("ShoppingCartId cannot be null");
+        }
+        else if(request.shoppingCartId().toString().equals("")){
+            throw new IllegalArgumentException("ShoppingCartID ID cannot be empty");
         }
     }
 }

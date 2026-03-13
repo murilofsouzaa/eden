@@ -32,6 +32,6 @@ public class ShoppingCartServiceTest {
 
     @Test
     public void shouldReturnItemAdded(){
-
+        this.
     }
 }
