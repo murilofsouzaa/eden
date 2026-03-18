@@ -1,4 +1,6 @@
-import Header  from '../layout/Header.jsx';
+import { Header }  from '../layout/Header';
+import { Footer }  from '../layout/Footer';
+
 
 export default function Home() {
     return(

@@ -1,5 +1,10 @@
 package com.eden.service.cart;
 
+import java.util.List;
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+
 import com.eden.dto.shopping_cart.ShoppingCartResponse;
 import com.eden.dto.shopping_cart.cart_item.AddItemCartRequest;
 import com.eden.dto.shopping_cart.cart_item.ItemCartResponse;
@@ -12,12 +17,8 @@ import com.eden.model.user.User;
 import com.eden.repository.ProductRepository;
 import com.eden.repository.ShoppingCartRepository;
 import com.eden.repository.UserRepository;
-import jakarta.transaction.Transactional;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.List;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ShoppingCartService {
