@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'react-feather'
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 export function SliderMainPage({children : slideImages}) {
 
     const slides = Array.isArray(slideImages) ? slideImages : [slideImages];
@@ -12,15 +12,24 @@ export function SliderMainPage({children : slideImages}) {
     const next = () => (
         setCurrentIndex((currentIndex) => (currentIndex === slideImages.length - 1 ? 0 : currentIndex + 1))
     )//Se tiver no final, volta pro começo, senão avança um
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % slides.length);
+        }, 8000);
+        return () => {
+            clearInterval(interval)    
+        };
+    }, []);
     
 
     return (
         <div>
                 <div className="h-80 w-full overflow-hidden relative lg:h-170">
-                    <div className="flex h-full w-full object-cover lg:object-[60%_30%]">
-                        <div className="flex lg:block transition-transform ease-out duration-1000"
+                    <div className="flex h-full w-full object-cover lg:object[60%_30%]">
+                        <div className="flex transition-transform ease-out duration-1000"
                         style={{transform: `translateX(-${currentIndex * 100}%)`}}
-                        //Cada slide ocupa 100% da tela, então 0 -> -0% ; 1 -> -100%
+                        //Cada slide ocupa 100% da tela, entã conforme o índice: 0 -> -0% ; 1 -> -100%
                             >{slides.map((image, index) =>(
                                 <div key={index} className="h-full w-full flex shrink-0 justify-between items-center">{image}</div>
                             ))}
