@@ -15,24 +15,22 @@ export function Header(){
         "PARCELE ATÉ 12x NO CARTÃO"
     ];
 
-
     const [currentIndex, setCurrentIndex] = useState(0);
     
-    
     useEffect(() => {
-        setInterval(() => {
-            for(let i = 0; i < labels.length ; i++){
-                setCurrentIndex((prev) => (prev + 1) % labels.length);
-            }
-        }, 3000);
-        return () => {
-            clearInterval(currentIndex);
-        };
-    }, []);
+        //retorna um ID para o clearInterval
+    const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % labels.length);
+    }, 3000);
 
+    return () => {
+        clearInterval(interval); //precisa ser liberado para não rodar quando o usuário trocar de paǵina
+    };                          //precisa de um ID
+}, [labels.length]);
     // para i = 1
     // 1 + 0 % 3 -> 1 % 3 = 1, pois 1/3 o quociente fica 0 e o resto será 1
 
+    //TODO
     function handleSearchClick() {
         
     }
