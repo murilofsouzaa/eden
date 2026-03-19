@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
 import './Header.css';
-import logoHeader from '../../assets/logo/logo.png'
+import logoHeader from '../../../public/logo/logo.png'
 import userIcon from '../../assets/icons/user.png'
 import shoppingBag from '../../assets/icons/shopping-bag.png'
-import textLogo from '../../assets/logo/text.png'
+import textLogo from '../../../public/logo/text.png'
 import hamburgerIcon from '../../assets/icons/hamburguer.png'
 import searchIcon from '../../assets/icons/search.png'
 
