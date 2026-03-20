@@ -1,13 +1,11 @@
 import { Header }  from '../../layout/Header/Header';
+import { Main } from './components/Main/Main'
 import { Footer }  from '../../layout/Footer/Footer';
-import {SliderMainPage} from './components/SliderMainPage'
+import {Slider} from './components/Slider/Slider'
 
 import blackWhiteSmoke from '../../assets/models/smoke-bar.jpg'
 import freepikBlackWhite from '../../assets/models/blackwhhite-freepik.jpg'
 import  ulfMeier from '../../assets/models/mahtla-preto-branco.jpg'
-
-
-
 
 export default function Home() {
     
@@ -18,11 +16,12 @@ export default function Home() {
     return(
         <>
             <Header></Header>
-            <SliderMainPage>{
+            <Slider>{
                 slideImages.map((image, i) => (
                     <img src={image} key={i} className="object-cover w-full h-full"></img>
     ))    
-            }</SliderMainPage>
+            }</Slider>
+            <Main></Main>
             <Footer></Footer>
         </>
     )

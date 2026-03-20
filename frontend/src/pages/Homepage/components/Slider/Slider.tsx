@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'react-feather'
 import {useState, useEffect} from 'react';
-export function SliderMainPage({children : slideImages}) {
+export function Slider({children : slideImages}) {
 
     const slides = Array.isArray(slideImages) ? slideImages : [slideImages];
     const [currentIndex, setCurrentIndex] = useState(0);
