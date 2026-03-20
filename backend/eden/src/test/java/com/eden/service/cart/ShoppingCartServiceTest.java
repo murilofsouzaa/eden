@@ -1,15 +1,11 @@
 package com.eden.service.cart;
 
-import com.eden.service.cart.ShoppingCartService;
+import org.junit.jupiter.api.Test;
+
+import com.eden.model.shopping_cart.ShoppingCart;
+import com.eden.repository.ProductRepository;
 import com.eden.repository.ShoppingCartRepository;
 import com.eden.repository.UserRepository;
-import com.eden.repository.ProductRepository;
-import com.eden.model.product.Product;
-import com.eden.model.shopping_cart.ShoppingCart;
-import com.eden.dto.shopping_cart.cart_item.AddItemCartRequest;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.*;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 public class ShoppingCartServiceTest {
 
@@ -32,6 +28,6 @@ public class ShoppingCartServiceTest {
 
     @Test
     public void shouldReturnItemAdded(){
-        this.
+        
     }
 }
