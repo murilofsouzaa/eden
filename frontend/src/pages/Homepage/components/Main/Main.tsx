@@ -5,7 +5,7 @@ type Product= {
     id:number;
     title:string;
     price:number;
-    img_url:string;
+    imgUrl:string;
 }
 
 export function Main() {
@@ -22,7 +22,7 @@ export function Main() {
         };
     }, []);
 
-    //Não colocar products na dependência pois o axios.get vai retornar um novo array na memória, o que a dependência
+    //Não colocar products na dependência pois o axios.get vai retornar um novo array na memória    , o que a dependência
     //considera como mudança, então entraria em um loop de requests
 
 
@@ -33,10 +33,9 @@ export function Main() {
             <div>
                 {products.map((product:Product) => (
                         <div key={product.id}>
-                            <img src="product.img_url"></img>
+                            <img src={`http://localhost:8080/${product.imgUrl}`} alt={product.title}></img>
                             <p>{product.title}</p>
-                            <p>{product.price}</p>
-
+                            <p>R${product.price}</p>
                         </div>
                     ))}
             </div>

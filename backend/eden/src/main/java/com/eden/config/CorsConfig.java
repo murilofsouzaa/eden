@@ -24,7 +24,19 @@ public class CorsConfig implements WebMvcConfigurer {
     //de frontend/public/assets, o spring não faz ideia desses arquivos 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry resourceRegistry) {
-        Path clothesDir = Path.of(System.getProperty("user.dir"), "frontend", "public", "clothes");
+        Path baseDir = Path.of(System.getProperty("user.dir"))
+                   .getParent()
+                   .getParent();
+
+        Path publicDir = baseDir.resolve("frontend")
+                         .resolve("public");
+
+        registerStaticDirectory(resourceRegistry, "/clothes/**", publicDir.resolve("clothes"));
+        registerStaticDirectory(resourceRegistry, "/acessories/**", publicDir.resolve("acessories"));
+    }
+
+    private void registerStaticDirectory(ResourceHandlerRegistry resourceRegistry, String handlerPattern, Path directory) {
+        String location = directory.toUri().toString();
 
         //Path é classe que representa um arquivo ou um diretório no sistema
         //em vez de usar string como "/home/murilo/project/file.txt"
@@ -32,21 +44,13 @@ public class CorsConfig implements WebMvcConfigurer {
 
         //Path.of constrói um caminho seguro e estruturado. Exemplo no windows o caminho é separado por \ e no linux /
 
-        //System.getProperty("user.dir") pega a pasta raíz de onde a aplicação está rodando
-        //No final fica algo assim (/home/murilo/Documents/eden/)frontend/public/clothes
-
-        String clothesLocation = clothesDir.toUri().toString();
-
         //Tranforma em URI: file:///home/murilo/project/frontend/public/clothes/
         // pois se fosse "/home/murilo/frontend/public/clothes" o spring espera algo com exemplo file:/// (file, classpath, etc)
-        if (!clothesLocation.endsWith("/")) {
-            clothesLocation = clothesLocation + "/";
+        if (!location.endsWith("/")) {
+            location = location + "/";
         }
 
-        //Aqui força o final ter barra, pois se for file:///home/murilo/clothes X
-        //file:///home/murilo/clothes/ Correto
-
-        resourceRegistry.addResourceHandler("/clothes/**") //Aqui está dizendo: qualquer coisa que vier depois de /clothes/
-                .addResourceLocations(clothesLocation); //vá nesse caminho
+        resourceRegistry.addResourceHandler(handlerPattern)
+                .addResourceLocations(location);
     }
 }

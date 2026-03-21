@@ -1,9 +1,16 @@
 package com.eden.model.product;
 
-import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name="product")
@@ -18,7 +25,7 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private BigDecimal price;
-    @Column(name = "img_URL")
+    @Column(name = "img_url")
     private String imgURL;
     @Column(nullable = false)
     private int stock;

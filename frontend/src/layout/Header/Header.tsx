@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
 import './Header.css';
 import logoHeader from '../../../public/logo/logo.png'
-import userIcon from '../../assets/icons/user.png'
-import shoppingBag from '../../assets/icons/shopping-bag.png'
+import userIcon from '../../../public/icons/user.png'
+import shoppingBag from '../../../public/icons/shopping-bag.png'
 import textLogo from '../../../public/logo/text.png'
-import hamburgerIcon from '../../assets/icons/hamburguer.png'
-import searchIcon from '../../assets/icons/search.png'
+import hamburgerIcon from '../../../public/icons/hamburguer.png'
+import searchIcon from '../../../public/icons/search.png'
 
 export function Header(){
 

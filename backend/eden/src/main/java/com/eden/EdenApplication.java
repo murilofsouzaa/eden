@@ -19,8 +19,17 @@ public class EdenApplication {
 	@Bean
 	public ApplicationRunner runner(){
 		return args ->{
-			 Path path = Path.of(System.getProperty("user.dir"));
-			 System.out.println(path);
+			 Path baseDir = Path.of(System.getProperty("user.dir"))
+                   .getParent()
+                   .getParent();
+
+			Path clothesDir = baseDir.resolve("frontend")
+                         .resolve("public")
+                         .resolve("clothes");
+
+			System.out.println(baseDir);
+			System.out.println(clothesDir);
+			 
 		};
 	}
 
