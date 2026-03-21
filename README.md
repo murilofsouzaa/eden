@@ -24,6 +24,8 @@ I'm developing this project to learn concepts such as: Domain Drive Desing, Desi
 
 **Infra**: Docker
 
+**Architecture: Layers**
+
 ## Getting started
 
 ### Clone the repository
@@ -34,7 +36,8 @@ git clone https://github.com/murilofsouzaa/Eden.git
 
 ### Running Backend (Spring Boot)
 ```
-cd src/backend
+cd eden/backend/eden
+mvn install
 ./mvnw spring-boot:run
 ```
 ### Running Frontend (React)
