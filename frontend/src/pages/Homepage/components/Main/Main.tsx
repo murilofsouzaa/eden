@@ -22,7 +22,7 @@ export function Main() {
         };
     }, []);
 
-    //Não colocar products na dependência pois o axios.get vai retornar um novo array na memória    , o que a dependência
+    //Não colocar products na dependência pois o axios.get vai retornar um novo array na memória, o que a dependência
     //considera como mudança, então entraria em um loop de requests
 
 
