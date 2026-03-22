@@ -1,18 +1,28 @@
 package com.eden.controller;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
 import com.eden.dto.product.UpdateProductRequest;
 import com.eden.model.order.OrderStatus;
-import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductGender;
 import com.eden.service.product.ProductService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.util.List;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/products")
@@ -23,6 +33,7 @@ public class ProductController {
     public ProductController(ProductService productService){
         this.productService = productService;
     }
+
     //TODO add pagination
     @GetMapping
     public ResponseEntity<List<ProductResponse>> getAllProducts(){
@@ -32,7 +43,7 @@ public class ProductController {
     //TODO add pagination
     @GetMapping("/available")
     public ResponseEntity<List<ProductResponse>> getAllAvailableProducts(){
-       return ResponseEntity.ok(productService.getAllAvailableProducts());
+        return ResponseEntity.ok(productService.getAllAvailableProducts());
     }
 
     @GetMapping("/category/{category}")
@@ -71,23 +82,23 @@ public class ProductController {
 
     @GetMapping("/best-sellers")
     public ResponseEntity<List<ProductResponse>> getBestSellers(
-        @RequestParam(defaultValue = "DELIVERED") OrderStatus status){
+            @RequestParam(defaultValue = "DELIVERED") OrderStatus status){
         return ResponseEntity.ok(productService.getBestSellers(status));
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponse> createProduct(@RequestBody CreateProductRequest productRequest){
+    public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid CreateProductRequest productRequest){
         return ResponseEntity.ok(productService.createProduct(productRequest));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponse> updateProduct(Long id, @RequestBody UpdateProductRequest updateProductRequest){
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id,
+                                                         @RequestBody @Valid UpdateProductRequest updateProductRequest){
         return ResponseEntity.ok(productService.updateProduct(id, updateProductRequest));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ProductResponse> deleteProduct (@PathVariable Long id){
+    public ResponseEntity<ProductResponse> deleteProduct(@PathVariable Long id){
         return ResponseEntity.ok(productService.deleteProduct(id));
     }
-
 }

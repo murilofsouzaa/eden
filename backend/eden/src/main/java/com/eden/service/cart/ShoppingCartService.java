@@ -10,11 +10,11 @@ import com.eden.dto.shopping_cart.cart_item.AddItemCartRequest;
 import com.eden.dto.shopping_cart.cart_item.ItemCartResponse;
 import com.eden.mapper.ItemCartMapper;
 import com.eden.mapper.ShoppingCartMapper;
-import com.eden.model.product.Product;
+import com.eden.model.product.ProductVariant;
 import com.eden.model.shopping_cart.ItemCart;
 import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.User;
-import com.eden.repository.ProductRepository;
+import com.eden.repository.ProductVariantRepository;
 import com.eden.repository.ShoppingCartRepository;
 import com.eden.repository.UserRepository;
 
@@ -24,16 +24,16 @@ import jakarta.transaction.Transactional;
 public class ShoppingCartService {
 
     private final ShoppingCartRepository shoppingCartRepository;
-    private final ProductRepository productRepository;
+    private final ProductVariantRepository productVariantRepository;
 
     @Lazy
     private final UserRepository userRepository;
 
     public ShoppingCartService( ShoppingCartRepository shoppingCartRepository, @Lazy UserRepository userRepository,
-        ProductRepository productRepository){
+        ProductVariantRepository productVariantRepository){
         
         this.shoppingCartRepository = shoppingCartRepository;
-        this.productRepository = productRepository;
+        this.productVariantRepository = productVariantRepository;
         this.userRepository = userRepository;
     }
 
@@ -54,12 +54,12 @@ public class ShoppingCartService {
         ShoppingCart cart = shoppingCartRepository.findById(cartId)
             .orElseThrow(() -> new RuntimeException("Cart not found"));
 
-        Product product = productRepository.findById(request.productId())
-            .orElseThrow(() -> new RuntimeException("Product not found"));
+        ProductVariant variant = productVariantRepository.findById(request.variantId())
+            .orElseThrow(() -> new RuntimeException("Product variant not found"));
 
         ItemCart existingItem = cart.getItems()
                 .stream()
-                .filter(item -> item.getProduct().getId().equals(product.getId()))
+                .filter(item -> item.getVariant().getId().equals(variant.getId()))
                 .findFirst()
                 .orElse(null);
 
@@ -74,9 +74,9 @@ public class ShoppingCartService {
         } else {
             item = new ItemCart();
             item.setCart(cart);
-            item.setProduct(product);
+            item.setVariant(variant);
             item.setQuantity(request.quantity());
-            item.setUnitPrice(product.getPrice());
+            item.setUnitPrice(variant.getPrice());
 
             cart.getItems().add(item);
         }

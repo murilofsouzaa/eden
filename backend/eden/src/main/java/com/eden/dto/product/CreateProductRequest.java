@@ -1,27 +1,19 @@
 package com.eden.dto.product;
 
-import com.eden.model.product.ProductCategories;
-import com.eden.model.product.ProductStatus;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.List;
 
 public record CreateProductRequest(
-        @NotNull
+        @NotBlank
         String title,
-        @NotNull
+        @NotBlank
         String description,
-        @NotNull
-        BigDecimal price,
-        @NotNull
-        int stock,
-        @NotNull
-        ProductCategories category,
-        String imgURL,
-
-        @NotNull
-        ProductStatus status
+        String imageUrl,
+        List<String> gallery,
+        @NotEmpty
+        List<ProductVariantRequest> variants
 ) {
 }

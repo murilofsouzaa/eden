@@ -1,13 +1,13 @@
 package com.eden.mapper;
 
+import java.util.List;
+
 import com.eden.dto.order.OrderResponse;
 import com.eden.dto.order.order_address.OrderAddressResponse;
 import com.eden.dto.order.order_item.OrderItemResponse;
 import com.eden.model.order.Order;
 import com.eden.model.order.OrderAddress;
 import com.eden.model.order.OrderItem;
-
-import java.util.List;
 
 public class OrderMapper {
     public static OrderResponse toResponse(Order order){
@@ -28,11 +28,15 @@ public class OrderMapper {
     }
 
     public static OrderItemResponse orderItemToResponse(OrderItem orderItem){
+        com.eden.model.product.ProductVariant variant = orderItem.getVariant();
         return new OrderItemResponse(
                 orderItem.getId(),
                 orderItem.getOrder().getId(),
-                orderItem.getProduct().getId(),
-                orderItem.getProduct().getTitle(),
+            variant.getProduct().getId(),
+            variant.getId(),
+            variant.getProduct().getTitle(),
+            variant.getColor(),
+            variant.getSize(),
                 orderItem.getQuantity(),
                 orderItem.getUnit_price(),
                 orderItem.subtotal()

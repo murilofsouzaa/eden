@@ -1,8 +1,17 @@
 package com.eden.model.order;
 
-import jakarta.persistence.*;
-
 import java.math.BigDecimal;
+
+import com.eden.model.product.ProductVariant;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name="order_item")
@@ -15,8 +24,8 @@ public class OrderItem {
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private com.eden.model.product.Product product;
+    @JoinColumn(name = "variant_id", nullable = false)
+    private ProductVariant variant;
     @Column(nullable = false)
     private int quantity;
     @Column(name = "unit_price", nullable = false)
@@ -25,10 +34,10 @@ public class OrderItem {
     public OrderItem(){
     }
 
-    public OrderItem(Long id, Order order, com.eden.model.product.Product product, int quantity, BigDecimal unitPrice) {
+    public OrderItem(Long id, Order order, ProductVariant variant, int quantity, BigDecimal unitPrice) {
         this.id = id;
         this.order = order;
-        this.product = product;
+        this.variant = variant;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
@@ -62,12 +71,12 @@ public class OrderItem {
         this.order = order;
     }
 
-    public com.eden.model.product.Product getProduct() {
-        return product;
+    public ProductVariant getVariant() {
+        return variant;
     }
 
-    public void setProduct(com.eden.model.product.Product product) {
-        this.product = product;
+    public void setVariant(ProductVariant variant) {
+        this.variant = variant;
     }
 
     public int getQuantity() {

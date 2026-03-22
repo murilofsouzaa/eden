@@ -1,24 +1,26 @@
 package com.eden.repository;
 
-import com.eden.model.order.OrderItem;
-import com.eden.model.product.Product;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import com.eden.model.order.OrderStatus;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import com.eden.model.order.OrderItem;
+import com.eden.model.order.OrderStatus;
 
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 
     @Query("""
-    SELECT oi.product
+    SELECT p.id
     FROM OrderItem oi
     JOIN oi.order o
+    JOIN oi.variant v
+    JOIN v.product p
     WHERE o.status = :status
-    GROUP BY oi.product
+    GROUP BY p.id
     ORDER BY SUM(oi.quantity) DESC
     """)
-    List<Product> findTopBestSellers(@Param("status") OrderStatus status);
+    List<Long> findTopBestSellerIds(@Param("status") OrderStatus status);
 
 }

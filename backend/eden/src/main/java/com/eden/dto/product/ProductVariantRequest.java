@@ -1,0 +1,27 @@
+package com.eden.dto.product;
+
+import java.math.BigDecimal;
+
+import com.eden.model.product.ProductCategories;
+import com.eden.model.product.ProductGender;
+import com.eden.model.product.ProductStatus;
+
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
+public record ProductVariantRequest(
+        String sku,
+        String color,
+        String size,
+        @NotNull
+        BigDecimal price,
+        @Min(0)
+        int stock,
+        @NotNull
+        ProductCategories category,
+        @NotNull
+        ProductGender gender,
+        @NotNull
+        ProductStatus status,
+        Boolean defaultVariant
+) {}

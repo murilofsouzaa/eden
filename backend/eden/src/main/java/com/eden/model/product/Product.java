@@ -1,15 +1,19 @@
 package com.eden.model.product;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,36 +27,28 @@ public class Product {
     private String title;
     @Column
     private String description;
-    @Column(nullable = false)
-    private BigDecimal price;
-    @Column(name = "img_url")
-    private String imgURL;
-    @Column(nullable = false)
-    private int stock;
-    @Enumerated(EnumType.STRING)
-    private ProductCategories category;
-    @Enumerated(EnumType.STRING)
-    private ProductGender gender;
+    @Column(name = "image_url")
+    private String imageUrl;
     @Column(nullable = false)
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    @Enumerated(EnumType.STRING)
-    private ProductStatus status;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<ProductVariant> variants = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<ProductImage> images = new LinkedHashSet<>();
 
+    public Product(){}
 
-    public Product(){};
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = this.createdAt;
+    }
 
-    public Product(Long id, String title, String description, BigDecimal price,
-                   String imgURL, int stock, ProductCategories category, LocalDateTime createdAt) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.imgURL = imgURL;
-        this.stock = stock;
-        this.category = category;
-        this.createdAt = createdAt;
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -79,38 +75,6 @@ public class Product {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public String getImgURL() {
-        return imgURL;
-    }
-
-    public void setImgURL(String img_URL) {
-        this.imgURL = imgURL;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public ProductCategories getCategory() {
-        return category;
-    }
-
-    public void setCategory(ProductCategories category) {
-        this.category = category;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -127,19 +91,37 @@ public class Product {
         this.updatedAt = updatedAt;
     }
 
-    public ProductStatus getStatus() {
-        return status;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setStatus(ProductStatus status) {
-        this.status = status;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public ProductGender getGender() {
-        return gender;
+    public Set<ProductVariant> getVariants() {
+        return variants;
     }
 
-    public void setGender(ProductGender gender) {
-        this.gender = gender;
+    public void setVariants(Set<ProductVariant> variants) {
+        this.variants = variants;
+    }
+
+    public Set<ProductImage> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<ProductImage> images) {
+        this.images = images;
+    }
+
+    public void addVariant(ProductVariant variant) {
+        variant.setProduct(this);
+        this.variants.add(variant);
+    }
+
+    public void addImage(ProductImage image) {
+        image.setProduct(this);
+        this.images.add(image);
     }
 }

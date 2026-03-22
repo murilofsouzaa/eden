@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS order_address CASCADE;
 DROP TABLE IF EXISTS shopping_cart_item CASCADE;
 DROP TABLE IF EXISTS shopping_cart CASCADE;
+DROP TABLE IF EXISTS product_image CASCADE;
+DROP TABLE IF EXISTS product_variant CASCADE;
 DROP TABLE IF EXISTS address CASCADE;
 DROP TABLE IF EXISTS product CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
@@ -37,19 +39,41 @@ CREATE TABLE product (
 	id          BIGSERIAL PRIMARY KEY,
 	title       VARCHAR(180)    NOT NULL,
 	description TEXT,
-	price       NUMERIC(12,2)   NOT NULL CHECK (price >= 0),
-	img_url     TEXT,
-	stock       INTEGER         NOT NULL CHECK (stock >= 0),
-	category    VARCHAR(40)     NOT NULL CHECK (category IN (
-					'SHIRTS','T_SHIRTS','REGATTA','PANTS','LEGGING','SHORTS','SET','SHOES',
-					'CAPS','BAGS','BELTS','HATS','WATER_BOTTLE','ACCESSORY','SWEATSHIRTS'
-				 )),
-	gender      VARCHAR(15)     NOT NULL CHECK (gender IN ('MASCULINE','FEMININE','UNISSEX')),
-	status      VARCHAR(20)     NOT NULL DEFAULT 'AVAILABLE' CHECK (status IN ('AVAILABLE','UNAVAILABLE')),
+	image_url   TEXT,
 	created_at  TIMESTAMP       NOT NULL DEFAULT NOW(),
 	updated_at  TIMESTAMP,
 	CONSTRAINT product_title_unique UNIQUE (title)
 );
+
+CREATE TABLE product_variant (
+	id          BIGSERIAL PRIMARY KEY,
+	product_id  BIGINT        NOT NULL REFERENCES product(id) ON DELETE CASCADE,
+	sku         VARCHAR(80)   UNIQUE,
+	color       VARCHAR(50),
+	size        VARCHAR(20),
+	price       NUMERIC(12,2) NOT NULL CHECK (price >= 0),
+	stock       INTEGER       NOT NULL CHECK (stock >= 0),
+	category    VARCHAR(40)   NOT NULL CHECK (category IN (
+					'SHIRTS','T_SHIRTS','REGATTA','PANTS','LEGGING','SHORTS','SET','SHOES',
+					'CAPS','BAGS','BELTS','HATS','WATER_BOTTLE','ACCESSORY','SWEATSHIRTS'
+				 )),
+	gender      VARCHAR(15)   NOT NULL CHECK (gender IN ('MASCULINE','FEMININE','UNISSEX')),
+	status      VARCHAR(20)   NOT NULL DEFAULT 'AVAILABLE' CHECK (status IN ('AVAILABLE','UNAVAILABLE')),
+	is_default  BOOLEAN       NOT NULL DEFAULT FALSE,
+	created_at  TIMESTAMP     NOT NULL DEFAULT NOW(),
+	updated_at  TIMESTAMP
+);
+
+CREATE TABLE product_image (
+	id          BIGSERIAL PRIMARY KEY,
+	product_id  BIGINT      NOT NULL REFERENCES product(id) ON DELETE CASCADE,
+	url         TEXT        NOT NULL,
+	is_main     BOOLEAN     NOT NULL DEFAULT FALSE
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_product_image_main
+    ON product_image (product_id)
+    WHERE is_main = TRUE;
 
 CREATE TABLE shopping_cart (
 	id         BIGSERIAL PRIMARY KEY,
@@ -61,10 +85,10 @@ CREATE TABLE shopping_cart (
 CREATE TABLE shopping_cart_item (
 	id          BIGSERIAL PRIMARY KEY,
 	cart_id     BIGINT        NOT NULL REFERENCES shopping_cart(id) ON DELETE CASCADE,
-	product_id  BIGINT        NOT NULL REFERENCES product(id),
+	variant_id  BIGINT        NOT NULL REFERENCES product_variant(id),
 	quantity    INTEGER       NOT NULL CHECK (quantity > 0),
 	unit_price  NUMERIC(12,2) NOT NULL CHECK (unit_price > 0),
-	UNIQUE (cart_id, product_id)
+	UNIQUE (cart_id, variant_id)
 );
 
 CREATE TABLE order_address (
@@ -92,7 +116,7 @@ CREATE TABLE orders (
 CREATE TABLE order_item (
 	id          BIGSERIAL PRIMARY KEY,
 	order_id    BIGINT        NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
-	product_id  BIGINT        NOT NULL REFERENCES product(id),
+	variant_id  BIGINT        NOT NULL REFERENCES product_variant(id),
 	quantity    INTEGER       NOT NULL CHECK (quantity > 0),
 	unit_price  NUMERIC(12,2) NOT NULL CHECK (unit_price > 0)
 );

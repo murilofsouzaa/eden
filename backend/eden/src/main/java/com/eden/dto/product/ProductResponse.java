@@ -1,31 +1,21 @@
-        package com.eden.dto.product;
+package com.eden.dto.product;
 
-        import com.eden.model.product.ProductCategories;
-        import com.eden.model.product.ProductStatus;
-        import jakarta.validation.constraints.NotBlank;
-        import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.util.List;
 
-        import java.math.BigDecimal;
-        import java.time.LocalDate;
-        import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotNull;
 
-        public record ProductResponse(
-                @NotNull
-                Long id,
-                @NotNull
-                String title,
-                @NotNull
-                String description,
-                @NotNull
-                BigDecimal price,
-                @NotNull
-                int stock,
-                @NotNull
-                ProductCategories category,
-                @NotNull
-                ProductStatus status,
-                @NotNull
-                LocalDateTime createdAt,
-                String imgUrl
-        ) {
-        }
+public record ProductResponse(
+        @NotNull
+        Long id,
+        @NotNull
+        String title,
+        @NotNull
+        String description,
+        String imageUrl,
+        List<String> gallery,
+        @NotNull
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt,
+        List<ProductVariantResponse> variants
+) {}

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record AddItemCartRequest(
         @NotNull
-        Long productId,
+        Long variantId,
 
         @Min(1)
         int quantity

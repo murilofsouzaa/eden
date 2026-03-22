@@ -1,8 +1,8 @@
 package com.eden.dto.order.order_item;
 
-import jakarta.validation.constraints.NotNull;
-
 import java.math.BigDecimal;
+
+import jakarta.validation.constraints.NotNull;
 
 public record OrderItemResponse(
         @NotNull
@@ -12,7 +12,11 @@ public record OrderItemResponse(
         @NotNull
         Long productId,
         @NotNull
+        Long variantId,
+        @NotNull
         String productName,
+        String color,
+        String size,
         @NotNull
         int quantity,
         @NotNull

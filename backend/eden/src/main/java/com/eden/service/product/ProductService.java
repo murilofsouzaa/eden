@@ -1,24 +1,29 @@
 package com.eden.service.product;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import org.springframework.stereotype.Service;
+
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
+import com.eden.dto.product.ProductVariantRequest;
 import com.eden.dto.product.UpdateProductRequest;
-import com.eden.model.order.OrderStatus;
 import com.eden.mapper.ProductMapper;
+import com.eden.model.order.OrderStatus;
 import com.eden.model.product.Product;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductGender;
+import com.eden.model.product.ProductImage;
 import com.eden.model.product.ProductStatus;
-import com.eden.repository.ProductRepository;
+import com.eden.model.product.ProductVariant;
 import com.eden.repository.OrderItemRepository;
-import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
+import com.eden.repository.ProductRepository;
 
 @Service
-public class    ProductService {
+public class ProductService {
 
     final private ProductRepository productRepository;
     final private OrderItemRepository orderItemRepository;
@@ -30,68 +35,54 @@ public class    ProductService {
         this.orderItemRepository = orderItemRepository;
     }
 
-    public ProductResponse createProduct(CreateProductRequest createProductRequest){
-        LocalDateTime createdAt = LocalDateTime.now();
-        isFieldsNull(
-            createProductRequest.title(),
-            createProductRequest.description(),
-            createProductRequest.price(),
-            createProductRequest.imgURL(),
-            createProductRequest.stock(),
-            createProductRequest.category(),
-            createdAt
-        );
+    public ProductResponse createProduct(CreateProductRequest request){
+        validateCreateRequest(request);
 
         Product product = new Product();
-        product.setTitle(createProductRequest.title());
-        product.setDescription(createProductRequest.description());
-        product.setPrice(createProductRequest.price());
-        product.setStock(createProductRequest.stock());
-        product.setCategory(createProductRequest.category());
-        product.setStatus(createProductRequest.status());
-        product.setCreatedAt(createdAt);
-        product.setImgURL(createProductRequest.imgURL());
+        product.setTitle(request.title());
+        product.setDescription(request.description());
+        product.setImageUrl(request.imageUrl());
 
-        productRepository.save(product);
+        applyGallery(product, request.imageUrl(), request.gallery());
+        request.variants().forEach(variantRequest -> product.addVariant(toVariantEntity(variantRequest)));
+        ensureDefaultVariant(product);
 
-        return ProductMapper.toResponse(product);
+        Product saved = productRepository.save(product);
+        return ProductMapper.toResponse(saved);
     }
 
-        public ProductResponse updateProduct(Long id, UpdateProductRequest updateProductRequest){
-            Product updateProduct = productRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Product not found!"));
-             isProductIdNull(updateProduct.getId());
+    public ProductResponse updateProduct(Long id, UpdateProductRequest request){
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found!"));
 
-            isFieldsNull(
-                updateProductRequest.title(),
-                updateProductRequest.description(),
-                updateProductRequest.price(),
-                updateProductRequest.imgURL(),
-                updateProductRequest.stock(),
-                updateProductRequest.category(),
-                updateProductRequest.updatedAt()
-            );
+        if (request.title() != null && !request.title().isBlank()) {
+            product.setTitle(request.title());
+        }
+        if (request.description() != null && !request.description().isBlank()) {
+            product.setDescription(request.description());
+        }
+        if (request.imageUrl() != null) {
+            product.setImageUrl(request.imageUrl());
+        }
 
-            updateProduct.setTitle(updateProductRequest.title());
-            updateProduct.setDescription(updateProductRequest.description());
-            updateProduct.setPrice(updateProductRequest.price());
-            updateProduct.setStock(updateProductRequest.stock());
-            updateProduct.setCategory(updateProductRequest.category());
-            updateProduct.setImgURL(updateProductRequest.imgURL());
-            updateProduct.setStatus(updateProductRequest.status());
-            updateProduct.setUpdatedAt(updateProductRequest.updatedAt());
+        if (request.gallery() != null || request.imageUrl() != null) {
+            String hero = request.imageUrl() != null ? request.imageUrl() : product.getImageUrl();
+            applyGallery(product, hero, request.gallery());
+        }
 
-            productRepository.save(updateProduct);
+        if (request.variants() != null && !request.variants().isEmpty()) {
+            product.getVariants().clear();
+            request.variants().forEach(variantRequest -> product.addVariant(toVariantEntity(variantRequest)));
+            ensureDefaultVariant(product);
+        }
 
-            return ProductMapper.toResponse(updateProduct);
+        Product saved = productRepository.save(product);
+        return ProductMapper.toResponse(saved);
     }
 
     public ProductResponse deleteProduct(Long id){
-        Product product  = productRepository.findById(id)
+        Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
-
-        isProductIdNull(product.getId());
-
         productRepository.delete(product);
 
         return ProductMapper.toResponse(product);
@@ -100,44 +91,41 @@ public class    ProductService {
     public ProductResponse getProductById(Long id){
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
-
-        isProductIdNull(product.getId());
-
         return ProductMapper.toResponse(product);
     }
 
     public List<ProductResponse> getAllProducts() {
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findAllWithDetails();
         return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllAvailableProducts(){
-        List<Product> products = productRepository.findByStatus(ProductStatus.AVAILABLE);
+        List<Product> products = productRepository.findAllByVariantStatus(ProductStatus.AVAILABLE);
         return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllProductsByCategory(ProductCategories category){
-        List<Product> products = productRepository.findByCategory(category);
-                return ProductMapper.toResponseList(products);
+        List<Product> products = productRepository.findAllByVariantCategory(category);
+        return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllProductsBetweenPrice (BigDecimal minPrice, BigDecimal maxPrice){
-       List<Product> products = productRepository.findByPriceBetween(minPrice, maxPrice);
+       List<Product> products = productRepository.findAllByVariantPriceBetween(minPrice, maxPrice);
         return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllProductsByTextPart(String part){
-       List<Product> products = productRepository.findByTitleContainingIgnoreCase(part);
+       List<Product> products = productRepository.searchByTitle(part);
         return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllProductsByGender(ProductGender gender){
-        List<Product> products = productRepository.findByGender(gender);
+        List<Product> products = productRepository.findAllByVariantGender(gender);
         return ProductMapper.toResponseList(products);
     }
 
     public List<ProductResponse> getAllAcessories(){
-        List<Product> products = productRepository.findByCategoryIn(
+        List<Product> products = productRepository.findAllByVariantCategories(
             List.of(
                 ProductCategories.BAGS,
                 ProductCategories.CAPS,
@@ -151,44 +139,99 @@ public class    ProductService {
     }   
 
     public List<ProductResponse> getBestSellers(OrderStatus status){
-        List<Product> products = orderItemRepository.findTopBestSellers(status);
-        return ProductMapper.toResponseList(products);
+        List<Long> productIds = orderItemRepository.findTopBestSellerIds(status);
+        if (productIds.isEmpty()) {
+            return List.of();
+        }
+
+        List<Product> products = productRepository.findAllWithDetailsByIdIn(productIds);
+        java.util.Map<Long, Product> productById = products.stream()
+                .collect(java.util.stream.Collectors.toMap(Product::getId, product -> product));
+
+        List<Product> orderedProducts = productIds.stream()
+                .map(productById::get)
+                .filter(Objects::nonNull)
+                .toList();
+
+        return ProductMapper.toResponseList(orderedProducts);
+    }
+    private void validateCreateRequest(CreateProductRequest request) {
+        if (request.title() == null || request.title().isBlank()) {
+            throw new IllegalArgumentException("Title cannot be null or blank");
+        }
+        if (request.description() == null || request.description().isBlank()) {
+            throw new IllegalArgumentException("Description cannot be null or blank");
+        }
+        if (request.variants() == null || request.variants().isEmpty()) {
+            throw new IllegalArgumentException("At least one variant is required");
+        }
+        request.variants().forEach(variant -> {
+            if (variant.price() == null) {
+                throw new IllegalArgumentException("Variant price cannot be null");
+            }
+            if (variant.category() == null) {
+                throw new IllegalArgumentException("Variant category cannot be null");
+            }
+            if (variant.gender() == null) {
+                throw new IllegalArgumentException("Variant gender cannot be null");
+            }
+            if (variant.status() == null) {
+                throw new IllegalArgumentException("Variant status cannot be null");
+            }
+            if (variant.stock() < 0) {
+                throw new IllegalArgumentException("Variant stock cannot be negative");
+            }
+        });
     }
 
-    private void isProductIdNull(Long id){
-        if(id == null){
-            throw new IllegalArgumentException("Id cannot be null");
-        }else if (id.toString().equals("")){
-            throw new IllegalArgumentException("The id cannot be empty");
+    private void applyGallery(Product product, String heroImage, List<String> gallery) {
+        product.getImages().clear();
+        List<String> resolvedGallery = new ArrayList<>();
+
+        if (gallery != null && !gallery.isEmpty()) {
+            gallery.stream()
+                    .filter(Objects::nonNull)
+                    .filter(url -> !url.isBlank())
+                    .forEach(resolvedGallery::add);
+        }
+
+        if (resolvedGallery.isEmpty() && heroImage != null && !heroImage.isBlank()) {
+            resolvedGallery.add(heroImage);
+        }
+
+        boolean isFirst = true;
+        for (String url : resolvedGallery) {
+            ProductImage image = new ProductImage();
+            image.setUrl(url);
+            image.setMain(isFirst);
+            product.addImage(image);
+            isFirst = false;
+        }
+
+        if (!resolvedGallery.isEmpty()) {
+            product.setImageUrl(resolvedGallery.get(0));
         }
     }
 
-    private void isFieldsNull(String title, String description, BigDecimal price, String imgURL, int stock,
-                              ProductCategories category, LocalDateTime createdAt){
-
-        if(title == null){
-            throw new IllegalArgumentException("Title cannot be null");
-        }
-        if(description == null){
-            throw new IllegalArgumentException("Description cannot be null");
-        }
-        if(price == null){
-            throw new IllegalArgumentException("Price cannot be null");
-        }
-        if(imgURL == null){
-            throw new IllegalArgumentException("Image URL cannot be null");
-        }
-        if(stock < 0){
-            throw new IllegalArgumentException("Stock cannot be negative");
-        }
-        if(category == null){
-            throw new IllegalArgumentException("Category cannot be null");
-        }
-        if(createdAt == null){
-            throw new IllegalArgumentException("CreatedAt cannot be null");
-        }
-
+    private ProductVariant toVariantEntity(ProductVariantRequest request) {
+        ProductVariant variant = new ProductVariant();
+        variant.setSku(request.sku());
+        variant.setColor(request.color());
+        variant.setSize(request.size());
+        variant.setPrice(request.price());
+        variant.setStock(request.stock());
+        variant.setCategory(request.category());
+        variant.setGender(request.gender());
+        variant.setStatus(request.status());
+        variant.setDefaultVariant(Boolean.TRUE.equals(request.defaultVariant()));
+        return variant;
     }
 
+    private void ensureDefaultVariant(Product product) {
+        boolean hasDefault = product.getVariants().stream().anyMatch(ProductVariant::isDefaultVariant);
+        if (!hasDefault && !product.getVariants().isEmpty()) {
+            product.getVariants().iterator().next().setDefaultVariant(true);
+        }
+    }
 }
 

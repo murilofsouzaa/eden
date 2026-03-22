@@ -1,5 +1,11 @@
 package com.eden.service.order;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.eden.dto.order.CreateOrderRequest;
 import com.eden.dto.order.OrderResponse;
 import com.eden.mapper.OrderMapper;
@@ -7,19 +13,15 @@ import com.eden.model.order.Order;
 import com.eden.model.order.OrderAddress;
 import com.eden.model.order.OrderItem;
 import com.eden.model.order.OrderStatus;
-import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.shopping_cart.ItemCart;
+import com.eden.model.shopping_cart.ShoppingCart;
 import com.eden.model.user.User;
 import com.eden.repository.OrderAddressRepository;
 import com.eden.repository.OrderRepository;
 import com.eden.repository.ShoppingCartRepository;
 import com.eden.service.user.UserService;
-import jakarta.transaction.Transactional;
-import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.transaction.Transactional;
 
 @Service
 public class OrderService {
@@ -86,7 +88,7 @@ public class OrderService {
         for (ItemCart cartItem : shoppingCart.getItems()) {
             OrderItem orderItem = new OrderItem();
             orderItem.setOrder(order);
-            orderItem.setProduct(cartItem.getProduct());
+            orderItem.setVariant(cartItem.getVariant());
             orderItem.setQuantity(cartItem.getQuantity());
             orderItem.setUnit_price(cartItem.getUnitPrice());
             orderItems.add(orderItem);

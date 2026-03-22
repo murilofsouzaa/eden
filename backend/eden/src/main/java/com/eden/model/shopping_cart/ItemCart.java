@@ -1,10 +1,17 @@
 package com.eden.model.shopping_cart;
 
-import com.eden.model.product.Product;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
-
 import java.math.BigDecimal;
+
+import com.eden.model.product.ProductVariant;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "shopping_cart_item")
@@ -18,8 +25,8 @@ public class ItemCart {
     private ShoppingCart cart;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @JoinColumn(name = "variant_id")
+    private ProductVariant variant;
 
     @Column
     private int quantity;
@@ -30,9 +37,9 @@ public class ItemCart {
 
     }
 
-    public ItemCart(ShoppingCart cart, Product product, int quantity, BigDecimal unitPrice) {
+    public ItemCart(ShoppingCart cart, ProductVariant variant, int quantity, BigDecimal unitPrice) {
         this.cart = cart;
-        this.product = product;
+        this.variant = variant;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
@@ -64,12 +71,12 @@ public class ItemCart {
         this.cart = cart;
     }
 
-    public Product getProduct() {
-        return product;
+    public ProductVariant getVariant() {
+        return variant;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setVariant(ProductVariant variant) {
+        this.variant = variant;
     }
 
     public BigDecimal getUnitPrice() {
