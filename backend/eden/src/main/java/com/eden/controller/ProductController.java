@@ -23,6 +23,11 @@ import com.eden.model.product.ProductGender;
 import com.eden.service.product.ProductService;
 
 import jakarta.validation.Valid;
+//Verificar se alguma coisa veio null, quando não podia
+//O spring recebe o JSON
+//Converte para User
+//O @Valid dispara a validação
+//Se der erro ele sequer entra no método
 
 @RestController
 @RequestMapping("/products")
