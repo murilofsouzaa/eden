@@ -29,6 +29,9 @@ public class ProductMapper {
             .map(ProductMapper::toVariantResponse)
             .toList()
                 );
+
+                //Pega os dados básicos, pega dados da variante, constrói a galeria, pega URL, constrói a galeria,
+                //pega as datas, e para cada variante do produto transforma em DTO
     }
 
     public static List<ProductResponse> toResponseList(List<Product> products){

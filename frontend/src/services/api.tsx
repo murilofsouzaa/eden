@@ -6,4 +6,4 @@ const api = axios.create({
 
 //api.get não aceita somente "localhost:"
 
-export { api} ;
+export {api} ;

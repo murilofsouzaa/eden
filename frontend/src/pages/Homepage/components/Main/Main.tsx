@@ -5,7 +5,7 @@ type Product= {
     id:number;
     title:string;
     price:number;
-    imgUrl:string;
+    imageUrl:string;
 }
 
 export function Main() {
@@ -33,7 +33,7 @@ export function Main() {
             <div>
                 {products.map((product:Product) => (
                         <div key={product.id}>
-                            <img src={`http://localhost:8080/${product.imgUrl}`} alt={product.title}></img>
+                            <img src={`http://localhost:8080/${product.imageUrl}`} alt={product.title}></img>
                             <p>{product.title}</p>
                             <p>R${product.price}</p>
                         </div>
