@@ -57,7 +57,7 @@ public class ProductMapper {
                 //variante padrão, inverte e pega o primeiro.
     }
 
-    private static ProductVariantResponse toVariantResponse(ProductVariant variant) {
+    public static ProductVariantResponse toVariantResponse(ProductVariant variant) {
         return new ProductVariantResponse(
                 variant.getId(),
                 variant.getSku(),

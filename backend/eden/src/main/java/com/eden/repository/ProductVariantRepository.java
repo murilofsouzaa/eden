@@ -1,5 +1,6 @@
 package com.eden.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -11,4 +12,7 @@ public interface ProductVariantRepository extends JpaRepository<ProductVariant, 
     @Override
     @EntityGraph(attributePaths = {"product"})
     Optional<ProductVariant> findById(Long id);
+
+    @EntityGraph(attributePaths = "product")
+    List<ProductVariant> findAllByProductId(Long productId);
 }

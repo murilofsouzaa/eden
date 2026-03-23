@@ -21,6 +21,7 @@ import com.eden.model.order.OrderStatus;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductGender;
 import com.eden.service.product.ProductService;
+import com.eden.dto.product.ProductVariantResponse;
 
 import jakarta.validation.Valid;
 //Verificar se alguma coisa veio null, quando não podia
@@ -43,6 +44,11 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductResponse>> getAllProducts(){
         return ResponseEntity.ok(productService.getAllProducts());
+    }
+
+    @GetMapping("/variants/{id}")
+    public ResponseEntity<Lis<ProductVariantResponse>> getVariants(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.getVariant(id));
     }
 
     //TODO add pagination

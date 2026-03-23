@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
+import com.eden.dto.product.ProductVariantResponse;
 import com.eden.dto.product.ProductVariantRequest;
 import com.eden.dto.product.UpdateProductRequest;
 import com.eden.mapper.ProductMapper;
@@ -21,18 +22,22 @@ import com.eden.model.product.ProductStatus;
 import com.eden.model.product.ProductVariant;
 import com.eden.repository.OrderItemRepository;
 import com.eden.repository.ProductRepository;
+import com.eden.repository.ProductVariantRepository;
 
 @Service
 public class ProductService {
 
     final private ProductRepository productRepository;
     final private OrderItemRepository orderItemRepository;
+    final private ProductVariantRepository productVariantRepository;
 
     public ProductService(ProductRepository productRepository,
-        OrderItemRepository orderItemRepository
+        OrderItemRepository orderItemRepository,
+        ProductVariantRepository productVariantRepository
     ){
         this.productRepository = productRepository;
         this.orderItemRepository = orderItemRepository;
+        this.productVariantRepository = productVariantRepository;
     }
 
     public ProductResponse createProduct(CreateProductRequest request){
@@ -99,6 +104,12 @@ public class ProductService {
         return ProductMapper.toResponseList(products);
     }
 
+    public ProductVariantResponse getVariant(Long id) {
+        ProductVariant variant = productVariantRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Variant not found"));
+        return ProductMapper.toVariantResponse(variant);
+    }
+    
     public List<ProductResponse> getAllAvailableProducts(){
         List<Product> products = productRepository.findAllByVariantStatus(ProductStatus.AVAILABLE);
         return ProductMapper.toResponseList(products);
