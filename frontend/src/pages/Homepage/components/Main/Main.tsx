@@ -30,14 +30,14 @@ export function Main() {
         <>
             <h2 className="text-xl font-semibold mt-12 ml-5">Novidades: Power Elite</h2>
 
-            <div>
+            <div className="flex overflow-x-auto gap-8">
                 {products.map((product:Product) => (
-                        <div key={product.id}>
-                            <img src={`http://localhost:8080/${product.imageUrl}`} alt={product.title}></img>
-                            <p>{product.title}</p>
-                            <p>R${product.price}</p>
-                        </div>
-                    ))}
+                    <div key={product.id} className="shrink-0 w-64 m-10 sm:w-72 lg:w-80">
+                        <img src={`http://localhost:8080/${product.imageUrl}`} alt={product.title} className="object-contain w-full h-[28rem]"></img>
+                        <p>{product.title}</p>
+                        <p>R${product.price}</p>
+                    </div>
+                ))}
             </div>
         </>
     )
