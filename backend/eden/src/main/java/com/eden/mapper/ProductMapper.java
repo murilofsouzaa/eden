@@ -2,7 +2,7 @@ package com.eden.mapper;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import com.eden.dto.product.ProductResponse;
 import com.eden.dto.product.ProductVariantResponse;
@@ -13,18 +13,21 @@ import com.eden.model.product.ProductVariant;
 public class ProductMapper {
 
     public static ProductResponse toResponse (Product product){
+    Optional<ProductVariant> primaryVariant = resolvePrimaryVariant(product);
         return new ProductResponse(
                 product.getId(),
                 product.getTitle(),
                 product.getDescription(),
-                product.getImageUrl(),
+        primaryVariant.map(variant -> variant.getGender().name()).orElse(null),
+        primaryVariant.map(variant -> variant.getCategory().name()).orElse(null),
+        product.getImageUrl(),
                 buildGallery(product),
                 product.getCreatedAt(),
                 product.getUpdatedAt(),
-                product.getVariants()
-                        .stream()
-                        .map(ProductMapper::toVariantResponse)
-                        .collect(Collectors.toList())
+        product.getVariants()
+            .stream()
+            .map(ProductMapper::toVariantResponse)
+            .toList()
                 );
     }
 
@@ -40,6 +43,15 @@ public class ProductMapper {
                 .sorted(Comparator.comparing(ProductImage::isMain).reversed())
                 .map(ProductImage::getUrl)
                 .toList();
+    }
+
+    private static Optional<ProductVariant> resolvePrimaryVariant(Product product) {
+        return product.getVariants()
+                .stream()
+                .sorted(Comparator.comparing(ProductVariant::isDefaultVariant).reversed())
+                .findFirst();
+                //Pega todas as variantes de um produto, orderna e compara pra ver se é a
+                //variante padrão, inverte e pega o primeiro.
     }
 
     private static ProductVariantResponse toVariantResponse(ProductVariant variant) {

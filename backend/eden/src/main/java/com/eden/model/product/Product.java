@@ -34,7 +34,10 @@ public class Product {
     private LocalDateTime updatedAt;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<ProductVariant> variants = new LinkedHashSet<>();
+    //O set é a interface que não permite duplicatas e o LinkedHashSet é a classe
+    //que implementa o Set
 
+    //Usado em relacionamentos OneToMany para dizer quem é o dono da relação
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<ProductImage> images = new LinkedHashSet<>();
 

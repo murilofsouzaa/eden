@@ -169,12 +169,6 @@ public class ProductService {
             if (variant.price() == null) {
                 throw new IllegalArgumentException("Variant price cannot be null");
             }
-            if (variant.category() == null) {
-                throw new IllegalArgumentException("Variant category cannot be null");
-            }
-            if (variant.gender() == null) {
-                throw new IllegalArgumentException("Variant gender cannot be null");
-            }
             if (variant.status() == null) {
                 throw new IllegalArgumentException("Variant status cannot be null");
             }
@@ -220,8 +214,6 @@ public class ProductService {
         variant.setSize(request.size());
         variant.setPrice(request.price());
         variant.setStock(request.stock());
-        variant.setCategory(request.category());
-        variant.setGender(request.gender());
         variant.setStatus(request.status());
         variant.setDefaultVariant(Boolean.TRUE.equals(request.defaultVariant()));
         return variant;

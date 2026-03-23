@@ -12,6 +12,8 @@ public record ProductResponse(
         String title,
         @NotNull
         String description,
+        String gender,
+        String category,
         String imageUrl,
         List<String> gallery,
         @NotNull
