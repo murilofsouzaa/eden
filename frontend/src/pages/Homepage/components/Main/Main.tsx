@@ -1,3 +1,4 @@
+import './Main.css';
 import {useEffect, useState} from 'react';
 import {api} from '../../../../services/api.js';
 
@@ -17,6 +18,7 @@ type Product = {
 export function Main() {
 
     const [products, setProducts] = useState<Product[]>([]);
+    const [activeGender, setActiveGender] = useState<'female' | 'male'>('female');
 
     useEffect(() => {
         api.get("/products")
@@ -34,23 +36,38 @@ export function Main() {
 
     return(
         <>
-            <h2 className="text-xl font-semibold mt-12 ml-5">Novidades: Power Elite</h2>
+            <h2 className="text-2xl font-semibold mt-12 ml-5 lg:text-3xl">Novidades: Power Elite</h2>
 
-            <div className="flex overflow-x-auto gap-8">
-                {products.map((product:Product) => {
+            <div className="flex overflow-x-auto">
+                {products.slice(0, 8).map((product:Product) => {
                     const variants = product.variants ?? [];
                     const defaultVariant = variants.find((variant) => variant.defaultVariant);
                     const variantToShow = defaultVariant ?? variants[0];
                     return (
-                        <div key={product.id} className="shrink-0 w-64 m-10 sm:w-72 lg:w-80">
-                            <img src={`http://localhost:8080/${product.imageUrl}`} alt={product.title} className="object-contain w-full h-[28rem]"></img>
-                            <p>{product.title}</p>
+                        <div key={product.id} className="shrink-0 w-80 m-10 lg:w-80">
+                            <a href="#"><img src={`http://localhost:8080/${product.imageUrl}`} alt={product.title} className="product-image-catalog object-cover w-full h-[24rem] lg:h-[36rem]"></img></a>
+                            <p className="mt-6">{product.title}</p>
                             {variantToShow?.price !== undefined && variantToShow?.price !== null && (
-                                <p className="text-md font-semibold">R$ {variantToShow.price.toFixed(2)}</p>
+                                <p className="text-md">R$ {variantToShow.price.toFixed(2)}</p>
                             )}
                         </div>
                     );
                 })}
+            </div>
+
+            <div className="flex gap-2 m-2 lg:m-10">
+                <button
+                    className={`gender-btn ${activeGender === 'female' ? 'active' : ''}`}
+                    onClick={() => setActiveGender('female')}
+                >
+                    Feminino
+                </button>
+                <button
+                    className={`gender-btn ${activeGender === 'male' ? 'active' : ''}`}
+                    onClick={() => setActiveGender('male')}
+                >
+                    Masculino
+                </button>
             </div>
         </>
     )

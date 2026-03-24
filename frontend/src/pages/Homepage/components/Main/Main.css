@@ -1,0 +1,34 @@
+.product-image-catalog:hover{
+    transform: scale(1.008);
+    transition: 0.3s ease;
+}
+
+.gender-btn{
+    font-weight: bold;
+    padding: 12px;
+    font-size: 17px;
+    width: 180px;
+    border-radius: 40px;
+    transition: 0.2s ease;
+}
+
+.gender-btn:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.gender-btn:active{
+    background-color: black;
+    color: white;
+}
+
+.gender-btn:focus{
+    background-color: black;
+    color: white;
+}
+
+.gender-btn.active{
+    background-color: black;
+    color: white;
+}
