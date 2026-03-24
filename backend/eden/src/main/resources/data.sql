@@ -74,13 +74,7 @@ INSERT INTO product (title, description, image_url, created_at, updated_at) VALU
 	('Black Oversized City Tee', 'Camiseta oversized feminina preta com logo discreto e ombro deslocado.',
 	 'clothes/women/gymshark-woman-oversized-black.jpeg', TIMESTAMP '2025-08-28 16:15:00', NULL),
 	('Prada Hydrate Bottle', 'Garrafa térmica em alumínio escovado com tampa rosqueável.',
-	 'acessories/prada-water-bottle.jpeg', TIMESTAMP '2025-07-22 15:15:00', NULL) 	,
-	('Nebula Runner Shoe', 'Tênis de corrida leve com amortecimento responsivo e cabedal respirável.',
-	 'shoes/nebula-runner-shoe.svg', TIMESTAMP '2025-07-05 09:30:00', NULL),
-	('Aurora Dual-Tone Sports Bra', 'Top esportivo bicolor com suporte médio e alças cruzadas nas costas.',
-	 'clothes/women/aurora-dual-tone-sports-bra.svg', TIMESTAMP '2025-08-05 10:20:00', NULL),
-	('Solaris Performance Cap', 'Boné leve com proteção UV e faixa anti suor.',
-	 'acessories/solaris-performance-cap.jpeg', TIMESTAMP '2025-07-15 08:10:00', NULL);
+	 'acessories/prada-water-bottle.jpeg', TIMESTAMP '2025-07-22 15:15:00', NULL);
 
 -- Single default variant per product (can be expanded later)
 INSERT INTO product_variant (product_id, sku, color, size, price, stock, category, gender, status, is_default) VALUES
@@ -111,12 +105,7 @@ INSERT INTO product_variant (product_id, sku, color, size, price, stock, categor
 	((SELECT id FROM product WHERE title = 'Red Wine Performance Pants'), 'SKU-0023', 'RED', 'S', 239.00, 19, 'PANTS', 'FEMININE', 'AVAILABLE', TRUE),
 	((SELECT id FROM product WHERE title = 'Brown Lounge Seamless Set'), 'SKU-0024', 'BROWN', 'S', 329.00, 21, 'SET', 'FEMININE', 'AVAILABLE', TRUE),
 	((SELECT id FROM product WHERE title = 'Black Oversized City Tee'), 'SKU-0025', 'BLACK', 'S', 209.00, 28, 'SHIRTS', 'FEMININE', 'AVAILABLE', TRUE),
-	((SELECT id FROM product WHERE title = 'Prada Hydrate Bottle'), 'SKU-0026', 'STEEL', 'ONE', 129.00, 55, 'WATER_BOTTLE', 'UNISSEX', 'AVAILABLE', TRUE),
-	((SELECT id FROM product WHERE title = 'Nebula Runner Shoe'), 'SKU-0027', 'BLACK', '42', 399.00, 40, 'SHOES', 'MASCULINE', 'AVAILABLE', TRUE),
-	((SELECT id FROM product WHERE title = 'Nebula Runner Shoe'), 'SKU-0028', 'WHITE', '40', 399.00, 32, 'SHOES', 'MASCULINE', 'AVAILABLE', FALSE),
-	((SELECT id FROM product WHERE title = 'Aurora Dual-Tone Sports Bra'), 'SKU-0029', 'BERRY', 'S', 189.00, 45, 'SHIRTS', 'FEMININE', 'AVAILABLE', TRUE),
-	((SELECT id FROM product WHERE title = 'Aurora Dual-Tone Sports Bra'), 'SKU-0030', 'BERRY', 'M', 189.00, 37, 'SHIRTS', 'FEMININE', 'AVAILABLE', FALSE),
-	((SELECT id FROM product WHERE title = 'Solaris Performance Cap'), 'SKU-0031', 'SUNRISE', 'ONE', 139.00, 60, 'CAPS', 'UNISSEX', 'AVAILABLE', TRUE);
+	((SELECT id FROM product WHERE title = 'Prada Hydrate Bottle'), 'SKU-0026', 'STEEL', 'ONE', 129.00, 55, 'WATER_BOTTLE', 'UNISSEX', 'AVAILABLE', TRUE);
 
 -- Mirror product main thumbnail into the gallery table
 INSERT INTO product_image (product_id, url, is_main)

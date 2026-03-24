@@ -1,0 +1,26 @@
+h2, li, ul > li > a{
+    color: white;
+}
+
+ul > li{
+    list-style: none;
+}
+
+ul > li > a:hover{
+    color: white;
+    text-decoration: none;
+}
+h2{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.footer-icon{
+    width: auto;
+    height: 30px;
+    transition: 0.2s ease;
+}
+
+.footer-icon:hover{
+    transform: scale(1.05);
+}

@@ -38,7 +38,7 @@ export function Main() {
         };
     }, []);
 
-    const displayedProducts = products.slice(0, 20);
+    const displayedProducts = products.slice(0, 7);
     const totalItems = displayedProducts.length;
 
     // Mede a largura do primeiro card (somando o gap) e o espaço visível atual
