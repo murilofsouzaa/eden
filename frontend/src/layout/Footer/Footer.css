@@ -1,12 +1,12 @@
-h2, li, ul > li > a{
+h2, li, .mt-3 > li > a{
     color: white;
 }
 
-ul > li{
+.mt-3 > li{
     list-style: none;
 }
 
-ul > li > a:hover{
+ul > .mt-3 > a:hover{
     color: white;
     text-decoration: none;
 }
