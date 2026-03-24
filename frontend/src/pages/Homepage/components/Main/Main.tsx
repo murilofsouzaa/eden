@@ -1,6 +1,7 @@
 import './Main.css';
 import {useEffect, useState} from 'react';
 import {api} from '../../../../services/api.js';
+import {GenderButton} from './components/GenderButton'
 
 type ProductVariant = {
     id: number;
@@ -18,7 +19,6 @@ type Product = {
 export function Main() {
 
     const [products, setProducts] = useState<Product[]>([]);
-    const [activeGender, setActiveGender] = useState<'female' | 'male'>('female');
 
     useEffect(() => {
         api.get("/products")
@@ -55,20 +55,8 @@ export function Main() {
                 })}
             </div>
 
-            <div className="flex gap-2 m-2 lg:m-10">
-                <button
-                    className={`gender-btn ${activeGender === 'female' ? 'active' : ''}`}
-                    onClick={() => setActiveGender('female')}
-                >
-                    Feminino
-                </button>
-                <button
-                    className={`gender-btn ${activeGender === 'male' ? 'active' : ''}`}
-                    onClick={() => setActiveGender('male')}
-                >
-                    Masculino
-                </button>
-            </div>
+            <GenderButton />
+
         </>
     )
 }

@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
+import com.eden.dto.product.ProductVariantResponse;
 import com.eden.dto.product.UpdateProductRequest;
 import com.eden.model.order.OrderStatus;
 import com.eden.model.product.ProductCategories;
 import com.eden.model.product.ProductGender;
 import com.eden.service.product.ProductService;
-import com.eden.dto.product.ProductVariantResponse;
 
 import jakarta.validation.Valid;
 //Verificar se alguma coisa veio null, quando não podia
@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @GetMapping("/variants/{id}")
-    public ResponseEntity<Lis<ProductVariantResponse>> getVariants(@PathVariable Long id) {
+    public ResponseEntity<ProductVariantResponse> getVariants(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getVariant(id));
     }
 
