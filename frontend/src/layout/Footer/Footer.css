@@ -1,4 +1,4 @@
-h2, li, .footer-info > li > a{
+.footer-h2, li, .footer-info > li > a{
     color: white;
 }
 
@@ -10,7 +10,7 @@ h2, li, .footer-info > li > a{
     color: white;
     text-decoration: none;
 }
-h2{
+.footer-h2{
     font-size: 18px;
     font-weight: bold;
 }

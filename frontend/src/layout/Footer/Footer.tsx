@@ -10,7 +10,7 @@ export function Footer(){
             <div className="flex justify-between items-center">
                 <div className="flex w-full h-full gap-20 ml-10">
                     <div>
-                        <h2>Coisas Chatas</h2>
+                        <h2 className="footer-h2">Coisas Chatas</h2>
                         <ul className="footer-info">
                             <li><a href="#">Políticas de Entrega</a></li>
                             <li><a href="#">Políticas de Pagamento</a></li>
@@ -19,7 +19,7 @@ export function Footer(){
                         </ul>
                     </div>
                     <div>
-                        <h2>Central de Atendimento</h2>
+                        <h2 className="footer-h2">Central de Atendimento</h2>
                         <ul className="footer-info">
                             <li><a href="#">Sobre o Eden</a></li>
                             <li><a href="#">Cuidados com Produtos</a></li>
@@ -29,7 +29,7 @@ export function Footer(){
                 </div>
                 <div className="flex flex-col justify-end-end items-end w-100 m-20">
                     <div>
-                        <h2>Atendimento</h2>
+                        <h2 className="footer-h2">Atendimento</h2>
                         <ul className="footer-info">
                             <li>Sac Whatsapp: XXXX-XXXX</li>
                             <li>Segunda a Sexta - das 08:00 às 20:00</li>
