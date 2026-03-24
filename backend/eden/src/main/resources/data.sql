@@ -74,11 +74,11 @@ INSERT INTO product (title, description, image_url, created_at, updated_at) VALU
 	('Black Oversized City Tee', 'Camiseta oversized feminina preta com logo discreto e ombro deslocado.',
 	 'clothes/women/gymshark-woman-oversized-black.jpeg', TIMESTAMP '2025-08-28 16:15:00', NULL),
 	('Prada Hydrate Bottle', 'Garrafa térmica em alumínio escovado com tampa rosqueável.',
-	 'acessories/prada-water-bottle.jpeg', TIMESTAMP '2025-07-22 15:15:00', NULL),
-	('Nebula Runner Shoe', 'Tênis de corrida leve com espuma responsiva e cabedal em knit respirável.',
-	 'clothes/men/nebula-runner-shoe.jpeg', TIMESTAMP '2025-10-01 09:00:00', NULL),
-	('Aurora Dual-Tone Sports Bra', 'Top esportivo bicolor com suporte médio e forro respirável.',
-	 'clothes/women/aurora-dual-tone-bra.jpeg', TIMESTAMP '2025-09-10 11:30:00', NULL),
+	 'acessories/prada-water-bottle.jpeg', TIMESTAMP '2025-07-22 15:15:00', NULL) 	,
+	('Nebula Runner Shoe', 'Tênis de corrida leve com amortecimento responsivo e cabedal respirável.',
+	 'shoes/nebula-runner-shoe.svg', TIMESTAMP '2025-07-05 09:30:00', NULL),
+	('Aurora Dual-Tone Sports Bra', 'Top esportivo bicolor com suporte médio e alças cruzadas nas costas.',
+	 'clothes/women/aurora-dual-tone-sports-bra.svg', TIMESTAMP '2025-08-05 10:20:00', NULL),
 	('Solaris Performance Cap', 'Boné leve com proteção UV e faixa anti suor.',
 	 'acessories/solaris-performance-cap.jpeg', TIMESTAMP '2025-07-15 08:10:00', NULL);
 

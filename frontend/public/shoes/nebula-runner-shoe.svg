@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Stylized running shoe">
+  <rect width="320" height="180" fill="#0c0f1b"/>
+  <path d="M40 110 Q80 60 150 80 T270 95 Q290 110 300 140 L20 140 Z" fill="#1c2538"/>
+  <path d="M60 120 Q120 70 190 90 T300 110 L300 135 L40 135 Z" fill="#66d1ff"/>
+  <path d="M55 125 H295" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+  <path d="M80 120 C90 95 150 95 190 110" stroke="#0c0f1b" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <circle cx="95" cy="118" r="4" fill="#0c0f1b"/>
+  <circle cx="125" cy="113" r="4" fill="#0c0f1b"/>
+  <circle cx="155" cy="110" r="4" fill="#0c0f1b"/>
+  <circle cx="185" cy="111" r="4" fill="#0c0f1b"/>
+  <path d="M30 140 H300" stroke="#d8ecff" stroke-width="12" stroke-linecap="round"/>
+  <path d="M35 150 H295" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+  <text x="24" y="38" font-family="'Montserrat', sans-serif" font-size="20" fill="#66d1ff">Nebula Runner</text>
+</svg>
