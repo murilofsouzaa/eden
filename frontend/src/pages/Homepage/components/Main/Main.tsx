@@ -95,8 +95,8 @@ export function Main() {
     //considera como mudança, então entraria em um loop de requests
 
 
-    return(
-        <div className="m-10 lg:m-16">
+        return(
+		<div className="mx-4 mt-10 mb-10 lg:m-16">
             <h2 className="text-2xl font-semibold lg:mt-20 lg:text-[1.6rem]">Novidades: Power Elite</h2>
 
             <div className="relative mt-8">
@@ -112,7 +112,7 @@ export function Main() {
                             const variantToShow = defaultVariant ?? variants[0];
                             return (
                                 <div key={product.id} data-slide="true">
-                                        <div  className="shrink-0 w-80 lg:w-80">
+									<div  className="shrink-0 w-64 sm:w-72 md:w-80">
                                             <a href="#"><img src={`http://localhost:8080/${product.imageUrl}`} alt={product.title} 
                                             className="product-image-catalog object-cover w-full h-[24rem] lg:h-[36rem]"></img></a>
                                         
