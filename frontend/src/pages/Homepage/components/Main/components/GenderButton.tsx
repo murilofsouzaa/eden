@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState} from 'react'
 
 export function GenderButton() {
 
@@ -6,7 +6,7 @@ export function GenderButton() {
 
 
     return(
-        <div className="flex gap-2 m-2 lg:m-10">
+        <div className="flex gap-2 m-2 lg:mt-10 lg:ml-0">
             <button
                 className={`gender-btn ${activeGender === 'female' ? 'active' : ''}`}
                 onClick={() => setActiveGender('female')}

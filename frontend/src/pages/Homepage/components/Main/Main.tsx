@@ -35,16 +35,16 @@ export function Main() {
 
 
     return(
-        <>
-            <h2 className="text-2xl font-semibold mt-12 ml-5 lg:text-3xl">Novidades: Power Elite</h2>
+        <div className="m-10 lg:m-16">
+            <h2 className="text-2xl font-semibold lg:mt-20 lg:text-[1.6rem]">Novidades: Power Elite</h2>
 
-            <div className="flex overflow-x-auto">
+            <div className="flex mt-8 gap-5">
                 {products.slice(0, 8).map((product:Product) => {
                     const variants = product.variants ?? [];
                     const defaultVariant = variants.find((variant) => variant.defaultVariant);
                     const variantToShow = defaultVariant ?? variants[0];
                     return (
-                        <div key={product.id} className="shrink-0 w-80 m-10 lg:w-80">
+                        <div key={product.id} className="shrink-0 w-80 lg:w-80">
                             <a href="#"><img src={`http://localhost:8080/${product.imageUrl}`} alt={product.title} className="product-image-catalog object-cover w-full h-[24rem] lg:h-[36rem]"></img></a>
                             <p className="mt-6">{product.title}</p>
                             {variantToShow?.price !== undefined && variantToShow?.price !== null && (
@@ -57,6 +57,6 @@ export function Main() {
 
             <GenderButton />
 
-        </>
+        </div>
     )
 }
