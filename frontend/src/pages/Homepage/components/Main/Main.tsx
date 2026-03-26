@@ -2,7 +2,7 @@ import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import { ChevronLeft, ChevronRight } from 'react-feather'
 import './Main.css';
 import {api} from '../../../../services/api.js';
-import {GenderButton} from './components/GenderButton'
+import {CategorySection} from './components/CategorySection'
 import {VideoSection} from './components/VideoSection'
 
 type ProductVariant = {
@@ -23,7 +23,6 @@ export function Main() {
 
     const [products, setProducts] = useState<Product[]>([]);
 
-    const [gender, setGender] = useState<'female' | 'male'>('female');
 
     const [currentIndex, setCurrentIndex] = useState(0);
     // Guardamos métricas da vitrine para deslocar exatamente um produto por clique
@@ -143,36 +142,7 @@ export function Main() {
 
             </section>
             <section className="mt-20">
-                <h2 className="text-2xl  font-bold mb-6">CONHEÇA AS CATEGORIAS</h2>
-                <GenderButton gender={gender} onChangeGender={setGender} />
-
-                <div className="flex flex-nowrap gap-5 mt-5 overflow-x-auto pb-2">
-                        {(gender === 'male'
-                                ? [
-                                        { id: 1, name: 'Camisetas', image: '/clothes/men/gymshark-black-oversized-masculine.jpeg' },
-                                        { id: 2, name: 'Calças', image: '/clothes/men/white-pants-masculine-front.jpeg' },
-                                        { id: 3, name: 'Shorts', image: '/clothes/men/gymshark-black-short-masculine.jpeg' },
-                                        { id: 4, name: 'Tênis', image: '/clothes/men/nike-shite-shoes.jpeg' },
-                                    ]
-                                : [
-								{ id: 5, name: 'Leggings', image: '/clothes/women/gymshark-green-legging.jpeg' },
-								{ id: 6, name: 'Conjuntos', image: '/clothes/women/gymshark-grey-set-women.jpeg' },
-								{ id: 7, name: 'Oversized', image: '/clothes/women/gymshark-woman-oversized-black.jpeg' },
-								{ id: 8, name: 'Tênis', image: '/clothes/women/new-balance-shoes-female.jpeg' },
-							]
-                    ).map((category) => (
-                        <div key={category.id} className="shrink-0 w-64 sm:w-72 md:w-80">
-                            <button className="flex flex-col justify-center w-full text-left hover:cursor-pointer">
-                                <img
-                                    src={category.image}
-                                    alt={category.name}
-                                    className="product-image-catalog object-cover w-full h-[24rem] lg:h-[36rem]"
-                                />
-                                <p className="text-xl font-light mt-4">{category.name}</p>
-                            </button>
-                        </div>
-                    ))}
-                </div>
+                <CategorySection />
             </section>
 
             <section className="mt-20 -mx-4 lg:-mx-16">
