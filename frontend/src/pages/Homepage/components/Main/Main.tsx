@@ -8,6 +8,7 @@ type ProductVariant = {
     id: number;
     price: number;
     defaultVariant: boolean;
+    gender: string
 };
 
 type Product = {
@@ -20,6 +21,8 @@ type Product = {
 export function Main() {
 
     const [products, setProducts] = useState<Product[]>([]);
+
+    const [gender, setGender] = useState<'female' | 'male'>('female');
 
     const [currentIndex, setCurrentIndex] = useState(0);
     // Guardamos métricas da vitrine para deslocar exatamente um produto por clique
@@ -50,7 +53,7 @@ export function Main() {
         const firstSlide = track.querySelector<HTMLElement>('[data-slide="true"]');
         if (!firstSlide) return;
 
-        const styles = window.getComputedStyle(track);
+        const styles = globalThis.getComputedStyle(track);
         const gapValue = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
 
         setSlideWidth(firstSlide.offsetWidth + gapValue);
@@ -71,12 +74,6 @@ export function Main() {
 
     const maxIndex = Math.max(totalItems - slidesPerView, 0);
 
-    useEffect(() => {
-        if (currentIndex > maxIndex) {
-            setCurrentIndex(maxIndex);
-        }
-    }, [maxIndex, currentIndex]);
-
     const next = () => {
         if (totalItems === 0) return;
         setCurrentIndex((currentIndex) => Math.min(currentIndex + 1, maxIndex));
@@ -87,8 +84,11 @@ export function Main() {
         setCurrentIndex((currentIndex) => Math.max(currentIndex - 1, 0));
     };
 
+    // Garante que nunca usamos um índice maior que o máximo calculado
+    const safeIndex = Math.min(currentIndex, maxIndex);
+
     // Cada clique desloca exatamente a largura de um card (positivo para esquerda, por isso o sinal negativo)
-    const translateValue = -(currentIndex * slideWidth);
+    const translateValue = -(safeIndex * slideWidth);
     
 
     //Não colocar products na dependência pois o axios.get vai retornar um novo array na memória, o que a dependência
@@ -96,10 +96,10 @@ export function Main() {
 
 
         return(
-		<div className="mx-4 mt-10 mb-10 lg:m-16">
+		<section className="mx-4 mt-10 mb-10 lg:m-16">
             <h2 className="text-2xl font-semibold lg:mt-20 lg:text-[1.6rem]">Novidades: Power Elite</h2>
 
-            <div className="relative mt-8">
+            <div className="relative">
                 <div className="overflow-hidden" ref={viewportRef}>
                     <div
                         ref={trackRef}
@@ -118,7 +118,7 @@ export function Main() {
                                         
                                             <p className="mt-6">{product.title}</p>
                                             {variantToShow?.price !== undefined && variantToShow?.price !== null && (
-                                            <p className="text-md">R$ {variantToShow.price.toFixed(2)}</p>
+                                            <p className="text-md font-light">R$ {variantToShow.price.toFixed(2)}</p>
                                             )}
                                      </div>
                                     
@@ -138,10 +138,42 @@ export function Main() {
                             </button>
                         </div>
                 )}
+
+
             </div>
+            <section className="mt-20">
+                <h2 className="text-2xl font-bold mb-6">CONHEÇA AS CATEGORIAS</h2>
+                <GenderButton gender={gender} onChangeGender={setGender} />
 
-            <GenderButton />
+                <div className="flex flex-nowrap gap-5 mt-5 overflow-x-auto pb-2">
+                    {(gender === 'male'
+                        ? [
+                            { id: 1, name: 'Camisetas', image: '/clothes/men/gymshark-black-oversized-masculine.jpeg' },
+                            { id: 2, name: 'Calças', image: '/clothes/men/white-pants-masculine.jpeg' },
+                            { id: 3, name: 'Shorts', image: '/clothes/men/gymshark-green-shorts-masculine.jpeg' },
+                            { id: 4, name: 'Acessórios', image: '/acessories/gymshark-black-strap.jpeg' },
+                          ]
+                        : [
+                            { id: 5, name: 'Leggings', image: '/clothes/women/gymshark-green-legging.jpeg' },
+                            { id: 6, name: 'Conjuntos', image: '/clothes/women/gymshark-grey-set-women.jpeg' },
+                            { id: 7, name: 'Oversized', image: '/clothes/women/gymshark-white-oversized-woman.jpeg' },
+                            { id: 8, name: 'Tênis', image: '/shoes/nebula-runner-shoe.svg' },
+                          ]
+                    ).map((category) => (
+                        <div key={category.id} className="shrink-0 w-64 sm:w-72 md:w-80">
+                            <button className="flex flex-col justify-center w-full text-left hover:cursor-pointer">
+                                <img
+                                    src={category.image}
+                                    alt={category.name}
+                                    className="product-image-catalog object-cover w-full h-[24rem] lg:h-[36rem]"
+                                />
+                                <p className="text-xl font-light mt-4">{category.name}</p>
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </section>
 
-        </div>
+        </section>
     )
 }

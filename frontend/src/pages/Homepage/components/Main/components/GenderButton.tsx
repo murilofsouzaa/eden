@@ -1,26 +1,25 @@
-import {useState} from 'react'
+type Gender = 'female' | 'male';
 
-export function GenderButton() {
+type GenderButtonProps = {
+    gender: Gender;
+    onChangeGender: (gender: Gender) => void;
+};
 
-    const [activeGender, setActiveGender] = useState<'female' | 'male'>('female');
-
-
+export function GenderButton({ gender, onChangeGender }: GenderButtonProps) {
     return(
-        <div className="flex gap-2 m-2 lg:mt-10 lg:ml-0">
+        <div className="flex gap-4 m-2 lg:ml-0">
             <button
-                className={`gender-btn ${activeGender === 'female' ? 'active' : ''}`}
-                onClick={() => setActiveGender('female')}
+                className={`gender-btn ${gender === 'female' ? 'active' : ''}`}
+                onClick={() => onChangeGender('female')}
             >
                 Feminino
             </button>
             <button
-                className={`gender-btn ${activeGender === 'male' ? 'active' : ''}`}
-                onClick={() => setActiveGender('male')}
+                className={`gender-btn ${gender === 'male' ? 'active' : ''}`}
+                onClick={() => onChangeGender('male')}
             >
                 Masculino
             </button>
-
-            
         </div>
     )
 }
