@@ -2,8 +2,8 @@ import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import { ChevronLeft, ChevronRight } from 'react-feather'
 import './Main.css';
 import {api} from '../../../../services/api.js';
-import {CategorySection} from './components/CategorySection'
-import {VideoSection} from './components/VideoSection'
+import {CategorySection} from './CategorySection/CategorySection.js'
+import {VideoSection} from './VideoSection/VideoSection.js'
 
 type ProductVariant = {
     id: number;

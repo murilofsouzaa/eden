@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {GenderButton} from './GenderButton';
+import {GenderButton} from './components/GenderButton';
 
 
 
