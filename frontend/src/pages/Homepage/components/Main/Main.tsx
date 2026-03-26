@@ -97,7 +97,7 @@ export function Main() {
 
         return(
 		<section className="mx-4 mt-10 mb-10 lg:m-16">
-            <h2 className="text-2xl font-semibold lg:mt-20 lg:text-[1.6rem]">Novidades: Power Elite</h2>
+            <h2 className="text-2xl font-semibold mb-5 lg:mt-20 lg:text-[1.6rem]">Novidades: Power Elite</h2>
 
             <div className="relative">
                 <div className="overflow-hidden" ref={viewportRef}>
@@ -142,23 +142,23 @@ export function Main() {
 
             </div>
             <section className="mt-20">
-                <h2 className="text-2xl font-bold mb-6">CONHEÇA AS CATEGORIAS</h2>
+                <h2 className="text-2xl  font-bold mb-6">CONHEÇA AS CATEGORIAS</h2>
                 <GenderButton gender={gender} onChangeGender={setGender} />
 
                 <div className="flex flex-nowrap gap-5 mt-5 overflow-x-auto pb-2">
-                    {(gender === 'male'
-                        ? [
-                            { id: 1, name: 'Camisetas', image: '/clothes/men/gymshark-black-oversized-masculine.jpeg' },
-                            { id: 2, name: 'Calças', image: '/clothes/men/white-pants-masculine.jpeg' },
-                            { id: 3, name: 'Shorts', image: '/clothes/men/gymshark-green-shorts-masculine.jpeg' },
-                            { id: 4, name: 'Acessórios', image: '/acessories/gymshark-black-strap.jpeg' },
-                          ]
-                        : [
-                            { id: 5, name: 'Leggings', image: '/clothes/women/gymshark-green-legging.jpeg' },
-                            { id: 6, name: 'Conjuntos', image: '/clothes/women/gymshark-grey-set-women.jpeg' },
-                            { id: 7, name: 'Oversized', image: '/clothes/women/gymshark-white-oversized-woman.jpeg' },
-                            { id: 8, name: 'Tênis', image: '/shoes/nebula-runner-shoe.svg' },
-                          ]
+                                        {(gender === 'male'
+                                                ? [
+                                                        { id: 1, name: 'Camisetas', image: '/clothes/men/gymshark-black-oversized-masculine.jpeg' },
+                                                        { id: 2, name: 'Calças', image: '/clothes/men/white-pants-masculine.jpeg' },
+                                                        { id: 3, name: 'Shorts', image: '/clothes/men/gymshark-green-shorts-masculine.jpeg' },
+                                                        { id: 4, name: 'Tênis', image: '/clothes/men/nike-shite-shoes.jpeg' },
+                                                    ]
+                                                : [
+								{ id: 5, name: 'Leggings', image: '/clothes/women/gymshark-green-legging.jpeg' },
+								{ id: 6, name: 'Conjuntos', image: '/clothes/women/gymshark-grey-set-women.jpeg' },
+								{ id: 7, name: 'Oversized', image: '/clothes/women/gymshark-white-oversized-woman.jpeg' },
+								{ id: 8, name: 'Tênis', image: '/clothes/women/new-balance-shoes-female.jpeg' },
+							]
                     ).map((category) => (
                         <div key={category.id} className="shrink-0 w-64 sm:w-72 md:w-80">
                             <button className="flex flex-col justify-center w-full text-left hover:cursor-pointer">
