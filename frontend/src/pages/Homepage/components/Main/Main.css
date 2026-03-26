@@ -7,7 +7,7 @@ h2{
     transition: 0.3s ease;
 }
 
-.gender-btn{
+.btn{
     font-family: 'Geologica', sans-serif;
     font-weight: medium;
     padding: 12px;
@@ -17,23 +17,23 @@ h2{
     transition: 0.2s ease;
 }
 
-.gender-btn:hover{
+.btn:hover{
     background-color: black;
     color: white;
     cursor: pointer;
 }
 
-.gender-btn:active{
+.btn:active{
     background-color: black;
     color: white;
 }
 
-.gender-btn:focus{
+.btn:focus{
     background-color: black;
     color: white;
 }
 
-.gender-btn.active{
+.btn.active{
     background-color: black;
     color: white;
 }
