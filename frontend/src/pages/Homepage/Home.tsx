@@ -15,6 +15,7 @@ export type ProductVariant = {
     defaultVariant: boolean;
     gender: string,
     stock: number
+    description:string
 };
 
 export type Product = {
@@ -27,6 +28,7 @@ export type Product = {
 export default function Home() {
     
     const [products, setProducts] = useState<Product[]>([]);
+    const [active, setActive] = useState(false);
 
     useEffect(() => {
             api.get("/products")
@@ -40,7 +42,7 @@ export default function Home() {
     
     return(
         <>
-            <Header products={products}></Header>
+            <Header products={products} onClose={active} handleActive={setActive}></Header>
             <Slider>{
                 slideImages.map((image, i) => (
                     <img src={image} key={i} className="object-cover w-full h-full"></img>
