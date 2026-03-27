@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.eden.dto.product.CreateProductRequest;
 import com.eden.dto.product.ProductResponse;
-import com.eden.dto.product.ProductVariantResponse;
 import com.eden.dto.product.ProductVariantRequest;
+import com.eden.dto.product.ProductVariantResponse;
 import com.eden.dto.product.UpdateProductRequest;
 import com.eden.mapper.ProductMapper;
 import com.eden.model.order.OrderStatus;
@@ -25,7 +25,7 @@ import com.eden.repository.ProductRepository;
 import com.eden.repository.ProductVariantRepository;
 
 @Service
-public class ProductService {
+public class ProductService <T>{
 
     final private ProductRepository productRepository;
     final private OrderItemRepository orderItemRepository;
@@ -166,6 +166,7 @@ public class ProductService {
 
         return ProductMapper.toResponseList(orderedProducts);
     }
+
     private void validateCreateRequest(CreateProductRequest request) {
         if (request.title() == null || request.title().isBlank()) {
             throw new IllegalArgumentException("Title cannot be null or blank");
@@ -188,6 +189,8 @@ public class ProductService {
             }
         });
     }
+
+    
 
     private void applyGallery(Product product, String heroImage, List<String> gallery) {
         product.getImages().clear();

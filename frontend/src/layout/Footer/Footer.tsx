@@ -11,7 +11,7 @@ export function Footer(){
                 <div className="flex gap-10 lg:flex-row lg:w-full lg:h-full lg:gap-20 lg:ml-10">
                     <div>
                         <h2 className="footer-h2">Coisas Chatas</h2>
-                        <ul className="footer-info">
+                        <ul className="footer-info lg:flex lg:flex-col lg:gap-0.5 lg:mt-1">
                             <li><a href="#">Políticas de Entrega</a></li>
                             <li><a href="#">Políticas de Pagamento</a></li>
                             <li><a href="#">Políticas de Privacidade</a></li>
@@ -20,7 +20,7 @@ export function Footer(){
                     </div>
                     <div>
                         <h2 className="footer-h2">Central de Atendimento</h2>
-                        <ul className="footer-info">
+                        <ul className="footer-info lg:flex lg:flex-col lg:gap-0.5 lg:mt-1">
                             <li><a href="#">Sobre o Eden</a></li>
                             <li><a href="#">Cuidados com Produtos</a></li>
                             <li><a href="#">Perguntas Frenqunte</a></li>
@@ -32,7 +32,7 @@ export function Footer(){
                 <div className="flex flex-col items-start gap-6 lg:items-start lg:w-auto lg:m-20">
                     <div>
                         <h2 className="footer-h2">Atendimento</h2>
-                        <ul className="footer-info">
+                        <ul className="footer-info lg:flex lg:flex-col lg:gap-0.5 lg:mt-1">
                             <li>Sac Whatsapp: XXXX-XXXX</li>
                             <li>Segunda a Sexta - das 08:00 às 20:00</li>
                             <li>Sábado - das 08:00 às 12:00</li>

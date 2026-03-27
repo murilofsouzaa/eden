@@ -9,7 +9,8 @@ type ProductVariant = {
     id: number;
     price: number;
     defaultVariant: boolean;
-    gender: string
+    gender: string,
+    stock: number
 };
 
 type Product = {
@@ -111,19 +112,18 @@ export function Main() {
                             const defaultVariant = variants.find((variant) => variant.defaultVariant);
                             const variantToShow = defaultVariant ?? variants[0];
                             return (
-                                <div key={product.id} data-slide="true">
+                                <div key={product.id} data-slide="true">{variantToShow && variantToShow?.stock > 0 && (
 									<div  className="shrink-0 w-64 sm:w-72 md:w-80">
-                                            <a href="#"><img src={`http://localhost:8080/${product.imageUrl}`} alt={product.title} 
-                                            className="product-image-catalog object-cover w-full h-[24rem] lg:h-[36rem]"></img></a>
-                                        
-                                            <p className="mt-6">{product.title}</p>
-                                            {variantToShow?.price !== undefined && variantToShow?.price !== null && (
-                                            <p className="text-md font-light">R$ {variantToShow.price.toFixed(2)}</p>
-                                            )}
-                                     </div>
+                                        <a href="#"><img src={`http://localhost:8080/${product.imageUrl}`} alt={product.title} 
+                                        className="product-image-catalog object-cover w-full h-[24rem] lg:h-[36rem]"></img></a>
                                     
+                                        <p className="mt-6">{product.title}</p>
+                                        {variantToShow?.price !== undefined && variantToShow?.price !== null && (
+                                        <p className="text-md font-light">R$ {variantToShow.price.toFixed(2)}</p>
+                                        )}
+                                     </div>
+                                    )}
                                 </div>
-
                             );
                         })}
                     </div>

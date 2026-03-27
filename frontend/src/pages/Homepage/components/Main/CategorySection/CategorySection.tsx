@@ -1,8 +1,6 @@
 import {useState} from 'react';
 import {GenderButton} from './components/GenderButton';
 
-
-
 export function CategorySection() {
 
     const [gender, setGender] = useState<'female' | 'male'>('female');
