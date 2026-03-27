@@ -7,7 +7,7 @@ export function CategorySection() {
     
     return(
         <>
-        <h2 className="text-2xl  font-bold mb-6">CONHEÇA AS CATEGORIAS</h2>
+        <h2 className="text-2xl font-bold mb-6">CONHEÇA AS CATEGORIAS</h2>
                 <GenderButton gender={gender} onChangeGender={setGender} />
 
                 <div className="flex flex-nowrap gap-5 mt-5 overflow-x-auto pb-2">

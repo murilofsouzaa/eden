@@ -1,7 +1,6 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import { ChevronLeft, ChevronRight } from 'react-feather'
 import './Main.css';
-import {api} from '../../../../services/api.js';
 import {CategorySection} from './CategorySection/CategorySection.js'
 import {VideoSection} from './VideoSection/VideoSection.js'
 
@@ -9,8 +8,8 @@ type ProductVariant = {
     id: number;
     price: number;
     defaultVariant: boolean;
-    gender: string,
-    stock: number
+    gender: string;
+    stock: number;
 };
 
 type Product = {
@@ -20,10 +19,11 @@ type Product = {
     variants: ProductVariant[];
 };
 
-export function Main() {
+type MainProps = {
+    products: Product[];
+};
 
-    const [products, setProducts] = useState<Product[]>([]);
-
+export function Main({ products }: MainProps) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     // Guardamos métricas da vitrine para deslocar exatamente um produto por clique
@@ -31,16 +31,6 @@ export function Main() {
     const [viewportWidth, setViewportWidth] = useState(0);
     const trackRef = useRef<HTMLDivElement | null>(null);
     const viewportRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        api.get("/products")
-        .then((response) => {
-            setProducts(response.data)
-        })
-        return () => {
-            
-        };
-    }, []);
 
     const displayedProducts = products.slice(0, 7);
     const totalItems = displayedProducts.length;
@@ -98,7 +88,7 @@ export function Main() {
 
         return(
 		<div className="mx-4 mt-10 mb-10 lg:m-16">
-            <h2 className="text-2xl font-semibold mb-5 lg:mt-20 lg:text-[1.6rem]">Novidades: Power Elite</h2>
+            <h2 className="text-2xl font-bold mb-6">NOVIDADES: POWER ELITE</h2>
 
             <section className="relative">
                 <div className="overflow-hidden" ref={viewportRef}>
