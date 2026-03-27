@@ -8,12 +8,7 @@ import textLogo from '../../../public/logo/text.png'
 import hamburgerIcon from '../../../public/icons/hamburguer.png'
 import searchIcon from '../../../public/icons/search.png'
 
-type Product = {
-    id: number;
-    title: string;
-    imageUrl: string;
-};
-
+import type {Product} from '../../pages/Homepage/Home'
 type HeaderProps = {
     products: Product[];
 };

@@ -1,23 +1,10 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import { ChevronLeft, ChevronRight } from 'react-feather'
 import './Main.css';
-import {CategorySection} from './CategorySection/CategorySection.js'
-import {VideoSection} from './VideoSection/VideoSection.js'
+import {CategorySection} from './CategorySection/CategorySection';
+import {VideoSection} from './VideoSection/VideoSection';
 
-type ProductVariant = {
-    id: number;
-    price: number;
-    defaultVariant: boolean;
-    gender: string;
-    stock: number;
-};
-
-type Product = {
-    id: number;
-    title: string;
-    imageUrl: string;
-    variants: ProductVariant[];
-};
+import type { Product } from '../../Home';
 
 type MainProps = {
     products: Product[];

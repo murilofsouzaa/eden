@@ -1,8 +1,4 @@
-type Product = {
-    id: number;
-    title: string;
-    imageUrl: string;
-};
+import type {Product} from '../../../pages/Homepage/Home'
 
 type CartProps = {
     products: Product[];

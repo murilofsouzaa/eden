@@ -9,7 +9,7 @@ import blackWhiteSmoke from '../../../public/models/smoke-bar.jpg'
 import freepikBlackWhite from '../../../public/models/blackwhhite-freepik.jpg'
 import  ulfMeier from '../../../public/models/mahtla-preto-branco.jpg'
 
-type ProductVariant = {
+export type ProductVariant = {
     id: number;
     price: number;
     defaultVariant: boolean;
@@ -17,7 +17,7 @@ type ProductVariant = {
     stock: number
 };
 
-type Product = {
+export type Product = {
     id: number;
     title: string;
     imageUrl: string;
