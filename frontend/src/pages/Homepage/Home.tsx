@@ -1,9 +1,9 @@
-import {useState, useEffect} from 'react'
-import { api } from '../../services/api'
+import {useState, useEffect} from 'react';
+import { api } from '../../services/api';
 import { Header }  from '../../layout/Header/Header';
-import { Main } from './components/Main/Main'
+import { Main } from './components/Main/Main';
 import { Footer }  from '../../layout/Footer/Footer';
-import {Slider} from './components/Slider/Slider'
+import {Slider} from './components/Slider/Slider';
 
 import blackWhiteSmoke from '../../../public/models/smoke-bar.jpg'
 import freepikBlackWhite from '../../../public/models/blackwhhite-freepik.jpg'
@@ -28,7 +28,6 @@ export type Product = {
 export default function Home() {
     
     const [products, setProducts] = useState<Product[]>([]);
-    const [active, setActive] = useState(false);
 
     useEffect(() => {
             api.get("/products")
@@ -37,19 +36,17 @@ export default function Home() {
             })
         }, []);
     
+    //Não colocar products na dependência pois o axios.get vai retornar um novo array na memória, o que a dependência
+    //considera como mudança, então entraria em um loop de requests
     
-    const slideImages= [blackWhiteSmoke, freepikBlackWhite, ulfMeier]
+    const slideImages = [blackWhiteSmoke, freepikBlackWhite, ulfMeier];
     
     return(
         <>
-            <Header products={products} onClose={active} handleActive={setActive}></Header>
-            <Slider>{
-                slideImages.map((image, i) => (
-                    <img src={image} key={i} className="object-cover w-full h-full"></img>
-    ))    
-            }</Slider>
-            <Main products={products}></Main>
-            <Footer></Footer>
+            <Header products={products} />
+            <Slider images={slideImages} />
+            <Main products={products} />
+            <Footer />
         </>
     )
 }

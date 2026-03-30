@@ -1,21 +1,21 @@
-import type {Product, ProductVariant} from '../../../pages/Homepage/Home'
+import type {Product} from '../../../pages/Homepage/Home';
 
-import {X} from 'lucide-react'
+import {X} from 'lucide-react';
 
 type CartProps = {
-    products: Product[];
-    onClose:()=> void;
+    readonly products: Product[];
+    readonly onClose: () => void;
 };
 
 export function Cart({ products, onClose }: CartProps) {
     const hasProducts = products && products.length > 0;
 
     return (
-        <div className="cart-div fixed z-10 bottom-0 right-0 h-[70%] w-[100%] lg:w-[26%] bg-white shadow-lg">
+        <div className="cart-div fixed z-10 bottom-0 right-0 h-[70%] lg:h-full w-full lg:w-[26%] bg-white shadow-lg">
                 <div className="flex justify-between items-center w-full p-5 pr-10">
                     <h2 className="inline-flex text-xl font-medium p-4">Seu Carrinho</h2>
                     <div className="inline-flex">
-                        <button onClick={onClose}>
+                        <button onClick={onClose} className="hover:cursor-pointer">
                             <X></X>
                         </button>
                     </div>
@@ -43,8 +43,7 @@ export function Cart({ products, onClose }: CartProps) {
 
                    
                 </div>
-                <div>
-                    
+                <div className="cart-resume bg-white fixed">
                 </div>
         </div>
     );

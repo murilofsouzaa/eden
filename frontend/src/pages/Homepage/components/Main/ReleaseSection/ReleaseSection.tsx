@@ -1,0 +1,79 @@
+import { ChevronLeft, ChevronRight } from 'react-feather';
+import type { MutableRefObject } from 'react';
+import type {Product} from '../../../Home';
+
+type ReleaseSectionProps = {
+    readonly products: Product[];
+    readonly translateValue: number;
+    readonly trackRef: MutableRefObject<HTMLDivElement | null>;
+    readonly viewportRef: MutableRefObject<HTMLDivElement | null>;
+    readonly prev: () => void;
+    readonly next: () => void;
+};
+
+export function ReleaseSection({
+    products,
+    translateValue,
+    trackRef,
+    viewportRef,
+    prev,
+    next,
+}: ReleaseSectionProps) {
+    const totalItems = products.length;
+
+    return (
+        <section className="relative">
+            <div className="overflow-hidden" ref={viewportRef}>
+                <div
+                    ref={trackRef}
+                    className="flex flex-nowrap gap-5 transition-transform duration-500 ease-out"
+                    style={{transform: `translateX(${translateValue}px)`}}
+                >
+                    {products.map((product: Product) => {
+                        const variants = product.variants ?? [];
+                        const defaultVariant = variants.find((variant) => variant.defaultVariant);
+                        const variantToShow = defaultVariant ?? variants[0];
+                        return (
+                            <div key={product.id} data-slide="true">
+                                {variantToShow && variantToShow?.stock > 0 && (
+                                    <div className="shrink-0 w-64 sm:w-72 md:w-80">
+                                        <button type="button">
+                                            <img
+                                                src={`http://localhost:8080/${product.imageUrl}`}
+                                                alt={product.title}
+                                                className="product-image-catalog object-cover w-full h-96 lg:h-144"
+                                            />
+                                        </button>
+
+                                        <p className="mt-6">{product.title}</p>
+                                        {variantToShow?.price !== undefined && variantToShow?.price !== null && (
+                                            <p className="text-md font-light">R$ {variantToShow.price.toFixed(2)}</p>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+            {totalItems > 0 && (
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-between p-4">
+                    <button
+                        onClick={prev}
+                        aria-label="Item anterior"
+                        className="pointer-events-auto p-3 rounded-full shadow bg-black hover:invert hover:cursor-pointer "
+                    >
+                        <ChevronLeft className="invert w-auto h-5 duration-100 hover:scale-110" />
+                    </button>
+                    <button
+                        onClick={next}
+                        aria-label="Próximo item"
+                        className="pointer-events-auto p-3 rounded-full shadow hover:invert bg-black hover:cursor-pointer "
+                    >
+                        <ChevronRight className="invert w-auto h-5 duration-100 hover:scale-110" />
+                    </button>
+                </div>
+            )}
+        </section>
+    );
+}
