@@ -59,11 +59,10 @@ export function Header({ products }: HeaderProps){
                         <li><a href="#">Explorar</a></li>
                     </ul>
                     
-                    <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden lg:inline lg:w-10 lg:h-10" />
+                    <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden lg:inline lg:w-12 lg:h-12" />
 
-                    {(windowSize.isLargeScreen || windowSize.isLaptopScreen || windowSize.isDesktopScreen) ? 
                         <div className="flex gap-3 lg:flex lg:justify-center lg:items-center lg:gap-10">
-                            <div className="search-input flex justify-center items-center border-b-1 p-2">
+                            <div className="search-input flex justify-center items-center border-b p-2">
                                 <form>
                                     <input type="search" placeholder="Buscar" className="focus:outline-0" />
                                 </form>
@@ -72,27 +71,25 @@ export function Header({ products }: HeaderProps){
                                 </button>
                             </div>
                             <div className="hidden lg:flex lg:gap-4">
-                                <a href="#"><img src={userIcon} alt="user-icon" className="h-6 w-auto object-contain"></img></a>
-                                <button onClick={handleShoppingBagClick} className="cursor-pointer">
+                                <a href="#" className="hover:translate-y-[-10px] ease-in-out duration-300 py-5">
+                                    <img src={userIcon} alt="user-icon" className="h-6 w-auto object-contain"></img>
+                                </a>
+                                <button onClick={handleShoppingBagClick} className="cursor-pointer py-5
+                                hover:translate-y-[-10px] ease-in-out duration-300">
                                     <img src={shoppingBag} alt="shopping-bag-icon" className="h-6 w-auto object-contain"></img>
                                 </button>
                             </div>
                         </div>
                     
-                        : 
-
-                        <div className="flex flex-row gap-15 justify-between items-center">
-                            <img src={hamburgerIcon} className="w-8 h-8 lg:hidden"></img>
-                            <img src={textLogo} className="h-15 lg:hidden"></img>
-                            <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden lg:inline lg:w-10 lg:h-10" />
-                            <div className="flex gap-4 items-center lg:hidden">
-                                    <a href="#"><img src={userIcon} alt="user-icon" className="h-6 w-auto object-contain"></img></a>
-                                    <button onClick={handleShoppingBagClick} className="cursor-pointer">
-                                        <img src={shoppingBag} alt="shopping-bag-icon" className="h-6 w-auto object-contain"></img>
-                                    </button>
+                        <div className="lg:hidden flex flex-col gap-10 justify-around items-center w-100">
+                            <div className="flex flex-row justify-between items-center gap-5">
+                                <img src={hamburgerIcon} className="w-8 h-8 lg:hidden"></img>
+                                <div className="flex flex-row items-center justify-center">
+                                    <img src={textLogo} className="h-14 lg:hidden"></img>
+                                    <img src={logoHeader} alt="eden-logo-header" className="h-14 w-auto lg:hidden"/>
+                                </div>
                             </div>
                         </div>
-                    }
                 </nav>
             </div>
             <div className="">

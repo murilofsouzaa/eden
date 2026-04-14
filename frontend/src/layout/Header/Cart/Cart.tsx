@@ -10,8 +10,8 @@ export function Cart({ products, onClose }: CartProps) {
     const hasProducts = products && products.length > 0;
 
     return (
-        <div className="cart-div fixed z-10 bottom-0 right-0 h-[70%] 
-        lg:h-full w-full lg:w-[26%] bg-white shadow-lg">
+        <div className="cart-div fixed z-10 bottom-0 right-0 h-[70%] overflow-scroll 
+        lg:h-full w-full lg:w-[23%] bg-white shadow-lg">
 
                 <div className="flex justify-between items-center w-full p-5 pr-10">
                     <h2 className="inline-flex text-xl font-medium p-4">Seu Carrinho</h2>
