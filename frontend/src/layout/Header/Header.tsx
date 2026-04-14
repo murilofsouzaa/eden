@@ -38,7 +38,6 @@ export function Header({ products }: HeaderProps){
     // para i = 1
     // 1 + 0 % 3 -> 1 % 3 = 1, pois 1/3 o quociente fica 0 e o resto será 1
 
-    //TODO
     function handleShoppingBagClick(){
         setActive((prev) => (!prev))
     }
@@ -47,8 +46,10 @@ export function Header({ products }: HeaderProps){
         <div>
             <div className="m-0 p-0">
                 <div className="bg-gray-200 p-2 text-center">{labels[currentIndex]}</div>
-                <nav className="flex flex-col gap-3 justify-between items-center m-4 p-4 lg:flex lg:flex-row lg:justify-between lg:items-center lg:m-4 lg:p-4">
-                    <ul className="hidden lg:visible lg:flex lg:gap-7">
+                <nav className="flex flex-col gap-3 justify-between items-center m-4 p-4 
+                    lg:flex lg:flex-row lg:justify-between lg:items-center lg:m-4 lg:p-4">
+                    <ul className="hidden 
+                        lg:visible lg:flex lg:gap-7">
                         <li><a href="#">Mulheres</a></li>
                         <li><a href="#">Homens</a></li>
                         <li><a href="#">Acessórios</a></li>
