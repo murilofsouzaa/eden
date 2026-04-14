@@ -58,6 +58,9 @@ export function Header({ products }: HeaderProps){
                         <li><a href="#">Acessórios</a></li>
                         <li><a href="#">Explorar</a></li>
                     </ul>
+                    
+                    <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden lg:inline lg:w-10 lg:h-10" />
+
                     {(windowSize.isLargeScreen || windowSize.isLaptopScreen || windowSize.isDesktopScreen) ? 
                         <div className="flex gap-3 lg:flex lg:justify-center lg:items-center lg:gap-10">
                             <div className="search-input flex justify-center items-center border-b-1 p-2">
@@ -81,8 +84,7 @@ export function Header({ products }: HeaderProps){
                         <div className="flex flex-row gap-15 justify-between items-center">
                             <img src={hamburgerIcon} className="w-8 h-8 lg:hidden"></img>
                             <img src={textLogo} className="h-15 lg:hidden"></img>
-                            <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden 
-                                lg:inline lg:w-10 lg:h-10" />
+                            <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden lg:inline lg:w-10 lg:h-10" />
                             <div className="flex gap-4 items-center lg:hidden">
                                     <a href="#"><img src={userIcon} alt="user-icon" className="h-6 w-auto object-contain"></img></a>
                                     <button onClick={handleShoppingBagClick} className="cursor-pointer">
