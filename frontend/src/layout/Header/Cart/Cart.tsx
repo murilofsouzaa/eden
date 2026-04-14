@@ -1,5 +1,4 @@
 import type {Product} from '../../../pages/Homepage/Home';
-
 import {X} from 'lucide-react';
 
 type CartProps = {
@@ -22,7 +21,7 @@ export function Cart({ products, onClose }: CartProps) {
                         </button>
                     </div>
                 </div>
-                
+
                 <div className="">   
                     {hasProducts ? (
                         products.map((product:Product) => {

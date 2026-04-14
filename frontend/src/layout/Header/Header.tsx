@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import './Header.css';
 import {Cart} from './Cart/Cart';
+import useWindowSize from '../../../hooks/useWindowSize'
 import logoHeader from '../../../public/logo/logo.png';
 import userIcon from '../../../public/icons/user.png';
 import shoppingBag from '../../../public/icons/shopping-bag.png';
@@ -13,18 +14,20 @@ type HeaderProps = {
     readonly products: Product[];
 };
 
+const labels : string[] = [
+    "FRETE GRÁTIS ACIMA DE R$299,90",
+    "COMPRE SEM MEDO, A PRIMEIRA TROCA É GRÁTIS",
+    "PARCELE ATÉ 12x NO CARTÃO"
+];
+
 export function Header({ products }: HeaderProps){
-
-    const labels : string[] = [
-        "FRETE GRÁTIS ACIMA DE R$299,90",
-        "COMPRE SEM MEDO, A PRIMEIRA TROCA É GRÁTIS",
-        "PARCELE ATÉ 12x NO CARTÃO"
-    ];
-
+    
+    const windowSize = useWindowSize();
+    
     const [currentIndex, setCurrentIndex] = useState(0);
     const [active, setActive] = useState(false);
-
-
+    
+    
     useEffect(() => {
         //retorna um ID para o clearInterval
     const interval = setInterval(() => {
@@ -55,34 +58,39 @@ export function Header({ products }: HeaderProps){
                         <li><a href="#">Acessórios</a></li>
                         <li><a href="#">Explorar</a></li>
                     </ul>
-                    <div className="flex flex-row gap-15 justify-between items-center">
-                        <img src={hamburgerIcon} className="w-8 h-8 lg:hidden"></img>
-                        <img src={textLogo} className="h-15 lg:hidden"></img>
-                        <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden lg:inline lg:w-10 lg:h-10" />
-                        <div className="flex gap-4 items-center lg:hidden">
+                    {(windowSize.isLargeScreen || windowSize.isLaptopScreen || windowSize.isDesktopScreen) ? 
+                        <div className="flex gap-3 lg:flex lg:justify-center lg:items-center lg:gap-10">
+                            <div className="search-input flex justify-center items-center border-b-1 p-2">
+                                <form>
+                                    <input type="search" placeholder="Buscar" className="focus:outline-0" />
+                                </form>
+                                <button onClick={handleShoppingBagClick} className="cursor-pointer">
+                                    <img src={searchIcon} className="w-auto h-6"></img>
+                                </button>
+                            </div>
+                            <div className="hidden lg:flex lg:gap-4">
                                 <a href="#"><img src={userIcon} alt="user-icon" className="h-6 w-auto object-contain"></img></a>
                                 <button onClick={handleShoppingBagClick} className="cursor-pointer">
                                     <img src={shoppingBag} alt="shopping-bag-icon" className="h-6 w-auto object-contain"></img>
                                 </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex gap-3 lg:flex lg:justify-center lg:items-center lg:gap-10">
-                        <div className="search-input flex justify-center items-center border-b-1 p-2">
-                            <form>
-                                <input type="search" placeholder="Buscar" className="focus:outline-0" />
-                            </form>
-                            <button onClick={handleShoppingBagClick} className="cursor-pointer">
-                                <img src={searchIcon} className="w-auto h-6"></img>
-                            </button>
+                    
+                        : 
+
+                        <div className="flex flex-row gap-15 justify-between items-center">
+                            <img src={hamburgerIcon} className="w-8 h-8 lg:hidden"></img>
+                            <img src={textLogo} className="h-15 lg:hidden"></img>
+                            <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden 
+                                lg:inline lg:w-10 lg:h-10" />
+                            <div className="flex gap-4 items-center lg:hidden">
+                                    <a href="#"><img src={userIcon} alt="user-icon" className="h-6 w-auto object-contain"></img></a>
+                                    <button onClick={handleShoppingBagClick} className="cursor-pointer">
+                                        <img src={shoppingBag} alt="shopping-bag-icon" className="h-6 w-auto object-contain"></img>
+                                    </button>
+                            </div>
                         </div>
-            
-                        <div className="hidden lg:flex lg:gap-4">
-                            <a href="#"><img src={userIcon} alt="user-icon" className="h-6 w-auto object-contain"></img></a>
-                            <button onClick={handleShoppingBagClick} className="cursor-pointer">
-                                <img src={shoppingBag} alt="shopping-bag-icon" className="h-6 w-auto object-contain"></img>
-                            </button>
-                        </div>
-                    </div>
+                    }
                 </nav>
             </div>
             <div className="">
