@@ -8,11 +8,10 @@ import textLogo from '../../../public/logo/text.png';
 import hamburgerIcon from '../../../public/icons/hamburguer.png';
 import searchIcon from '../../../public/icons/search.png';
 
-import type {Product} from '../../pages/Homepage/Home';
+import type { Product } from '../../context/ProductContext';
 
 type HeaderProps = {
     readonly products: Product[];
-    isOpen: boolean;
 };
 
 const labels : string[] = [

@@ -1,4 +1,4 @@
-import type {Product} from '../../../pages/Homepage/Home';
+import type {Product} from '../../../context/ProductContext';
 import {X} from 'lucide-react';
 
 type CartProps = {

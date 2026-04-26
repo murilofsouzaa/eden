@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'react-feather';
 import type { MutableRefObject } from 'react';
-import type {Product} from '../../../Home';
+import type {Product} from '../../../../../context/ProductContext';
 
 type ReleaseSectionProps = {
     readonly products: Product[];

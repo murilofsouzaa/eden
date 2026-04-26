@@ -1,11 +1,10 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import { ChevronLeft, ChevronRight } from 'react-feather';
 import './Main.css';
 import {CategorySection} from './CategorySection/CategorySection';
 import {VideoSection} from './VideoSection/VideoSection';
 import {ReleaseSection} from './ReleaseSection/ReleaseSection';
 
-import type { Product } from '../../Home';
+import type { Product } from '../../../../context/ProductContext';
 
 type MainProps = {
     readonly products: Product[];
