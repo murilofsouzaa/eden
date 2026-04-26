@@ -20,11 +20,47 @@ I'm developing this project to learn concepts such as: Domain Drive Desing, Desi
 
 **Database:** PostgreSQL
 
-**Build/Dependences**: Maven
+**Build**: Maven (backend), Vite + TypeScript (frontend)
 
 **Infra**: Docker
 
 **Architecture: Layers**
+
+## Dependencies
+
+### Backend (Maven)
+- `org.springframework.boot:spring-boot-starter-data-jpa`
+- `org.springframework.boot:spring-boot-starter-web`
+- `org.springframework.boot:spring-boot-starter-validation`
+- `org.postgresql:postgresql` (runtime)
+- `com.h2database:h2` (runtime)
+- `org.springframework.boot:spring-boot-starter-test` (test)
+- `junit:junit` (test)
+- `org.mockito:mockito-core` (test)
+
+### Frontend (npm)
+**Dependencies**
+- `axios`
+- `lucide-react`
+- `react`
+- `react-dom`
+- `react-feather`
+
+**Dev Dependencies**
+- `@eslint/js`
+- `@tailwindcss/vite`
+- `@types/node`
+- `@types/react`
+- `@types/react-dom`
+- `@vitejs/plugin-react`
+- `eslint`
+- `eslint-plugin-react-hooks`
+- `eslint-plugin-react-refresh`
+- `globals`
+- `tailwindcss`
+- `typescript`
+- `typescript-eslint`
+- `vite`
 
 ## Getting started
 
