@@ -45,8 +45,8 @@ export function Header({ products }: HeaderProps){
     }
 
     return (
-        <div className="">
-            <div className="m-0 p-0">
+        <div className="fixed z-101 w-full bg-white border-b-2 border-b-black/10">
+            <div className="flex flex-col m-0 p-0">
                 <div className="bg-gray-200 p-2 text-center">{labels[currentIndex]}</div>
                 <nav className="flex flex-col gap-3 justify-between items-center m-4 p-4 
                     lg:flex lg:flex-row lg:justify-between lg:items-center lg:m-4 lg:p-4">
@@ -58,7 +58,7 @@ export function Header({ products }: HeaderProps){
                         <li><a href="#">Explorar</a></li>
                     </ul>
                     
-                    <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden lg:inline lg:w-12 lg:h-12" />
+                    <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden lg:inline lg:w-13 lg:h-13" />
 
                         <div className="flex gap-3 lg:flex lg:justify-center lg:items-center lg:gap-10">
                             <div className="search-input flex justify-center items-center border-b p-2">
