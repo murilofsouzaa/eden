@@ -39,7 +39,7 @@ export function ReleaseSection({
                                     <div className="shrink-0 w-64 sm:w-72 md:w-80">
                                         <button type="button">
                                             <img
-                                                src={`http://localhost:8080/${product.imageUrl}`}
+                                                src={`/${product.imageUrl}`}
                                                 alt={product.title}
                                                 className="product-image-catalog object-cover w-full h-96 lg:h-144"
                                             />

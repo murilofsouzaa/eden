@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import './Header.css';
 import {Cart} from './Cart/Cart';
-import useWindowSize from '../../../hooks/useWindowSize'
 import logoHeader from '../../../public/logo/logo.png';
 import userIcon from '../../../public/icons/user.png';
 import shoppingBag from '../../../public/icons/shopping-bag.png';
@@ -10,8 +9,10 @@ import hamburgerIcon from '../../../public/icons/hamburguer.png';
 import searchIcon from '../../../public/icons/search.png';
 
 import type {Product} from '../../pages/Homepage/Home';
+
 type HeaderProps = {
     readonly products: Product[];
+    isOpen: boolean;
 };
 
 const labels : string[] = [
@@ -21,8 +22,6 @@ const labels : string[] = [
 ];
 
 export function Header({ products }: HeaderProps){
-    
-    const windowSize = useWindowSize();
     
     const [currentIndex, setCurrentIndex] = useState(0);
     const [active, setActive] = useState(false);
@@ -46,7 +45,7 @@ export function Header({ products }: HeaderProps){
     }
 
     return (
-        <div>
+        <div className="">
             <div className="m-0 p-0">
                 <div className="bg-gray-200 p-2 text-center">{labels[currentIndex]}</div>
                 <nav className="flex flex-col gap-3 justify-between items-center m-4 p-4 
@@ -64,7 +63,7 @@ export function Header({ products }: HeaderProps){
                         <div className="flex gap-3 lg:flex lg:justify-center lg:items-center lg:gap-10">
                             <div className="search-input flex justify-center items-center border-b p-2">
                                 <form>
-                                    <input type="search" placeholder="Buscar" className="focus:outline-0" />
+                                    <input type="search" placeholder="Buscar" className="focus:outline-0 w-[300px]" />
                                 </form>
                                 <button onClick={handleShoppingBagClick} className="cursor-pointer">
                                     <img src={searchIcon} className="w-auto h-6"></img>

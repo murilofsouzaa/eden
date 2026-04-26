@@ -28,9 +28,10 @@ export type Product = {
 export default function Home() {
     
     const [products, setProducts] = useState<Product[]>([]);
+    const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-            api.get("/products")
+            api.get("/api/products")
             .then((response) => {
                 setProducts(response.data)
             })
@@ -43,9 +44,9 @@ export default function Home() {
     
     return(
         <>
-            <Header products={products} />
-            <Slider images={slideImages} />
-            <Main products={products} />
+            <Header products={products} isOpen={isOpen} setisOpen={setIsOpen}/>
+            <Slider images={slideImages} isOpen={isOpen}/>
+            <Main products={products} isOpen={isOpen}/>
             <Footer />
         </>
     )
