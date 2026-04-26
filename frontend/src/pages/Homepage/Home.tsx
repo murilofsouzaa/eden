@@ -21,6 +21,7 @@ export type ProductVariant = {
 export type Product = {
     id: number;
     title: string;
+    description: string;
     imageUrl: string;
     variants: ProductVariant[];
 };

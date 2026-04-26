@@ -45,9 +45,10 @@ export function ReleaseSection({
                                             />
                                         </button>
 
-                                        <p className="mt-6">{product.title}</p>
+                                        <p className="mt-6 text-md">{product.title}</p>
+                                        <p className="mb-3 mt-1 text-sm text-black/70">{`${product.description.slice(0,40)}...`}</p>
                                         {variantToShow?.price !== undefined && variantToShow?.price !== null && (
-                                            <p className="text-md font-light">R$ {variantToShow.price.toFixed(2)}</p>
+                                            <p className="text-md font-bold">R$ {variantToShow.price.toFixed(2)}</p>
                                         )}
                                     </div>
                                 )}
