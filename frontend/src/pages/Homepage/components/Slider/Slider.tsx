@@ -26,7 +26,7 @@ export function Slider({ images }: SliderProps) {
     }, [slides.length]);
 	
     return (
-        <div>
+        <div className="">
             <div className="h-80 w-full overflow-hidden relative lg:h-170">
                 <div className="flex h-full w-full object-cover lg:object[60%_30%]">
                     <div

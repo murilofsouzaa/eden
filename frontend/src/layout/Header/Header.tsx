@@ -6,8 +6,7 @@ import userIcon from '../../../public/icons/user.png';
 import shoppingBag from '../../../public/icons/shopping-bag.png';
 import textLogo from '../../../public/logo/text.png';
 import hamburgerIcon from '../../../public/icons/hamburguer.png';
-import searchIcon from '../../../public/icons/search.png';
-
+import SearchInput from './SearchInput/SearchInput'
 import type { Product } from '../../context/ProductContext';
 
 type HeaderProps = {
@@ -47,8 +46,8 @@ export function Header({ products }: HeaderProps){
         <div className="fixed z-101 w-full bg-white border-b-2 border-b-black/10">
             <div className="flex flex-col m-0 p-0">
                 <div className="bg-gray-200 p-2 text-center">{labels[currentIndex]}</div>
-                <nav className="flex flex-col gap-3 justify-between items-center m-4 p-4 
-                    lg:flex lg:flex-row lg:justify-between lg:items-center lg:m-4 lg:p-4">
+                <nav className="flex flex-col justify-center items-center m-4 
+                    lg:flex lg:flex-row lg:justify-between lg:items-center lg:gap-4 lg:m-4 lg:p">
                     <ul className="hidden 
                         lg:visible lg:flex lg:gap-7">
                         <li><a href="#">Mulheres</a></li>
@@ -58,36 +57,20 @@ export function Header({ products }: HeaderProps){
                     </ul>
                     
                     <img src={ logoHeader} alt="eden-logo-heaeder" className="hidden lg:inline lg:w-13 lg:h-13" />
-
-                        <div className="flex gap-3 lg:flex lg:justify-center lg:items-center lg:gap-10">
-                            <div className="search-input flex justify-center items-center border-b p-2">
-                                <form>
-                                    <input type="search" placeholder="Buscar" className="focus:outline-0 w-[300px]" />
-                                </form>
-                                <button onClick={handleShoppingBagClick} className="cursor-pointer">
-                                    <img src={searchIcon} className="w-auto h-6"></img>
-                                </button>
-                            </div>
-                            <div className="hidden lg:flex lg:gap-4">
-                                <a href="#" className="hover:translate-y-[-10px] ease-in-out duration-300 py-5">
-                                    <img src={userIcon} alt="user-icon" className="h-6 w-auto object-contain"></img>
-                                </a>
-                                <button onClick={handleShoppingBagClick} className="cursor-pointer py-5
-                                hover:translate-y-[-10px] ease-in-out duration-300">
-                                    <img src={shoppingBag} alt="shopping-bag-icon" className="h-6 w-auto object-contain"></img>
-                                </button>
-                            </div>
+                    <div className="flex items-center justify-center gap-5 lg:flex lg:justify-center lg:items-center lg:gap-10">
+                        <img src={hamburgerIcon} className="w-8 h-8 lg:hidden"></img>
+                        <SearchInput 
+                            handleShoppingBagClick={handleShoppingBagClick}/>
+                        <div className="flex gap-5 w-[100%]">
+                            <a href="#" className="hover:translate-y-[-10px] ease-in-out duration-300 py-5">
+                                <img src={userIcon} alt="user-icon" className="h-6 w-auto object-contain"></img>
+                            </a>
+                            <button onClick={handleShoppingBagClick} className="cursor-pointer py-5
+                            hover:translate-y-[-10px] ease-in-out duration-300">
+                                <img src={shoppingBag} alt="shopping-bag-icon" className="h-6 w-auto object-contain"></img>
+                            </button>
                         </div>
-                    
-                        <div className="lg:hidden flex flex-col gap-10 justify-around items-center w-100">
-                            <div className="flex flex-row justify-between items-center gap-5">
-                                <img src={hamburgerIcon} className="w-8 h-8 lg:hidden"></img>
-                                <div className="flex flex-row items-center justify-center">
-                                    <img src={textLogo} className="h-14 lg:hidden"></img>
-                                    <img src={logoHeader} alt="eden-logo-header" className="h-14 w-auto lg:hidden"/>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                 </nav>
             </div>
             <div className="">
